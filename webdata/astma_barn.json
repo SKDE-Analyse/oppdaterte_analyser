@@ -1,0 +1,247 @@
+{
+  "tags": [
+    "barn",
+    "astma"
+  ],
+  "name": "astma_barn",
+  "published": 1.7205145e+12,
+  "graphs": [
+    {
+      "type": "barchart",
+      "category": "bohf",
+      "description": {
+        "no": "Ëeeet eller annet pr. 10 000 innbyggere.",
+        "en": "Something or other pr. 10 000 inhabitants."
+      },
+      "variables": [
+        "astma_rate<year>"
+      ],
+      "data_id": "astma_barn_rate"
+    },
+    {
+      "type": "linechart",
+      "category": "year",
+      "description": {
+        "no": "",
+        "en": ""
+      },
+      "variables": [
+        "astma_<bohf>"
+      ],
+      "data_id": "astma_barn_rate_yearly"
+    }
+  ],
+  "data": {
+    "astma_barn_rate": [
+      {
+        "bohf": "Finnmark",
+        "astma_rate2018":            43.58,
+        "astma_rate2019":            49.44,
+        "astma_rate2020":            44.95
+      },
+      {
+        "bohf": "UNN",
+        "astma_rate2018":            21.48,
+        "astma_rate2019":            20.45,
+        "astma_rate2020":            17.48
+      },
+      {
+        "bohf": "Nordland",
+        "astma_rate2018":            21.51,
+        "astma_rate2019":            17.97,
+        "astma_rate2020":            16.18
+      },
+      {
+        "bohf": "Helgeland",
+        "astma_rate2018":            35.65,
+        "astma_rate2019":            34.94,
+        "astma_rate2020":            29.78
+      },
+      {
+        "bohf": "Nord-Trøndelag",
+        "astma_rate2018":            25.19,
+        "astma_rate2019":            28.25,
+        "astma_rate2020":            23.70
+      },
+      {
+        "bohf": "St. Olav",
+        "astma_rate2018":            41.85,
+        "astma_rate2019":            35.96,
+        "astma_rate2020":            36.80
+      },
+      {
+        "bohf": "Møre og Romsdal",
+        "astma_rate2018":            19.69,
+        "astma_rate2019":            18.57,
+        "astma_rate2020":            18.15
+      },
+      {
+        "bohf": "Førde",
+        "astma_rate2018":            23.76,
+        "astma_rate2019":            24.94,
+        "astma_rate2020":            16.97
+      },
+      {
+        "bohf": "Bergen",
+        "astma_rate2018":            28.21,
+        "astma_rate2019":            23.70,
+        "astma_rate2020":            23.06
+      },
+      {
+        "bohf": "Fonna",
+        "astma_rate2018":            14.21,
+        "astma_rate2019":            14.57,
+        "astma_rate2020":            12.33
+      },
+      {
+        "bohf": "Stavanger",
+        "astma_rate2018":            21.74,
+        "astma_rate2019":            19.08,
+        "astma_rate2020":            17.01
+      },
+      {
+        "bohf": "Østfold",
+        "astma_rate2018":            23.78,
+        "astma_rate2019":            17.51,
+        "astma_rate2020":            16.93
+      },
+      {
+        "bohf": "Akershus",
+        "astma_rate2018":            45.80,
+        "astma_rate2019":            20.90,
+        "astma_rate2020":            49.10
+      },
+      {
+        "bohf": "OUS",
+        "astma_rate2018":            48.88,
+        "astma_rate2019":            55.38,
+        "astma_rate2020":            45.02
+      },
+      {
+        "bohf": "Lovisenberg",
+        "astma_rate2018":            38.62,
+        "astma_rate2019":            44.42,
+        "astma_rate2020":            31.85
+      },
+      {
+        "bohf": "Diakonhjemmet",
+        "astma_rate2018":            73.29,
+        "astma_rate2019":            87.89,
+        "astma_rate2020":            64.69
+      },
+      {
+        "bohf": "Innlandet",
+        "astma_rate2018":            23.52,
+        "astma_rate2019":            22.44,
+        "astma_rate2020":            22.93
+      },
+      {
+        "bohf": "Vestre Viken",
+        "astma_rate2018":            65.55,
+        "astma_rate2019":            58.71,
+        "astma_rate2020":            50.65
+      },
+      {
+        "bohf": "Vestfold",
+        "astma_rate2018":            19.21,
+        "astma_rate2019":            19.59,
+        "astma_rate2020":            15.84
+      },
+      {
+        "bohf": "Telemark",
+        "astma_rate2018":            26.24,
+        "astma_rate2019":            36.16,
+        "astma_rate2020":            37.35
+      },
+      {
+        "bohf": "Sørlandet",
+        "astma_rate2018":            52.49,
+        "astma_rate2019":            45.64,
+        "astma_rate2020":            20.92
+      },
+      {
+        "bohf": "Norge",
+        "astma_rate2018":            35.47,
+        "astma_rate2019":            31.30,
+        "astma_rate2020":            30.06
+      }
+    ],
+    "astma_barn_rate_yearly": [
+      {
+        "year": "2018",
+        "astma_1":            43.58,
+        "astma_2":            21.48,
+        "astma_3":            21.51,
+        "astma_4":            35.65,
+        "astma_6":            25.19,
+        "astma_7":            41.85,
+        "astma_8":            19.69,
+        "astma_10":            23.76,
+        "astma_11":            28.21,
+        "astma_12":            14.21,
+        "astma_13":            21.74,
+        "astma_14":            23.78,
+        "astma_15":            45.80,
+        "astma_16":            48.88,
+        "astma_17":            38.62,
+        "astma_18":            73.29,
+        "astma_19":            23.52,
+        "astma_20":            65.55,
+        "astma_21":            19.21,
+        "astma_22":            26.24,
+        "astma_23":            52.49,
+        "astma_8888":            35.47
+      },
+      {
+        "year": "2019",
+        "astma_1":            49.44,
+        "astma_2":            20.45,
+        "astma_3":            17.97,
+        "astma_4":            34.94,
+        "astma_6":            28.25,
+        "astma_7":            35.96,
+        "astma_8":            18.57,
+        "astma_10":            24.94,
+        "astma_11":            23.70,
+        "astma_12":            14.57,
+        "astma_13":            19.08,
+        "astma_14":            17.51,
+        "astma_15":            20.90,
+        "astma_16":            55.38,
+        "astma_17":            44.42,
+        "astma_18":            87.89,
+        "astma_19":            22.44,
+        "astma_20":            58.71,
+        "astma_21":            19.59,
+        "astma_22":            36.16,
+        "astma_23":            45.64,
+        "astma_8888":            31.30
+      },
+      {
+        "year": "2020",
+        "astma_1":            44.95,
+        "astma_2":            17.48,
+        "astma_3":            16.18,
+        "astma_4":            29.78,
+        "astma_6":            23.70,
+        "astma_7":            36.80,
+        "astma_8":            18.15,
+        "astma_10":            16.97,
+        "astma_11":            23.06,
+        "astma_12":            12.33,
+        "astma_13":            17.01,
+        "astma_14":            16.93,
+        "astma_15":            49.10,
+        "astma_16":            45.02,
+        "astma_17":            31.85,
+        "astma_18":            64.69,
+        "astma_19":            22.93,
+        "astma_20":            50.65,
+        "astma_21":            15.84,
+        "astma_22":            37.35,
+        "astma_23":            20.92,
+        "astma_8888":            30.06
+      }
+    ]
+  }
+}
