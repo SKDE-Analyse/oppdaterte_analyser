@@ -16,6 +16,8 @@
 %let view_&name._label_3 = &label_3;
 %let view_&name._label_4 = &label_4;
 %let view_&name._label_5 = &label_5;
+
+&name
 %mend define_view;
 
 
@@ -39,8 +41,8 @@
 %do oppd_index=1 %to %sysfunc(countw(&string, ||));
    %let lang_string = %scan(&string, &oppd_index, ||);
    %let re = ^\s*([a-z]{2})\s*:=(.*);
-   %if &lang = %sysfunc(prxchange(s/&re/$1/, -1, &lang_string)) %then %do;
-      %sysfunc(prxchange(s/&re/$2/, -1, &lang_string))
+   %if &lang = %sysfunc(prxchange(s/&re/$1/, -1, %quote(&lang_string))) %then %do;
+      %sysfunc(prxchange(s/&re/$2/, -1, %quote(&lang_string)))
       %return;
    %end;
 %end;
