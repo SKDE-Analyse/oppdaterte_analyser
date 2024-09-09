@@ -1,21 +1,10 @@
-%include "/sas_smb/skde_analyse/Data/SAS/felleskoder/main/makroer/expand_varlist.sas";
+ï»¿
+
+%include "&oppdatering_filbane/makroer/analyser_parse_dataspecifier.sas";
 
 %macro oppdater(dataspecifier, force_update=false);
 
-%macro parse_simple_dataspecifier(specifier, ds_var=, varlist_var=);
-%global &ds_var &varlist_var;
-
-%let regex   = ^(\w*)\/([\w: -]*[\w:])$;
-%let dataset = %sysfunc(prxchange(s/&regex/$1/, 1, &specifier));
-%let varlist = %sysfunc(prxchange(s/&regex/$2/, 1, &specifier));
-
-%expand_varlist(work, &dataset, &varlist, &varlist_var)
-
-data _null_; call symput("&ds_var", "&dataset"); run;
-
-%mend parse_simple_dataspecifier;
-
-%parse_simple_dataspecifier(&dataspecifier, ds_var=oppd_dataset, varlist_var=oppd_varlist);
+%analyser_parse_dataspecifier(&dataspecifier, ds_var=oppd_dataset, varlist_var=oppd_varlist);
 
 %put "DS-navn: " &oppd_dataset;
 %put "Variable list: " &oppd_varlist;
@@ -51,10 +40,10 @@ run;
    %do oppd_maaned=1 %to 12;
       %let oppd_partial_ds = &oppd_dataset._&oppd_aar._&oppd_maaned;
       %if %sysfunc(exist(&oppd_partial_ds)) and &force_update = false %then %do;
-	     %put Datasettet for denne måneden finnes allerede, og blir derfor ikke oppdatert: "&oppd_partial_ds";
+	     %put Datasettet for denne mÃ¥neden finnes allerede, og blir derfor ikke oppdatert: "&oppd_partial_ds";
 	  %end;
 	  %else %do;
-	     %put Datasettet for denne måneden finnes ikke, og blir derfor oppdatert: "&oppd_partial_ds";
+	     %put Datasettet for denne mÃ¥neden finnes ikke, og blir derfor oppdatert: "&oppd_partial_ds";
 		 data &oppd_partial_ds;
 		    set &oppd_dataset._&oppd_aar._&oppd_maaned._tmp;
          run;

@@ -6,8 +6,11 @@
 
 %macro npr(datasets,
 	periode=,
+	normaltariff=,
 	in_diag=,
 	ut_diag=,
+	in_hdiag=,
+	ut_hdiag=,
 	in_pros=,
 	ut_pros=,
 	aktivitetskategori3=1 2 3,
@@ -34,14 +37,24 @@
 
    set &dslist;
 
-   all_diag = catx(" ", of Hdiag Hdiag2 bdiag:);
-   %if &in_diag ^= %then if     %npr_kodematch(all_diag, &in_diag);;
-   %if &ut_diag ^= %then if not %npr_kodematch(all_diag, &ut_diag);;
+   %if &normaltariff ^= %then %do;
+      if %npr_kodematch(catx(" ", of Normaltariff:), &normaltariff);
+   %end;
 
-   all_pros = catx(" ", of ncmp: ncsp: ncrp:);
-   %if &in_pros ^= %then if     %npr_kodematch(all_pros, &in_pros);;
-   %if &ut_pros ^= %then if not %npr_kodematch(all_pros, &ut_pros);;
+   %if &in_diag&ut_diag ^= %then %do;
+      all_diag = catx(" ", of Hdiag Hdiag2 bdiag:);
+      %if &in_diag ^= %then if     %npr_kodematch(all_diag, &in_diag);;
+      %if &ut_diag ^= %then if not %npr_kodematch(all_diag, &ut_diag);;
+   %end;
 
+   %if &in_hdiag ^= %then if     %npr_kodematch(Hdiag, &in_hdiag);;
+   %if &ut_hdiag ^= %then if not %npr_kodematch(Hdiag, &ut_hdiag);;
+
+   %if &in_pros&ut_pros ^= %then %do;
+      all_pros = catx(" ", of ncmp: ncsp: ncrp:);
+      %if &in_pros ^= %then if     %npr_kodematch(all_pros, &in_pros);;
+      %if &ut_pros ^= %then if not %npr_kodematch(all_pros, &ut_pros);;
+   %end;
 
 %mend npr;
 

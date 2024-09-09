@@ -34,12 +34,13 @@ run;
 
 proc sql;
 create table &out as
-   select aar, bohf, alder, ermann, sum(n_obs) as n_obs
+   select aar, borhf, bohf, alder, ermann, sum(n_obs) as n_obs
    %do assemble_i=1 %to %sysfunc(countw(&assemble_varnames));
       , sum(%scan(&assemble_varnames, &assemble_i)) as %scan(&assemble_varnames, &assemble_i)
    %end;
    from all_of_them
-   group by aar, bohf, alder, ermann;
+   where borhf <= 4
+   group by aar, borhf, bohf, alder, ermann;
 quit;
 
 %mend assemble;
