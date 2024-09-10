@@ -21,31 +21,13 @@
 %mend define_view;
 
 
-
-
-%define_view(
-  name=off_priv,
-  variables=off priv,
-  title=%str(no := Enkeltår, offentlig/privat
-          || en := Single year, public/private),
-  label_1=%str(no := Offentlig || en := Public),
-  label_2=%str(no = Privat || en = Private)
-)
-
-%put &=view_off_priv_vars;
-%put &=view_off_priv_title;
-%put &=view_off_priv_label_1;
-%put &=view_off_priv_label_2;
-
 %macro get_lang(lang, string);
 %do oppd_index=1 %to %sysfunc(countw(&string, ||));
-   %let lang_string = %scan(&string, &oppd_index, ||);
+   %let lang_string = %bquote(%scan(&string, &oppd_index, ||));
    %let re = ^\s*([a-z]{2})\s*:=(.*);
-   %if &lang = %sysfunc(prxchange(s/&re/$1/, -1, %quote(&lang_string))) %then %do;
-      %sysfunc(prxchange(s/&re/$2/, -1, %quote(&lang_string)))
+   %if &lang = %sysfunc(prxchange(s/&re/$1/, -1, &lang_string)) %then %do;
+      %sysfunc(prxchange(s/&re/$2/, -1, &lang_string))
       %return;
    %end;
 %end;
 %mend get_lang;
-
-%get_lang(no, &view_off_priv_label_1)

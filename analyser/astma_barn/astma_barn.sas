@@ -7,7 +7,7 @@
 
 data astma_barn;
   %NPR(avd aspes,
-     periode=2018-2020,
+     periode=2015-2023,
 	 in_diag=J45 J46, /* Astma + akutt astma */
 	 where=alder < 18
   )
@@ -15,14 +15,6 @@ data astma_barn;
   priv = astma and not hf;
   off  = astma and hf;
 run;
-
-
-/*
-
-	Skille mellom privat/offentlig: aspes-filer har variabelen AvtaleRHF. Dette stemmer også for SKDE20
-
-*/
-
 
 
 %oppdater(astma_barn,
@@ -43,10 +35,17 @@ run;
         label_1=no := Offentligish || en := Publicish,
         label_2=no := Privatish || en := Privateish),
    title=
-     no := Astma hos barn
-  || en := Asthma among children,
+      no := Astma hos barn
+   || en := Asthma among children,
    description=
-	 no := Et eller annet pr. 1 000 innbyggere.
-  || en := Something or other pr. 1 000 inhabitants.,
+      no := Asthma-kontakter pr. 1 000 barn.
+   || en := Asthma contacts pr. 1 000 children.,
+   discussion=%str(
+      no := Dette er en relativt kort diskussjon, på circa et par paragrafer.
+            Diskusjonen skal ikke være for lang, fordi det vil gjøre det vanskeligere
+            å oppdatere hvert år.
+   || en := This is a rather short intruduction, of approximately two paragraphs. The
+            discussion should not be too long, so that it%'s easier to update each
+            year.),
    tags=barn astma
 )
