@@ -8,10 +8,12 @@
    name,
    total=,
    custom_views=,
-   description=,
+   summary=,
    discussion=,
    title=,
-   tags=
+   tags=,
+   min_age=,
+   max_age=
 );
 
 %let __ignore = %define_view(
@@ -31,17 +33,23 @@
 %put &=analyse_varlist;
 %put &=name;
 
+%put &=summary;
+
 %assemble(&name, out=pub_assembled)
 
 %standard_rate(
    pub_assembled/&analyse_varlist,
    region=bohf,
+   %if &min_age ^= %then min_age=&min_age, ;
+   %if &max_age ^= %then max_age=&max_age, ;
    out=pub_sykehus_rate
 )
 
 %standard_rate(
    pub_assembled/&analyse_varlist,
    region=borhf,
+   %if &min_age ^= %then min_age=&min_age, ;
+   %if &max_age ^= %then max_age=&max_age, ;
    out=pub_region_rate
 )
 
@@ -108,8 +116,7 @@ run;
    write close;
 %mend lang_object;
 
-%let webdata = /sas_smb/skde_analyse/Brukere/Mattias/oppdaterte_analyser/webdata;
-proc json out="&webdata/&name..json" pretty;
+proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
 
    write values "tags";
    write open array;
@@ -121,9 +128,9 @@ proc json out="&webdata/&name..json" pretty;
    write values "name" "&name";
    write values "published" &published;
 
-   write values "title";       %lang_object(&title)
-   write values "description"; %lang_object(&description)
-   write values "discussion";  %lang_object(&discussion)
+   write values "title";      %lang_object(&title)
+   write values "summary";    %lang_object(&summary)
+   write values "discussion"; %lang_object(&discussion)
 
 
    write values "views";
