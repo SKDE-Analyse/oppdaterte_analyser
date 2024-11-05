@@ -22,11 +22,11 @@ select distinct name
 	 and lower(name) not in ("aar" "maaned" "komnr" "bydel" "alder" "ermann" "n_obs");
 quit;
 
-data all_of_them;
+data deleteme_all_of_them;
    set &all_datasets;
 run;
 
-%boomraader(inndata=all_of_them);
+%boomraader(inndata=deleteme_all_of_them);
 
 
 %put &=assemble_varnames;
@@ -38,9 +38,13 @@ create table &out as
    %do assemble_i=1 %to %sysfunc(countw(&assemble_varnames));
       , sum(%scan(&assemble_varnames, &assemble_i)) as %scan(&assemble_varnames, &assemble_i)
    %end;
-   from all_of_them
+   from deleteme_all_of_them
    where borhf <= 4
    group by aar, borhf, bohf, alder, ermann;
 quit;
+
+proc datasets library=work;
+   delete deleteme_all_of_them
+run;
 
 %mend assemble;

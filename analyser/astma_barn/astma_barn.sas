@@ -5,7 +5,7 @@
 
 data astma_barn;
   %NPR(avd aspes,
-    periode=2020-2023,
+    periode=2023-2023,
 	 in_diag=J45 J46, /* Astma + akutt astma */
 	 where=alder < 18
   )
@@ -13,12 +13,6 @@ data astma_barn;
   priv = astma and not hf;
   off  = astma and hf;
 run;
-
-%standard_rate(astma_barn/priv off,
-  region=bohf,
-  out=astma_out
-)
-
 
 
 %oppdater(astma_barn,
@@ -42,12 +36,10 @@ run;
       no := Astma hos barn
    || en := Asthma among children,
    summary =
-   no :=%nrbquote(
-- Asthma-kontakter pr. 1 003 barn.
-- Andre ting.)
-|| en :=
-- Asthma contacts pr. 1 000 children.
-- Other things.,
+   no := - Asthma-kontakter pr. 1 003 barn.
+      \n - Andre ting.
+|| en := - Asthma contacts pr. 1 000 children.
+      \n - Other things.,
    discussion=%str(
       no := Dette er en relativt kort diskussjon, på circa et par paragrafer.
             Diskusjonen skal ikke være for lang, fordi det vil gjøre det vanskeligere

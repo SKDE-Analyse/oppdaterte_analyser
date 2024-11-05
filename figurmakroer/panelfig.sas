@@ -93,6 +93,31 @@ value ermann_fmt
 run;
 
 proc sql;
+create table &tema._aldtab_aar as
+select distinct
+alder, aar, 
+sum(case when ermann=0 then &tema. else 0 end) as kvinner,
+sum(case when ermann=1 then &tema. else 0 end) as menn,
+sum(&tema.) as total
+from &tema._dsn
+group by alder, aar;
+run; 
+
+ODS Graphics ON /reset=All imagename="&tema._aldersprofil_aar" imagefmt=png border=off height=500px;
+ODS Listing Image_dpi=300 GPATH="&bildesti";
+proc sgpanel data=&tema._aldtab_aar noautolegend /*sganno=anno pad=(Bottom=5%)*/;
+PANELBY aar / columns=3 rows=3 novarname spacing=2 HEADERATTRS=(Color=black Family=Arial Size=7);
+vline alder / response=kvinner stat=sum name="Kvinner" legendlabel="Kvinner";
+vline alder / response=menn stat=sum name="Menn" legendlabel="Menn";
+/*keylegend "norge" / noborder position=bottom;*/
+rowaxis label="Antall, &tema.";
+colaxis label="Alder, Kvinner(rød), Menn (blå)" valueshint;
+styleattrs datalinepatterns=(solid) datacontrastcolors=(darkred darkblue);
+where aar ne 9999;
+run;
+ods listing close; ods graphics off;
+
+proc sql;
 create table &tema._aldtab as
 select distinct
 alder, 
@@ -217,24 +242,21 @@ ODS Graphics ON /reset=All imagename="&tema._forholdstall" imagefmt=png border=o
 ODS Listing Image_dpi=300 GPATH="&bildesti";
 proc sgplot data=&tema._ft noautolegend noborder;
     vline aar / response=maksrate stat=sum lineattrs=(pattern=dash) name='Maksimum';
-    vline aar / response=minrate stat=sum  lineattrs=(pattern=dash) name='Minimum';  
-	vline aar / response=forholdstall stat=sum  y2axis 
-                  lineattrs=(pattern=solid) name='Forholdstall';  
+    vline aar / response=minrate stat=sum lineattrs=(pattern=dash) name='Minimum';
+    vline aar / response=forholdstall stat=sum y2axis lineattrs=(pattern=solid) name='Forholdstall';    
     keylegend 'antall' / location=inside position=topright noborder title='' across=1;    
-    xaxis fitpolicy=thin offsetmin=0.035 label="År, &tema"; 
-    yaxis label="Rate, maksimum (rød) og minimum (blå), (stiplet)" 
-          labelpos=top labelattrs=(weight=bold) min=0;    
-    y2axis label="Forholdstall (svart)" 
-           labelpos=top labelattrs=(weight=bold) min=0;
-    format ermann ermann_fmt.;     
-    styleattrs datalinepatterns=(solid dash) datacontrastcolors=(darkred darkblue black);
-	where aar ne 9999;
-	xaxistable maksrate / label="Maksimum";  
-	xaxistable minrate / label="Minimum";
-	xaxistable forholdstall / label="Forholdstall";
-    xaxistable maxbohf / label="Maksbo";  
-	xaxistable minbohf / label="Minbo";
-	format maksrate minrate forholdstall 8.1;
+    xaxis fitpolicy=thin offsetmin=0.035 label="År, &tema";
+    yaxis label="Rate, maksimum (rød) og minimum (blå), (stiplet)" labelpos=top labelattrs=(weight=bold) min=0;
+    y2axis label="Forholdstall (svart)" labelpos=top labelattrs=(weight=bold) min=0;    
+    format ermann ermann_fmt.;
+    styleattrs datalinepatterns=(solid dash) datacontrastcolors=(darkred darkblue black);    
+    where aar ne 9999;    
+    xaxistable maksrate / label="Maksimum";
+    xaxistable minrate / label="Minimum";
+    xaxistable forholdstall / label="Forholdstall";
+    xaxistable maxbohf / label="Maksbo";
+    xaxistable minbohf / label="Minbo";    
+    format maksrate minrate forholdstall 8.1;
 run;
 ods listing close; ods graphics off;
 

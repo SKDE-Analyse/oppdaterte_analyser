@@ -10,6 +10,8 @@
    custom_views=,
    summary=,
    discussion=,
+   utvalg=,
+   description=,
    title=,
    tags=,
    min_age=,
@@ -24,11 +26,12 @@
 %let all_views = total &custom_views;
 
 %let analyse_varlist = &total;
-%do view_i=1 %to %sysfunc(countw(&custom_views));
-   %let view = %scan(&custom_views, &view_i);
-   %let analyse_varlist = &analyse_varlist &&view_&view._vars;
+%if &custom_views ^= %then %do;
+   %do view_i=1 %to %sysfunc(countw(&custom_views));
+      %let view = %scan(&custom_views, &view_i);
+      %let analyse_varlist = &analyse_varlist &&view_&view._vars;
+   %end;
 %end;
-
 
 %put &=analyse_varlist;
 %put &=name;
@@ -72,7 +75,7 @@ select borhf format=4.
 quit;
 
 
-data test_sykehus;
+data _null_;
    set pub_sykehus_rate;
    %do pub_year=&pub_min_year %to &pub_max_year;
       %do view_i=1 %to %sysfunc(countw(&all_views));
@@ -86,7 +89,7 @@ data test_sykehus;
       %end;
    %end;
 run;
-data test_region;
+data _null_;
    set pub_region_rate;
    %do pub_year=&pub_min_year %to &pub_max_year;
       %do view_i=1 %to %sysfunc(countw(&all_views));
@@ -111,8 +114,8 @@ run;
 
 %macro lang_object(string);
    write open object;
-      write values "no" "%get_lang(no, &string)";
-      write values "en" "%get_lang(en, &string)";
+      write values "no" "%get_lang(no, &string)" / noscan;
+      write values "en" "%get_lang(en, &string)" / noscan;
    write close;
 %mend lang_object;
 
@@ -128,10 +131,11 @@ proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
    write values "name" "&name";
    write values "published" &published;
 
-   write values "title";      %lang_object(&title)
-   write values "summary";    %lang_object(&summary)
-   write values "discussion"; %lang_object(&discussion)
-
+   write values "title";       %lang_object(&title)
+   write values "summary";     %lang_object(&summary)
+   write values "discussion";  %lang_object(&discussion)
+   write values "utvalg";      %lang_object(&utvalg)
+   write values "description"; %lang_object(&description)
 
    write values "views";
    write open array;
