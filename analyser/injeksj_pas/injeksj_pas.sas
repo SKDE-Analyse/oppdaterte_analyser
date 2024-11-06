@@ -168,7 +168,7 @@ run;
    description=%str(
       no := Antall pasienter pr 1000 innbyggere, 50 år eller eldre
    || en := Number of patients pr 1000 inhabitants, 50 years or older),
-	utvalg =
+	info =
    no :=%nrstr(&no_utvalg)
 || en :=%nrstr(&en_utvalg),
 	summary =

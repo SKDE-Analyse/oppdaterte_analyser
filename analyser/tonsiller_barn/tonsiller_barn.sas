@@ -24,7 +24,13 @@ samtidig ingen av de andre prosedyrekodene eller takstkodene er definert som ton
 Alle andre tonsilleoperasjoner er definert som tonsillektomi.
 Tonsillotomier utføres også hos avtalespesialister, men siden takstkodene K02f og K02g 
 er tonsillektomi/tonsillotomi, er det ikke mulig å skille mellom 
-tonsillektomi og tonsillotomi ved hjelp av takstkodene. K02a og K02e er tonsillektomi.;
+tonsillektomi og tonsillotomi ved hjelp av takstkodene. K02a og K02e er tonsillektomi.
+
+\n\n Hvor pasienten er behandlet er delt inn i tre kategorier:
+\n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
+\n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
+\n - Privat, behandlet ved et privat sykehus (med offentlig avtale) eller hos avtalespesialist 
+;
 
 %let en_utvalg=
 The sample consists of patients aged 0-15 years registered with a primary or secondary diagnosis of 
@@ -37,6 +43,11 @@ in combination with:
 other procedure codes or fee codes are defined as tonsillotomy. All other tonsil operations are defined as tonsillectomy. 
 Tonsillotomies are also performed by specialists, but since the fee codes K02f and K02g are tonsillectomy/tonsillotomy, 
 it is not possible to distinguish between tonsillectomy and tonsillotomy using the fee codes. K02a and K02e are tonsillectomy.
+
+\n\n The place of treatment is divided into three categories:
+\n - Local public, treated at one of the hospitals in the catchment area
+\n - Other public, treated at a public hospital outside the catchment area
+\n - Private, treated by a private hospital or a private specialist under public funding contract
 ;
 
 %let no_summary = 
@@ -219,7 +230,7 @@ run;
    || en := Tonsil surgery (0-15 years),
    description=%str(
       no := Antall tonsilleoperasjoner pr 1?000 barn, 0-15 år || en := Number of tonsil operations pr 1?000 child, 0-15 år),
-   utvalg =
+   info =
    no :=%nrstr(&no_utvalg)
 || en :=%nrstr(&en_utvalg),
    summary=

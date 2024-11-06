@@ -40,6 +40,11 @@ run;
       \n - Andre ting.
 || en := - Asthma contacts pr. 1 000 children.
       \n - Other things.,
+   info =
+   no := - utvalg info blabla.
+      \n - Andre ting.
+|| en := - blabla in english.
+      \n - Other things.,
    discussion=%str(
       no := Dette er en relativt kort diskussjon, på circa et par paragrafer.
             Diskusjonen skal ikke være for lang, fordi det vil gjøre det vanskeligere

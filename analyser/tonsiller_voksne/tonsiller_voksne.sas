@@ -18,6 +18,11 @@ kombinasjon med:
 \n - prosedyrekode EMB10, EMB12, EMB15, EMB20, EMB99 eller ENC40 
 på sykehus eller 
 \n - med takstkode K02a, K02e, K02f, K02g hos avtalespesialist 
+
+\n\n Hvor pasienten er behandlet er delt inn i tre kategorier:
+\n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
+\n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
+\n - Privat, behandlet ved et privat sykehus (med offentlig avtale) eller hos avtalespesialist 
 ;
 
 %let en_utvalg=
@@ -26,6 +31,11 @@ J35.0, J35.1, J35.3, J35.8, J35.9, J36, J39.0, J03.0, J03.8, J03.9, or G47.3
 in combination with: 
 \n - procedure code EMB10, EMB12, EMB15, EMB20, EMB99, or ENC40 in hospitals or 
 \n - fee code K02a, K02e, K02f, K02g with a specialist 
+
+\n\n The place of treatment is divided into three categories:
+\n - Local public, treated at one of the hospitals in the catchment area
+\n - Other public, treated at a public hospital outside the catchment area
+\n - Private, treated by a private hospital or a private specialist under public funding contract
 ;
 
 %let no_summary = 
@@ -184,7 +194,7 @@ run;
    title=
       no := Operasjon av mandler (16 år og eldre)
    || en := Tonsil surgery (16 years and older),
-	utvalg =
+	info =
    no :=%nrstr(&no_utvalg)
 || en :=%nrstr(&en_utvalg),
    summary=
@@ -339,7 +349,7 @@ ods graphics off;
    || en := Tonsil surgery (16 years and older),
    description=%str(
       no := Antall tonsilleoperasjoner pr 1?000 innbyggere, 16 år og eldre || en := Number of tonsil operations pr 1?000 inhabitants, 16 years and older),
-   utvalg =
+   info =
    no :=%nrstr(&no_utvalg) || en :=%nrstr(&en_utvalg),
    summary=
       no := &no_summary. || en := &en_summary. ,

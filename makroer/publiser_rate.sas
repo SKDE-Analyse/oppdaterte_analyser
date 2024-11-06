@@ -10,7 +10,7 @@
    custom_views=,
    summary=,
    discussion=,
-   utvalg=,
+   info=,
    description=,
    title=,
    tags=,
@@ -134,7 +134,7 @@ proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
    write values "title";       %lang_object(&title)
    write values "summary";     %lang_object(&summary)
    write values "discussion";  %lang_object(&discussion)
-   write values "utvalg";      %lang_object(&utvalg)
+   write values "info";        %lang_object(&info)
    write values "description"; %lang_object(&description)
 
    write values "views";

@@ -17,6 +17,11 @@ Legemiddelet aflibercept er identifisert ved hjelp av særkode (1LA05 eller S01LA
 \n \n
 Når en kontakt er registrert med flere av de aktuelle diagnosekodene 
 (f.eks AMD som hovedtilstand og veneokklusjon som bitilstand) er hoveddiagnose valgt.
+
+\n\n Hvor pasienten er behandlet er delt inn i tre kategorier:\n
+- Eget HF, behandlet ved et av sykehusene i opptaksområdet
+\n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
+\n - Privat, behandlet ved et privat sykehus (med offentlig avtale) eller hos avtalespesialist 
 ;
 
 %let en_utvalg=
@@ -30,16 +35,21 @@ The drug aflibercept is identified using a special code (1LA05 or S01LA05).
 When a contact is registered with two or more of the relevant diagnosis codes 
 (e.g., AMD as the primary condition and venous occlusion as the secondary condition), 
 the primary diagnosis is chosen.
+\n \n
+The place of treatment is divided into three categories:\n
+- Local public, treated at one of the hospitals in the catchment area
+\n - Other public, treated at a public hospital outside the catchment area
+\n - Private, treated by a private hospital or a private specialist under public funding contract
 ;
 
 %let no_summary=
-- Økningen i antall kontakter pr år oversteg økningen i antall pasienter, i perioden 2015-2023
+- Årlig antall kontakter økte mer enn årlig antall pasienter i perioden 2015-2023
 \n - Det er betydelig geografisk variasjon i bruk av det dyreste legemidlet, aflibercept
 \n - Injeksjonsbehandling gis nesten utelukkende ved offentlige sykehus
 ;
 
 %let en_summary=
-- The increase in the number of contacts per year exceeded the increase in the number of patients, in the period 2015-2023
+- The yearly number of contacts increased more than the yearly number of patients in the period 2015-2023
 \n - There is significant geographical variation in the use of the most expensive drug, aflibercept
 \n - Injection treatment is given almost exclusively at public hospitals
 ;
@@ -170,7 +180,7 @@ run;
    description=
       no := %str(Antall kontakter pr 1000 innbyggere, 50 år eller eldre)
    || en := %str(Number of contacts pr 1000 inhabitants, 50 years or older),
-   utvalg =
+   info =
    no :=%nrstr(&no_utvalg)
 || en :=%nrstr(&en_utvalg),
    summary =
