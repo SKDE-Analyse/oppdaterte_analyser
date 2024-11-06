@@ -8,6 +8,11 @@
 %let bildesti =/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/Figurer/injeksjon/injeksjon_kont;
 
 %let no_utvalg=
+Analysen er basert på aktivitetsdata fra Norsk pasientregister (NPR) for 
+somatisk spesialisthelsetjeneste. Data inkluderer aktivitet i offentlige sykehus og 
+private sykehus som leverer offentlig finansierte tjenester. 
+Data fra avtalespesialister er ikke inkludert, fordi denne behandlingen kun gis på sykehus. 
+\n \n 
 Utvalget består av kontakter for pasienter i alderen 50 år eller eldre registrert med hoved- eller bidiagnose 
 aldersrelatert makuladegenerasjon, AMD (H35.3), 
 veneokklusjon (H34.8 eller H34.9) eller diabetisk retinopati (H36.0, E10.3 eller E11.3) 
@@ -21,10 +26,14 @@ Når en kontakt er registrert med flere av de aktuelle diagnosekodene
 \n\n Hvor pasienten er behandlet er delt inn i tre kategorier:\n
 - Eget HF, behandlet ved et av sykehusene i opptaksområdet
 \n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
-\n - Privat, behandlet ved et privat sykehus (med offentlig avtale) eller hos avtalespesialist 
+\n - Privat, behandlet ved et privat sykehus 
 ;
 
 %let en_utvalg=
+The analysis is based on activity data from the Norwegian Patient Register (NPR) for somatic specialist health services. 
+The data includes activity in public hospitals and private hospitals that provide publicly funded services. 
+Data from specialists under public funding contracts are not included, as this treatment is only provided in hospitals.
+\n \n
 The sample consists of contacts for patients aged 50 years or older registered with a primary or secondary diagnosis of 
 age-related macular degeneration, AMD (H35.3), venous occlusion (H34.8 or H34.9), 
 or diabetic retinopathy (H36.0, E10.3, or E11.3) 
@@ -39,55 +48,56 @@ the primary diagnosis is chosen.
 The place of treatment is divided into three categories:\n
 - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
-\n - Private, treated by a private hospital or a private specialist under public funding contract
+\n - Private, treated by a private hospital
 ;
 
 %let no_summary=
-- Årlig antall kontakter økte mer enn årlig antall pasienter i perioden 2015-2023
+- Antall kontakter pr pasient økte fra 5,5 i 2015 til 6,3 i 2023.
 \n - Det er betydelig geografisk variasjon i bruk av det dyreste legemidlet, aflibercept
 \n - Injeksjonsbehandling gis nesten utelukkende ved offentlige sykehus
 ;
 
 %let en_summary=
-- The yearly number of contacts increased more than the yearly number of patients in the period 2015-2023
+- The number of contacts per patient increased from 5.5 in 2015 to 6.3 in 2023. 
 \n - There is significant geographical variation in the use of the most expensive drug, aflibercept
 \n - Injection treatment is given almost exclusively at public hospitals
 ;
 
 %let no_discussion=
-Antall kontakter pr. år økte med en faktor på 2,25 fra ca 61 000 i 2015 til omlag 138 000 i 2023. 
-Antall pasienter i behandling økte med en faktor på ca 2 i samme periode. Dette er i tråd med funnene 
-til [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598) som undersøkte bruk av 
-injeksjonsbehandling i perioden 2011 - 2021. 
+Nasjonalt økte antall kontakter pr år fra 61 000 i 2015 til omlag 138 000 i 2023. 
+Antall kontakter pr pasient økte fra 5,5 i 2015 til 6,3 i 2023. 
+Dette er i tråd med funnene til [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598) 
+som undersøkte bruk av injeksjonsbehandling i perioden 2011 - 2021. 
 \n \n
 Injeksjonsbehandling i øyet er aktuelt for pasienter med aldersrelatert makuladegererasjon (AMD), 
 diabetisk retinopati og veneokklusjon. Nasjonalt sank andelen kontakter med diagnose AMD fra 
-omlag 78% i 2015 til 73% i 2023. I enkelte opptaksområder har imidlertid andelen økt i perioden. 
+omlag 78 % i 2015 til 73 % i 2023. I enkelte opptaksområder har imidlertid andelen økt i perioden. 
 I opptaksområdene Bergen og Førde var andelen kontakter med diagnose diabetisk retinopati 
 eller veneokklusjon svært lav i 2023. 
 \n \n
 De to mest brukte legemidlene er bevacizumab og aflibercept. Bevacizumab har betydelig lavere kostnad 
 og er førstevalg de fleste steder ([Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598)).
-Nasjonalt økte andelen kontakter med legemiddelet aflibercept fra 46% i 2015 til 56% i 2020, 
-og sank deretter til 50% i 2023. Andelen kontakter med aflibercept var i 2023 høyest i opptaksområdet 
-Sørlandet (67,5% av kontaktene) og lavest i opptaksområdet Stavanger (38% av kontaktene). 
+Nasjonalt økte andelen kontakter med legemiddelet aflibercept fra 46 % i 2015 til 56 % i 2020, 
+og sank deretter til 50 % i 2023. Andelen kontakter med aflibercept var i 2023 høyest i opptaksområdet 
+Sørlandet (67,5 % av kontaktene) og lavest i opptaksområdet Stavanger (38 % av kontaktene). 
 ;
 
 %let en_discussion=
-The number of contacts per year increased by a factor of 2.25 from approximately 61,000 in 2015 to around 138,000 in 2023. 
-The number of patients in treatment increased by a factor of about 2 in the same period. This is in line with the findings of 
-[Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598), who examined the use of injection treatment from 2011 to 2021. 
+Nationally, the number of contacts per year increased from 61,000 in 2015 to approximately 138,000 in 2023. 
+The number of contacts per patient increased from 5.5 in 2015 to 6.3 in 2023. 
+This is in accordance with the findings of [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598), 
+who examined the use of injection treatment from 2011 to 2021. 
 \n \n
 Injection treatment is relevant for patients with age-related macular degeneration (AMD), diabetic retinopathy, and vein occlusion.
-Nationally, the proportion of contacts with the diagnosis AMD decreased from about 78% in 2015 to 73% in 2023. 
+Nationally, the proportion of contacts with the diagnosis AMD decreased from about 78 % in 2015 to 73 % in 2023. 
 However, in some referral areas, the proportion of contacts with the diagnosis AMD has increased during the period. 
 In the catchment areas of Bergen and Stavanger, the proportion of contacts with a diagnosis of diabetic retinopathy or vein occlusion was very low in 2023.
 \n \n
 The two most used drugs are bevacizumab and aflibercept. Bevacizumab has significantly lower costs 
 and is the first choice in most places ([Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598)).
-Nationally, the proportion of contacts with the drug aflibercept increased from 46% in 2015 to 56% in 2020, 
-and then decreased to 50% in 2023. The proportion of contacts with aflibercept was highest in the Sørlandet referral area 
-(67.5% of contacts) and lowest in the Stavanger referral area (38% of contacts) in 2023.
+Nationally, the proportion of contacts with the drug aflibercept increased from 46 % in 2015 to 56 % in 2020, 
+and then decreased to 50 % in 2023. The proportion of contacts with aflibercept was highest in the Sørlandet referral area 
+(67.5 % of contacts) and lowest in the Stavanger referral area (38 % of contacts) in 2023.
 ;
 
 %let no_utvalg = %superq(no_utvalg);
@@ -156,7 +166,7 @@ run;
         variables=amd diab rvo,
         title=%str(no := Enkeltår, diagnose
                 || en := Single year, diagnosis),
-        label_1=no := AMD || en := nAMD,
+        label_1=no := AMD || en := AMD,
         label_2=no := Diabetes || en := Diabetes,
         label_3=no := Karokklusjon || en := Vein Occlusion)
 	%define_view(

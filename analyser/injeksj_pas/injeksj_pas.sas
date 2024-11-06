@@ -8,6 +8,11 @@
 %let bildesti =/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/Figurer/injeksjon/injeksjon_pas;
 
 %let no_utvalg=
+Analysen er basert på aktivitetsdata fra Norsk pasientregister (NPR) for 
+somatisk spesialisthelsetjeneste. Data inkluderer aktivitet i offentlige sykehus og 
+private sykehus som leverer offentlig finansierte tjenester. 
+Data fra avtalespesialister er ikke inkludert, fordi denne behandlingen kun gis på sykehus. 
+\n \n
 Utvalget består av pasienter i alderen 50 år eller eldre registrert med hoved- eller bidiagnose aldersrelatert 
 makuladegernerasjon, AMD (H35.3), veneokklusjon (H34.8 eller H34.9) eller 
 diabetisk retinopati (H36.0, E10.3 eller E11.3) 
@@ -18,6 +23,10 @@ definert som det bostedet/opptaksområdet der pasienten hadde flest kontakter i l
 ;
 
 %let en_utvalg=
+The analysis is based on activity data from the Norwegian Patient Register (NPR) for somatic specialist health services. 
+The data includes activity in public hospitals and private hospitals that provide publicly funded services. 
+Data from specialists under public funding contracts are not included, as this treatment is only provided in hospitals.
+\n \n
 The sample consists of patients aged 50 years or older registered with a primary or secondary diagnosis 
 of age-related macular degeneration, AMD (H35.3), venous occlusion (H34.8 or H34.9), 
 or diabetic retinopathy (H36.0, E10.3, or E11.3) in combination with 
@@ -31,24 +40,24 @@ had the most contacts during the year.
 %let no_summary=
 - Det er betydelig geografisk variasjon i bruk av injeksjonsbehandling
 \n - Antall pasienter i behandling øker med omlag 1 300 pr år
-\n - Raten er 24% høyere for kvinner enn for menn
+\n - Raten er 24 % høyere for kvinner enn for menn
 ;
 
 %let en_summary=
 - There is significant geographical variation in the use of injection treatment
 \n - The number of patients in treatment increases by approximately 1,300 per year
-\n - The rate is 24% higher for women than for men
+\n - The rate is 24 % higher for women than for men
 ;
 
 %let no_discussion=
-Antall pasienter i behandling økte med omlag 1 300 pr. år i perioden 2015 - 2023 
+Antall pasienter i behandling økte med omlag 1 300 pr år i perioden 2015 - 2023 
 fra 11 043 pasienter i 2015 til 21 911 pasienter i 2023. Årsaken til pasientveksten er at dette er behandling 
 for kroniske tilstander, hovedsakelig aldersrelatert makuladegenerasjon, og at antall nye pasienter år for år 
 overstiger antall pasienter som avslutter sin behandling. Dersom antall pasienter i behandling fortsetter å øke i 
 årene fremover kan det bli behov for endringer i organisering av tjenesten for å sikre tilgang til god og likeverdig behandling. 
 \n \n
-De fleste pasientene var mellom 70 og 90 år gamle. Raten for kvinner var på 11,7 pasienter pr. 1 000 kvinner og 
-raten for menn var på 9,5 pasienter pr. 1 000 menn i 2023. Det er betydelig geografisk variasjon i pasientraten. 
+De fleste pasientene var mellom 70 og 90 år gamle. Raten for kvinner var på 11,7 pasienter pr 1 000 kvinner og 
+raten for menn var på 9,5 pasienter pr 1 000 menn i 2023. Det er betydelig geografisk variasjon i pasientraten. 
 Dette er i tråd med funnene til [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598) 
 som antyder at den observerte variasjonen kan ha sammenheng med overbehandling enkelte steder og underbehandling i andre områder. 
 Artikkelforfatterne peker på et behov for tydeligere styring, nasjonale retningslinjer og et nasjonalt kvalitetsregister på området.
@@ -61,8 +70,8 @@ treatment for chronic conditions like age-related macular degeneration, and that
 number of patients who discontinue their treatment. If the number of patients in treatment continues to increase in the coming years, 
 changes in the organization of services may be needed to ensure access to good and equitable treatment. 
 \n \n
-Most of the patients were between 70 and 90 years old. The rate for women was 11,7 pastients pr. 1 000 women and 
-the rate for men was 9,5 patiens pr. 1 000 men in 2023. There is significant geographical variation in the patient rate. 
+Most of the patients were between 70 and 90 years old. The rate for women was 11,7 pastients pr 1 000 women and 
+the rate for men was 9,5 patiens pr 1 000 men in 2023. There is significant geographical variation in the patient rate. 
 This is in agreement with [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598), 
 who suggest that the observed variation may be related to overtreatment in some areas and undertreatment in others. 
 The authors point to a need for clearer management, national guidelines, and a national quality register in the field.
@@ -200,8 +209,8 @@ run;
 %rate_alder_kjonn(aarmin=2015,aarmax=2023,aldermin=50,aldermax=105,kjonn=);
 
 /*SLETTE ALLE DATASETT I WORK */
-/*proc datasets nolist library=WORK kill;*/
-/*   run; quit;*/
+proc datasets nolist library=WORK kill;
+   run; quit;
 
 
 
