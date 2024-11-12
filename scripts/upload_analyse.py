@@ -31,5 +31,5 @@ def upload(json_analyse, filename):
  
 if __name__ == "__main__":
   for filename in sys.argv[1:]:
-    with open(filename) as file:
+    with open(filename, encoding="utf-8") as file:
       upload(json.loads(file.read()), filename)
