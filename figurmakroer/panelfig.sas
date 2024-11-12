@@ -225,17 +225,45 @@ ods listing close;
 ods graphics off;
 
 /*Forholdstall*/
+/* Step 1: Rank the rates within each year */
+proc rank data=&tema._tab out=ranked_&tema._tab ties=low descending;
+    by aar;
+    var &tema._rate;
+    ranks rank_rate;
+run;
+
+/* Step 2: Rank the rates within each year in ascending order */
+proc rank data=&tema._tab out=ranked_asc_&tema._tab ties=low;
+    by aar;
+    var &tema._rate;
+    ranks rank_rate_asc;
+run;
+
+/* Step 3: Combine the ranked datasets and calculate the required values */
 proc sql;
 create table &tema._ft as
 select 
-    aar,
-    max(&tema._rate) as maksrate,
-    min(&tema._rate) as minrate,
+    a.aar,
+    max(a.&tema._rate) as maksrate,
+    min(a.&tema._rate) as minrate,
     put((select bohf from &tema._tab as b where b.aar = a.aar and b.&tema._rate = (select max(&tema._rate) from &tema._tab where aar = a.aar)), bohf_fmt.) as maxbohf,
     put((select bohf from &tema._tab as c where c.aar = a.aar and c.&tema._rate = (select min(&tema._rate) from &tema._tab where aar = a.aar)), bohf_fmt.) as minbohf,
-    max(&tema._rate)/min(&tema._rate) as forholdstall
+    max(a.&tema._rate)/min(a.&tema._rate) as forholdstall,
+    b.&tema._rate as max2rate,
+    c.&tema._rate as min2rate,
+    put(b.bohf, bohf_fmt.) as max2bohf,
+    put(c.bohf, bohf_fmt.) as min2bohf,
+    b.&tema._rate / c.&tema._rate as forholdstall2
 from &tema._tab as a
-group by aar;
+left join ranked_&tema._tab as b on a.aar = b.aar and b.rank_rate = 2
+left join ranked_asc_&tema._tab as c on a.aar = c.aar and c.rank_rate_asc = 2
+group by a.aar;
+quit;
+
+proc sql;
+create table &tema._ft as
+select distinct *
+from &tema._ft;
 quit;
 
 ODS Graphics ON /reset=All imagename="&tema._forholdstall" imagefmt=png border=off height=500px;
@@ -256,7 +284,12 @@ proc sgplot data=&tema._ft noautolegend noborder;
     xaxistable forholdstall / label="Forholdstall";
     xaxistable maxbohf / label="Maksbo";
     xaxistable minbohf / label="Minbo";    
-    format maksrate minrate forholdstall 8.1;
+    xaxistable max2rate / label="Maksimum2";
+    xaxistable min2rate / label="Minimum2";
+    xaxistable forholdstall2 / label="Forholdstall2";
+    xaxistable max2bohf / label="Maksbo2";
+    xaxistable min2bohf / label="Minbo2";  
+    format maksrate minrate forholdstall max2rate min2rate forholdstall2 8.1;
 run;
 ods listing close; ods graphics off;
 

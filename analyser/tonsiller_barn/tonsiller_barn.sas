@@ -392,3 +392,33 @@ proc sgplot data=&tema._totant_type noautolegend noborder;
 run;
 ods listing close;
 ods graphics off;
+
+
+/*til nrk*/
+data nrk_rate;
+set pub_sykehus_rate_long;
+keep aar pop tonsiller_barn_ant tonsiller_barn_rate;
+where bohf = 8888 and aar ne 9999;
+run;
+
+%include "&filbane/formater/beh.sas";
+
+data utvalg;
+set &tema.;
+format behsh behsh_fmt.;
+run;
+
+proc sql;
+select distinct
+behsh
+from utvalg;
+quit;
+
+proc sql;
+create table haukeland as
+select distinct
+aar, count(*) as ant
+from utvalg
+where behsh=101
+group by aar;
+quit;
