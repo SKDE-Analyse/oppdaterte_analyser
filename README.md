@@ -42,3 +42,4 @@ I denne mappen samles alle figurermakroer som brukes i analyse/skriveprosessen.
 
 ## Mappen "makroer"
 I denne mappen samles alle makroer som brukes i **produksjonen av data og tekst som skal inn i jsonfilen** og til nettsiden.
+
