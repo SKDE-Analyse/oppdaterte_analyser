@@ -1,6 +1,6 @@
 Dette er dokumentasjon, i *markdown*.
-#H1 Mappen "analyser"
+# Mappen "analyser"
 
-#H1 Mappen "figurmakroer"
+# Mappen "figurmakroer"
 
-#H1 Mappen "makroer"
+# Mappen "makroer"
