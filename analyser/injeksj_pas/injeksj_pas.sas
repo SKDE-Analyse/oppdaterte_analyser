@@ -172,8 +172,8 @@ run;
 %publiser_rate(injeksj_pas,
    total=injeksjon,
 	title=
-      no := %str(Injeksjonsbehandling (pasientrate, 50 år+))
-   || en := %str(Injection treatment (pasient rate, 50 yrs+)),
+      no := %str(Injeksjonsbehandling (Antall pasienter, 50 år+))
+   || en := %str(Injection treatment (Number of patients, 50 yrs+)),
    description=%str(
       no := Antall pasienter pr 1000 innbyggere, 50 år eller eldre
    || en := Number of patients pr 1000 inhabitants, 50 years or older),

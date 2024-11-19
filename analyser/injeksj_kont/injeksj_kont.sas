@@ -52,20 +52,22 @@ The place of treatment is divided into three categories:\n
 ;
 
 %let no_summary=
-- Antall kontakter pr pasient økte fra 5,5 i 2015 til 6,3 i 2023.
+- Fra 2015 til 2023 ble antall pasienter i behandling doblet mens antall kontakter ble mer enn doblet.
 \n - Det er betydelig geografisk variasjon i bruk av det dyreste legemidlet, aflibercept
 \n - Injeksjonsbehandling gis nesten utelukkende ved offentlige sykehus
 ;
 
 %let en_summary=
-- The number of contacts per patient increased from 5.5 in 2015 to 6.3 in 2023. 
+- From 2015 to 2023 the number fo patients in treatment was doubled while the number of contacts was more than doubled. 
 \n - There is significant geographical variation in the use of the most expensive drug, aflibercept
 \n - Injection treatment is given almost exclusively at public hospitals
 ;
 
 %let no_discussion=
 Nasjonalt økte antall kontakter pr år fra 61 000 i 2015 til omlag 138 000 i 2023. 
-Antall kontakter pr pasient økte fra 5,5 i 2015 til 6,3 i 2023. 
+Antall kontakter ble altså mer enn doblet fra 2015 til 2023 
+mens antall pasienter i behandling ble doblet i samme periode. 
+Antall kontakter pr pasient økte dermed fra 5,5 i 2015 til 6,3 i 2023. 
 Dette er i tråd med funnene til [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598) 
 som undersøkte bruk av injeksjonsbehandling i perioden 2011 - 2021. 
 \n \n
@@ -84,7 +86,9 @@ Sørlandet (67,5 % av kontaktene) og lavest i opptaksområdet Stavanger (38 % av k
 
 %let en_discussion=
 Nationally, the number of contacts per year increased from 61,000 in 2015 to approximately 138,000 in 2023. 
-The number of contacts per patient increased from 5.5 in 2015 to 6.3 in 2023. 
+The number of contacts was more than doubled from 2015 to 2023 while the 
+number of patients in treatment was doubled in the same period. 
+This means that the number of contacts per patient increased from 5.5 in 2015 to 6.3 in 2023. 
 This is in accordance with the findings of [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598), 
 who examined the use of injection treatment from 2011 to 2021. 
 \n \n
@@ -185,8 +189,8 @@ run;
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private),
    title=
-      no := Injeksjonsbehandling (kontaktrate, 50 år+)
-   || en := Injection treatment (contact rate, 50 yrs+),
+      no := Injeksjonsbehandling (Antall kontakter, 50 år+)
+   || en := Injection treatment (Number of contacts, 50 yrs+),
    description=
       no := %str(Antall kontakter pr 1000 innbyggere, 50 år eller eldre)
    || en := %str(Number of contacts pr 1000 inhabitants, 50 years or older),
