@@ -28,6 +28,7 @@ De analysespesifikke SAS-filene i mappen "analyser" skal ha egen dokumentasjon s
 - eventuelle endringer i utvalgskoder
 
 Figurer som lages til bruk i analyse/skriveprosessen skal lagres på Q i mappen oppdaterte_analyser/Figurer.
+
 I mappen oppdaterte_analyser/Figurer skal hver analyse/analyseboks ha sin egen mappe (speiler oppsett i mappen "analyser") 
 hvor alle figurer som hører til den aktuelle analysen/analyseboksen legges.
 
