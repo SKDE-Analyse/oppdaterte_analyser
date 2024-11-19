@@ -8,6 +8,7 @@ Inni SAS-filen samles både tekst i analyseboksen:
 - informasjon/utvalg,
 - labels,
 - aksetekster osv.
+  
 og all kode:
 - utvalg,
 - oppdeling ved flerdelt søyle,
