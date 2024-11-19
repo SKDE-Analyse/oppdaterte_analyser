@@ -23,7 +23,7 @@ Følgende makroer anvendes for å lage data til analyseboksen:
 - oppdater
 - publiser_rate
 
-SAS-filene skal ha egen dokumentasjon som består av informasjon om:
+De analysespesifikke SAS-filene i mappen "analyser" skal ha egen dokumentasjon som består av informasjon om:
 - hvem som sist gjennomførte analysen
 - eventuelle endringer i utvalgskoder
 
