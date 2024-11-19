@@ -3,6 +3,14 @@ Dette er dokumentasjon, i *markdown*.
 I denne mappen ligger alle SAS-filene som genererer de ulike "analyseboksene". For hver analyse/analyseboks lages det en mappe og hver mappe inneholder en SAS-fil.
 Mappen skal ha navn som identifiserer den aktuelle analysen, og SAS-filen inni mappen skal ha samme navn.
 
+Pr. 19 november 2024 finnes følgende mapper/analyser:
+- endometriose
+- fremfall
+- injeksj_kont
+- injeksj_pas
+- tonsiller_barn
+- tonsiller_voksne
+
 Inni SAS-filen samles både tekstelementer til analyseboksen:
 - diskusjon,
 - informasjon/utvalg,
@@ -31,14 +39,6 @@ Figurer som lages til bruk i analyse/skriveprosessen skal lagres på Q i mappen 
 
 I mappen oppdaterte_analyser/Figurer skal hver analyse/analyseboks ha sin egen mappe (speiler oppsett i mappen "analyser") 
 hvor alle figurer som hører til den aktuelle analysen/analyseboksen legges.
-
-Pr. 19 november 2024 finnes følgende mapper/analyser:
-- endometriose
-- fremfall
-- injeksj_kont
-- injeksj_pas
-- tonsiller_barn
-- tonsiller_voksne
 
 ## Mappen "figurmakroer"
 I denne mappen samles alle figurermakroer som brukes i analyse/skriveprosessen. 
