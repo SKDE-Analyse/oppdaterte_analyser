@@ -3,13 +3,13 @@ Dette er dokumentasjon, i *markdown*.
 I denne mappen ligger alle SAS-filene som genererer de ulike "analyseboksene". For hver analyse/analyseboks lages det en mappe og hver mappe inneholder en SAS-fil.
 Mappen skal ha navn som identifiserer den aktuelle analysen, og SAS-filen inni mappen skal ha samme navn.
 
-Inni SAS-filen samles både tekst i analyseboksen:
+Inni SAS-filen samles både tekstelementer til analyseboksen:
 - diskusjon,
 - informasjon/utvalg,
 - labels,
 - aksetekster osv.
   
-og all kode:
+og all kode som produserer data/figurer:
 - utvalg,
 - oppdeling ved flerdelt søyle,
 - aggregering,
