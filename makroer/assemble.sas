@@ -44,7 +44,7 @@ create table &out as
 quit;
 
 proc datasets library=work;
-   delete deleteme_all_of_them
+   delete deleteme_all_of_them;
 run;
 
 %mend assemble;

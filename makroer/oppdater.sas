@@ -26,13 +26,13 @@ select min(aar), max(aar)
 quit;
 
 data %do oppd_aar=&oppd_min_year %to &oppd_max_year; %do oppd_maaned=1 %to 12;
-      &name._&oppd_aar._&oppd_maaned._tmp
+      tmp_&name._&oppd_aar._&oppd_maaned
    %end; %end; ;
    set &name._aggregert;
    
    %do oppd_aar=&oppd_min_year %to &oppd_max_year; %do oppd_maaned=1 %to 12;
       if aar=&oppd_aar and maaned=&oppd_maaned then
-         output &name._&oppd_aar._&oppd_maaned._tmp;
+         output tmp_&name._&oppd_aar._&oppd_maaned;
    %end; %end;
 run;
 
@@ -45,10 +45,14 @@ run;
 	  %else %do;
 	     %put Datasettet for denne måneden finnes ikke, og blir derfor oppdatert: "&oppd_partial_ds";
 		 data &oppd_partial_ds;
-		    set &name._&oppd_aar._&oppd_maaned._tmp;
+		    set tmp_&name._&oppd_aar._&oppd_maaned;
          run;
 	  %end;
    %end;
 %end;
+
+proc datasets library=work;
+   delete tmp_: ;
+run;
 
 %mend oppdater;
