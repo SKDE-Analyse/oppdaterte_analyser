@@ -1,118 +1,44 @@
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
-%let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
+/*!
+###Dokumentasjon
+Opprettet oktober 2024 av Frank Olsen
+Sist endret 22/10-24 av Frank Olsen
+Endringer 22/10-2024, ny struktur
+*/
+
+
+/*************************************
+ GJØR ENDRINGER I DENNE LILLE BOLKEN
+*************************************/
+%let tema=tonsiller_barn;
+%let startaar=2015;
+%let sluttaar=2023;
+/****************************************
+ OG TILPASS MAKROER ETTER PUBLISER_RATE
+*****************************************/
+
+
+/*Endre denne stien når alt er klart*/
+%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/oppd_ana_FO;
+/*Analysetekst*/
+%include "&oppdatering_filbane/analyser/&tema./text/&sluttaar..sas";
+/*Makroer for å lage data til analyse*/
 %include "&oppdatering_filbane/makroer/setup.sas";
+
+/*Generelle makroer*/
+%let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
 %include "&filbane/makroer/beh_eget_annet_priv.sas";
 %include "&filbane/stiler/anno_logo_kilde_npr_ssb.sas";
+%include "&filbane/rateprogram/graf.sas";
 
-%let bildesti =/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/Figurer/tonsiller/tonsiller_barn;
+/*Bildesti*/
+%let bildesti =/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/Figurer/&sluttaar._figurer/&tema;
 
-%include "/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/figurmakroer/panelfig.sas";
-%include "/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/figurmakroer/rate_alder_kjonn.sas";
-
-%let tema=tonsiller_barn;
-
-%let no_utvalg=
-Analysen er basert på aktivitetsdata fra Norsk pasientregister (NPR) for 
-somatisk spesialisthelsetjeneste. Data inkluderer aktivitet i offentlige sykehus, 
-private sykehus som leverer offentlig finansierte tjenester og avtalespesialister
-som har avtaler om offentlig finansiering.
-
-\n\n
-Utvalget består av pasienter i alderen 0-15 år registrert med hoved- eller bidiagnose 
-J35.0, J35.1, J35.3, J35.8, J35.9, J36, J39.0, J03.0, J03.8, J03.9 eller G47.3 i 
-kombinasjon med:
-\n - prosedyrekode EMB10, EMB12, EMB15, EMB20, EMB99 eller ENC40 
-på sykehus eller 
-\n - med takstkode K02a, K02e, K02f, K02g hos avtalespesialist 
-
-\n\n Tonsilleoperasjoner med kun prosedyrekodene EMB12 eller EMB15 og 
-samtidig ingen av de andre prosedyrekodene eller takstkodene er definert som tonsillotomi. 
-Alle andre tonsilleoperasjoner er definert som tonsillektomi.
-Tonsillotomier utføres også hos avtalespesialister, men siden takstkodene K02f og K02g 
-er tonsillektomi/tonsillotomi, er det ikke mulig å skille mellom 
-tonsillektomi og tonsillotomi ved hjelp av takstkodene. K02a og K02e er tonsillektomi.
-
-\n\n Hvor pasienten er behandlet er delt inn i tre kategorier:
-\n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
-\n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
-\n - Privat, behandlet ved et privat sykehus eller hos avtalespesialist 
-;
-
-%let en_utvalg=
-The analysis is based on data from the Norwegian Patient Registry (NPR) for  
-specialist healthcare services. The data includes activity in public hospitals, publicly funded 
-private hospitals, and specialists in private practice under public funding contacts.
-
-\n\n
-The sample consists of patients aged 0-15 years registered with a primary or secondary diagnosis of 
-J35.0, J35.1, J35.3, J35.8, J35.9, J36, J39.0, J03.0, J03.8, J03.9, or G47.3 
-in combination with: 
-\n - procedure code EMB10, EMB12, EMB15, EMB20, EMB99, or ENC40 in hospitals or 
-\n - fee code K02a, K02e, K02f, K02g with a specialist 
-
-\n\n Tonsil operations with only the procedure codes EMB12 or EMB15 and at the same time none of the 
-other procedure codes or fee codes are defined as tonsillotomy. All other tonsil operations are defined as tonsillectomy. 
-Tonsillotomies are also performed by specialists, but since the fee codes K02f and K02g are tonsillectomy/tonsillotomy, 
-it is not possible to distinguish between tonsillectomy and tonsillotomy using the fee codes. K02a and K02e are tonsillectomy.
-
-\n\n The place of treatment is divided into three categories:
-\n - Local public, treated at one of the hospitals in the catchment area
-\n - Other public, treated at a public hospital outside the catchment area
-\n - Private, treated by a private hospital or a private specialist
-;
-
-%let no_summary = 
-- Det er stor geografisk variasjon i operasjoner av mandler (tonsilleoperasjoner)
-\n - Antall operasjoner pr år har holdt seg forholdsvis stabil i perioden (bortsett fra pandemien)
-\n - Andelen operasjoner med tonsillotomi har økt fra under 10 % i 2015 til over 40 % i 2023
-;
-
-%let en_summary = 
-- There is significant geographical variation in tonsil operations
-\n - The number of patients undergoing surgery per year has remained relatively stable over the period (except during the pandemic)
-\n - The proportion procedures with tonsillotomy has increased from less than 10 % in 2015 to more than 40 % in 2023
-;
-
-/*1 000 000*/
-/*0 000*/
-
-
-%let no_discussion = 
-Det utføres i underkant av 5 000 tonsilleoperasjoner pr år på barn under 16 år. Antall operasjoner falt markant under pandemien, 
-og nådde først i 2023 nivået fra før covid-19. Det er stor geografisk variasjon i antall operasjoner. 
-Gutter opereres i større grad enn jenter, og gjennomsnittsalderen er noe lavere for gutter enn jenter ved operasjonstidspunktet.
-\n\n 
-Andelen som får delvis fjerning av mandlene (tonsillotomier) har økt fra i underkant av 10 % i 2015 til over 40 % etter pandemien. 
-I følge Tonsilleregisteret er en av årsakene til dette at indikasjon hypertrofi benyttes oftere for barn, og da ansees tonsillotomi 
-som et tryggere inngrep med færre postoperative komplikasjoner.
-\n\n 
-Barna behandles hovedsakelig i eget HF. Den betydelige observerte geografiske variasjonen over tid kan tyde på overbehandling i noen 
-områder og underbehandling i andre. Data fra Tonsilleregisteret for 2023 viser imidlertid at 92 % var symptomfrie 6 måneder etter operasjon. 
-Reduksjonen i raten for opptaksområdet Bergen fra 2022 til 2023 skyldes sannsynligvis manglende innrapportering fra avtalespesialist i 2023.  
-;
-
-%let en_discussion = 
-Approximately 5 000 tonsil operations are performed annually on children under 16 years old. The number of operations dropped 
-significantly during the pandemic and only returned to pre-COVID-19 levels in 2023. There is significant geographical variation 
-in the number of operations. Boys are operated on more frequently than girls, and the average age at the time of surgery is 
-slightly lower for boys than for girls. 
-\n\n
-The proportion of partial tonsil removals (tonsillotomies) has increased from just under 10 % in 2015 to over 40 % after the pandemic. 
-According to the Tonsil Register, one reason for this is that the indication for hypertrophy is used more often for children, 
-and tonsillotomy is considered a safer procedure with fewer postoperative complications.
-\n\n
-Children are mainly treated in their own health trust. The significant observed geographical variation over time may indicate 
-overtreatment in some areas and undertreatment in others. However, data from the Tonsil Register for 2023 shows that 92 % were 
-symptom-free 6 months after surgery. The reduction in the rate for the Bergen catchment area from 2022 to 2023 is likely due to a 
-lack of reporting from contracted specialists in 2023.
-;
-
-%let no_utvalg = %superq(no_utvalg);
-%let en_utvalg = %superq(en_utvalg);
-%let no_summary = %superq(no_summary);
-%let en_summary = %superq(en_summary);
-%let no_discussion = %superq(no_discussion);
-%let en_discussion = %superq(en_discussion);
+/*Figurmakroer*/
+%include "&oppdatering_filbane/figurmakroer/total_figurer.sas";
+%include "&oppdatering_filbane/figurmakroer/panelfigur_todelt.sas";
+%include "&oppdatering_filbane/figurmakroer/panelfigur_tredelt.sas";
+%include "&oppdatering_filbane/figurmakroer/rate_alder_kjonn.sas";
+%include "&oppdatering_filbane/figurmakroer/dim_rate_alder_kjonn.sas";
 
 
 data &tema._1;
@@ -235,164 +161,26 @@ run;
         title=%str(no := Enkeltår, type inngrep
                 || en := Single year, procedure type),
         label_1=no := Tonsillektomi || en := Tonsillectomy,
-        label_2=no := Tonsillotomi || en := Tonsillotomy),
-   title=
-      no := Operasjon av mandler (0-15 år)
-   || en := Tonsil surgery (0-15 years),
-   description=%str(
-      no := Antall tonsilleoperasjoner pr 1 000 barn, 0-15 år || en := Number of tonsil operations per 1 000 child, 0-15 år),
-   info =
-   no :=%nrstr(&no_utvalg)
-|| en :=%nrstr(&en_utvalg),
-   summary=
-      no := &no_summary. || en := &en_summary. ,
-   discussion=%nrstr(
-      no := &no_discussion. || en := &en_discussion. ),
-   tags=barn tonsillektomi ore-nese-hals
+        label_2=no := Tonsillotomi || en := Tonsillotomy)
+,
+&settinn_txt.
+   tags=barn tonsillektomi ore-nese-hals, 
+   min_age=0, max_age=15
 );
 
-/*%publiser_rate(&tema.,*/
-/*   total=&tema.,*/
-/*   title=*/
-/*   		no := %str(Operasjon av mandler (0-15 år)) || en := %str(Tonsil surgery (0-15 years)),*/
-/*   description=%str(*/
-/*      no := Antall tonsilleoperasjoner pr 1000 barn, 0-15 år || en := Number of tonsil operations pr 1000 child, 0-15 år),*/
-/*   utvalg =*/
-/*   		no :=%nrstr(&no_utvalg) || en :=%nrstr(&en_utvalg),*/
-/*   summary=*/
-/*   		no := &no_summary. || en := &en_summary. ,*/
-/*   discussion=%nrstr(*/
-/*   		no := &no_discussion. || en := &en_discussion. ),*/
-/*   tags=barn tonsillektomi ore-nese-hals*/
-/*);*/
-
+/**/
 /*Figurer og tabeller*/
-%panelfigur(tema=tonsiller_barn);
+%total_figurer;
 
-%include "&filbane/rateprogram/graf.sas";
-%graf(bars=Pub_sykehus_rate/&tema._Rate2023,
-      category=bohf/bohf_fmt.,
-	  save="&bildesti/&tema._2023rate.png")
+%panelfigur_todelt(dim1=hel,dim2=del,dimensjon=metode);
 
-data Pub_sykehus_rate;
-set pub_sykehus_rate;
-/*eget, annet, privat*/
-eget_pct=(eget_Rate2023/&tema._Rate2023)*100;
-annet_pct=(annet_Rate2023/&tema._Rate2023)*100;
-privat_pct=(privat_Rate2023/&tema._Rate2023)*100;
-eget_s_pct=(eget_Ratesnitt/&tema._Ratesnitt)*100;
-annet_s_pct=(annet_Ratesnitt/&tema._Ratesnitt)*100;
-privat_s_pct=(privat_Ratesnitt/&tema._Ratesnitt)*100;
-/*Type: hel og del*/
-hel_pct=(hel_Rate2023/&tema._Rate2023)*100;
-del_pct=(del_Rate2023/&tema._Rate2023)*100;
-hel_s_pct=(hel_Ratesnitt/&tema._Ratesnitt)*100;
-del_s_pct=(del_Ratesnitt/&tema._Ratesnitt)*100;
-run;
+%panelfigur_tredelt(dim1=eget,dim2=annet,dim3=privat,dimensjon=beh);
 
-%graf(bars=Pub_sykehus_rate/eget_Rate2023 annet_rate2023 privat_rate2023,
-table=Pub_sykehus_rate/&tema._Rate2023 eget_pct annet_pct privat_pct/8.1 8.1 8.1 8.1,
-      category=bohf/bohf_fmt.,
-	  save="&bildesti/&tema._Beh_andel2023rate.png")
+%rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=0,aldermax=15,kjonn=);
 
-%graf(bars=Pub_sykehus_rate/eget_Ratesnitt annet_ratesnitt privat_ratesnitt,
-table=Pub_sykehus_rate/&tema._Ratesnitt eget_s_pct annet_pct privat_s_pct/8.1 8.1 8.1 8.1,
-      category=bohf/bohf_fmt.,
-	  save="&bildesti/&tema._Beh_andelsnittrate.png")
+%dim_rate_alder_kjonn(dim=del,aarmin=&startaar,aarmax=&sluttaar,aldermin=0,aldermax=15,kjonn=);
 
-%graf(bars=Pub_sykehus_rate/hel_Rate2023 del_rate2023,
-	table=Pub_sykehus_rate/&tema._Rate2023 hel_pct del_pct/8.1 8.1 8.1,
-      category=bohf/bohf_fmt.,
-	  save="&bildesti/&tema._type_andel2023rate.png")
-
-%graf(bars=Pub_sykehus_rate/hel_Ratesnitt del_ratesnitt,
-	table=Pub_sykehus_rate/&tema._Ratesnitt hel_s_pct del_s_pct/8.1 8.1 8.1,
-      category=bohf/bohf_fmt.,
-	  save="&bildesti/&tema._type_andelsnittrate.png")
-
-
-%rate_alder_kjonn(aarmin=2015,aarmax=2023,aldermin=0,aldermax=15,kjonn=);
-
-
-/*Panelfigur - hel og del*/
-proc sql;
-create table &tema._tab as
-select a.*, 
-b.hel_ant as hel_ant_n,
-b.hel_rate as hel_rate_n,
-b.del_ant as del_ant_n,
-b.del_rate as del_rate_n
-from &tema._tab as a
-left join pub_sykehus_rate_long as b
-on a.aar=b.aar
-where b.bohf eq 8888 and a.bohf ne 8888;
-quit;
-
-/*hel-figur*/
-ODS Graphics ON /reset=All imagename="&tema._panel_hel" imagefmt=png border=off height=800px width=1200px ;
-ODS Listing Image_dpi=300 GPATH="&bildesti";
-proc sgpanel data=&tema._tab noautolegend sganno=anno pad=(Bottom=5%);
-PANELBY bohf / columns=7 rows=3 novarname spacing=2 HEADERATTRS=(Color=black Family=Arial Size=7);
-vbarparm category= aar  response=hel_rate /fillattrs=(color=CX95BDE6);
-series x=aar y=hel_rate_n /lineattrs=(color=black pattern=1 thickness=2) name="norge" legendlabel="Norge";
-keylegend "norge" / noborder position=bottom;
-colaxis label="&tema., Tonsillektomier (hel), rate pr 1 000 innbyggere" valueattrs=(size=5) labelattrs=(size=8 weight=bold);
-rowaxis label=" ";
-where aar ne 9999;
-RUN; 
-ods listing close; ods graphics off;
-
-/*del-figur*/
-ODS Graphics ON /reset=All imagename="&tema._panel_del" imagefmt=png border=off height=800px width=1200px ;
-ODS Listing Image_dpi=300 GPATH="&bildesti";
-proc sgpanel data=&tema._tab noautolegend sganno=anno pad=(Bottom=5%);
-PANELBY bohf / columns=7 rows=3 novarname spacing=2 HEADERATTRS=(Color=black Family=Arial Size=7);
-vbarparm category= aar  response=del_rate /fillattrs=(color=CX95BDE6);
-series x=aar y=del_rate_n /lineattrs=(color=black pattern=1 thickness=2) name="norge" legendlabel="Norge";
-keylegend "norge" / noborder position=bottom;
-colaxis label="&tema., Tonsillotomier (delvis), rate pr 1 000 innbyggere" valueattrs=(size=5) labelattrs=(size=8 weight=bold);
-rowaxis label=" ";
-where aar ne 9999;
-RUN; 
-ods listing close; ods graphics off;
-
-/*Hel og del - tidstrend*/
-proc sql;
-create table &tema._totant_type as
-select distinct
-aar, 
-sum(case when del=1 then &tema. else 0 end) as del,
-sum(case when hel=1 then &tema. else 0 end) as hel,
-sum(&tema.) as total
-from &tema._dsn
-group by aar;
-run; 
-
-data &tema._totant_type;
-set &tema._totant_type;
-andel = (hel/total)*100;
-format andel 8.1;
-run;
-
-ODS Graphics ON /reset=All imagename="&tema._antall_type" imagefmt=png border=off height=500px;
-ODS Listing Image_dpi=300 GPATH="&bildesti";
-proc sgplot data=&tema._totant_type noautolegend noborder;
-    vline aar / response=hel stat=sum name="Hel" legendlabel="Hel";
-	vline aar / response=del stat=sum name="Del" legendlabel="Delvis";
-    keylegend "Hel" "Del" / location=inside position=top noborder title='' across=3;
-    xaxis fitpolicy=thin offsetmin=0.035 label='År';
-    xaxistable hel / label="Hel";  
-    xaxistable del / label="Delvis";
-	xaxistable total / label="Totalt";
-	xaxistable andel / label="Andel hel"; 
-    yaxis label="&tema., Antall pr år i perioden (2015-2023)" 
-          labelpos=top LABELATTRS=(Weight=Bold) min=0;
-    format ermann ermann_fmt.;
-    styleattrs datalinepatterns=(solid) datacontrastcolors=(darkred darkblue green);
-run;
-ods listing close;
-ods graphics off;
-
+/**/
 
 /*til nrk*/
 data nrk_rate;
@@ -422,3 +210,7 @@ from utvalg
 where behsh=101
 group by aar;
 quit;
+
+/*SLETTE ALLE DATASETT I WORK */
+proc datasets nolist library=WORK kill;
+   run; quit;

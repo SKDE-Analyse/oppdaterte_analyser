@@ -1,5 +1,21 @@
 %macro rate_alder_kjonn(aarmin=,aarmax=,aldermin=,aldermax=,kjonn=);
 
+/*!
+Dokumentasjon av makroen rate_alder_kjonn
+Opprettet 20.november 2024 av Frank Olsen
+
+aarmin settes vanligvis lik &startaar, aarmax lik &sluttaar.
+aldermin og aldermax i henhold til alderspennet i analysen.
+kjonn settes til 0 for kvinner, 1 for menn, og tom for totalt.    
+
+Makroen brukes i oppdaterte analyser.
+Makroen lager 3 figurer:
+- Ratefigur, rater totalt pr alder, fordelt på kjønn: &tema._rate_alder_kjonn
+- Rate- og antallsfigur, totalt pr alder, fordelt på kjønn: &tema._rate_alder_kjonn2
+- Rate- og antallsfigur, totalt pr år, fordelt på kjønn: &tema._rate_aar_kjonn2
+
+*/
+
 /*Rate pr ettårig-alder*/
 proc sql;
 create table &tema._ant as
@@ -134,5 +150,9 @@ proc sgplot data=ant_pop_aar noautolegend noborder;
 run;
 ods listing close;
 ods graphics off;
+
+proc datasets library=work nolist;
+    delete ant_pop_aar ant_pop_tot ant_pop &tema._ant pop_ant;
+quit;
 
 %mend rate_alder_kjonn;

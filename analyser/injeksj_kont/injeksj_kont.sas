@@ -1,115 +1,44 @@
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
-%let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
+/*!
+###Dokumentasjon
+Opprettet oktober 2024 av Hanne Sigrun Byhring
+Sist endret 22/10-24 av Frank Olsen
+Endringer 22/10-2024, ny struktur
+*/
 
+
+/*************************************
+ GJØR ENDRINGER I DENNE LILLE BOLKEN
+*************************************/
+%let tema=injeksj_kont;
+%let startaar=2015;
+%let sluttaar=2023;
+/****************************************
+ OG TILPASS MAKROER ETTER PUBLISER_RATE
+*****************************************/
+
+
+/*Endre denne stien når alt er klart*/
+%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/oppd_ana_FO;
+/*Analysetekst*/
+%include "&oppdatering_filbane/analyser/&tema./text/&sluttaar..sas";
+/*Makroer for å lage data til analyse*/
 %include "&oppdatering_filbane/makroer/setup.sas";
+
+/*Generelle makroer*/
+%let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
 %include "&filbane/makroer/beh_eget_annet_priv.sas";
-
 %include "&filbane/stiler/anno_logo_kilde_npr_ssb.sas";
-%let bildesti =/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/Figurer/injeksjon/injeksjon_kont;
+%include "&filbane/rateprogram/graf.sas";
 
-%let no_utvalg=
-Analysen er basert på aktivitetsdata fra Norsk pasientregister (NPR) for 
-somatisk spesialisthelsetjeneste. Data inkluderer aktivitet i offentlige sykehus og 
-private sykehus som leverer offentlig finansierte tjenester. 
-Data fra avtalespesialister er ikke inkludert, fordi denne behandlingen kun gis på sykehus. 
-\n \n 
-Utvalget består av kontakter for pasienter i alderen 50 år eller eldre registrert med hoved- eller bidiagnose 
-aldersrelatert makuladegenerasjon, AMD (H35.3), 
-veneokklusjon (H34.8 eller H34.9) eller diabetisk retinopati (H36.0, E10.3 eller E11.3) 
-i kombinasjon med prosedyrekode CKD05. 
-\n \n
-Legemiddelet aflibercept er identifisert ved hjelp av særkode (1LA05 eller S01LA05). 
-\n \n
-Når en kontakt er registrert med flere av de aktuelle diagnosekodene 
-(f.eks AMD som hovedtilstand og veneokklusjon som bitilstand) er hoveddiagnose valgt.
+/*Bildesti*/
+%let bildesti =/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/Figurer/&sluttaar._figurer/&tema;
 
-\n\n Hvor pasienten er behandlet er delt inn i tre kategorier:\n
-- Eget HF, behandlet ved et av sykehusene i opptaksområdet
-\n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
-\n - Privat, behandlet ved et privat sykehus 
-;
-
-%let en_utvalg=
-The analysis is based on activity data from the Norwegian Patient Register (NPR) for somatic specialist health services. 
-The data includes activity in public hospitals and private hospitals that provide publicly funded services. 
-Data from specialists under public funding contracts are not included, as this treatment is only provided in hospitals.
-\n \n
-The sample consists of contacts for patients aged 50 years or older registered with a primary or secondary diagnosis of 
-age-related macular degeneration, AMD (H35.3), venous occlusion (H34.8 or H34.9), 
-or diabetic retinopathy (H36.0, E10.3, or E11.3) 
-in combination with procedure code CKD05. 
-\n \n
-The drug aflibercept is identified using a special code (1LA05 or S01LA05). 
-\n \n
-When a contact is registered with two or more of the relevant diagnosis codes 
-(e.g., AMD as the primary condition and venous occlusion as the secondary condition), 
-the primary diagnosis is chosen.
-\n \n
-The place of treatment is divided into three categories:\n
-- Local public, treated at one of the hospitals in the catchment area
-\n - Other public, treated at a public hospital outside the catchment area
-\n - Private, treated by a private hospital
-;
-
-%let no_summary=
-- Fra 2015 til 2023 ble antall pasienter i behandling doblet mens antall kontakter ble mer enn doblet.
-\n - Det er betydelig geografisk variasjon i bruk av det dyreste legemidlet, aflibercept
-\n - Injeksjonsbehandling gis nesten utelukkende ved offentlige sykehus
-;
-
-%let en_summary=
-- From 2015 to 2023 the number fo patients in treatment was doubled while the number of contacts was more than doubled. 
-\n - There is significant geographical variation in the use of the most expensive drug, aflibercept
-\n - Injection treatment is given almost exclusively at public hospitals
-;
-
-%let no_discussion=
-Nasjonalt økte antall kontakter pr år fra 61 000 i 2015 til omlag 138 000 i 2023. 
-Antall kontakter ble altså mer enn doblet fra 2015 til 2023 
-mens antall pasienter i behandling ble doblet i samme periode. 
-Antall kontakter pr pasient økte dermed fra 5,5 i 2015 til 6,3 i 2023. 
-Dette er i tråd med funnene til [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598) 
-som undersøkte bruk av injeksjonsbehandling i perioden 2011 - 2021. 
-\n \n
-Injeksjonsbehandling i øyet er aktuelt for pasienter med aldersrelatert makuladegererasjon (AMD), 
-diabetisk retinopati og veneokklusjon. Nasjonalt sank andelen kontakter med diagnose AMD fra 
-omlag 78 % i 2015 til 73 % i 2023. I enkelte opptaksområder har imidlertid andelen økt i perioden. 
-I opptaksområdene Bergen og Førde var andelen kontakter med diagnose diabetisk retinopati 
-eller veneokklusjon svært lav i 2023. 
-\n \n
-De to mest brukte legemidlene er bevacizumab og aflibercept. Bevacizumab har betydelig lavere kostnad 
-og er førstevalg de fleste steder ([Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598)).
-Nasjonalt økte andelen kontakter med legemiddelet aflibercept fra 46 % i 2015 til 56 % i 2020, 
-og sank deretter til 50 % i 2023. Andelen kontakter med aflibercept var i 2023 høyest i opptaksområdet 
-Sørlandet (67,5 % av kontaktene) og lavest i opptaksområdet Stavanger (38 % av kontaktene). 
-;
-
-%let en_discussion=
-Nationally, the number of contacts per year increased from 61,000 in 2015 to approximately 138,000 in 2023. 
-The number of contacts was more than doubled from 2015 to 2023 while the 
-number of patients in treatment was doubled in the same period. 
-This means that the number of contacts per patient increased from 5.5 in 2015 to 6.3 in 2023. 
-This is in accordance with the findings of [Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598), 
-who examined the use of injection treatment from 2011 to 2021. 
-\n \n
-Injection treatment is relevant for patients with age-related macular degeneration (AMD), diabetic retinopathy, and vein occlusion.
-Nationally, the proportion of contacts with the diagnosis AMD decreased from about 78 % in 2015 to 73 % in 2023. 
-However, in some referral areas, the proportion of contacts with the diagnosis AMD has increased during the period. 
-In the catchment areas of Bergen and Stavanger, the proportion of contacts with a diagnosis of diabetic retinopathy or vein occlusion was very low in 2023.
-\n \n
-The two most used drugs are bevacizumab and aflibercept. Bevacizumab has significantly lower costs 
-and is the first choice in most places ([Husum et al. 2023](https://onlinelibrary.wiley.com/doi/10.1111/aos.16598)).
-Nationally, the proportion of contacts with the drug aflibercept increased from 46 % in 2015 to 56 % in 2020, 
-and then decreased to 50 % in 2023. The proportion of contacts with aflibercept was highest in the Sørlandet referral area 
-(67.5 % of contacts) and lowest in the Stavanger referral area (38 % of contacts) in 2023.
-;
-
-%let no_utvalg = %superq(no_utvalg);
-%let en_utvalg = %superq(en_utvalg);
-%let no_summary = %superq(no_summary);
-%let en_summary = %superq(en_summary);
-%let no_discussion = %superq(no_discussion);
-%let en_discussion = %superq(en_discussion);
+/*Figurmakroer*/
+%include "&oppdatering_filbane/figurmakroer/total_figurer.sas";
+%include "&oppdatering_filbane/figurmakroer/panelfigur_todelt.sas";
+%include "&oppdatering_filbane/figurmakroer/panelfigur_tredelt.sas";
+%include "&oppdatering_filbane/figurmakroer/rate_alder_kjonn.sas";
+%include "&oppdatering_filbane/figurmakroer/dim_rate_alder_kjonn.sas";
 
 data injeksj_kont_utv;
   %NPR(avd,
@@ -118,7 +47,7 @@ data injeksj_kont_utv;
 	 in_pros=CKD05,
 	 where=alder in (50:105)
   );
-  injeksjon = 1;	/*alle*/
+  &tema. = 1;	/*alle*/
 
   array diagnose {*} Hdiag: Bdiag:;
 	do i=1 to dim(diagnose);
@@ -156,14 +85,14 @@ run;
 %beh_eget_annet_priv(inndata=injeksj_kont_utv, utdata=injeksj_kont, as_data=0);
 
 
-%oppdater(injeksj_kont,
-   total=injeksjon,
+%oppdater(&tema.,
+   total=&tema.,
    variables=amd diab rvo afl andre eget annet privat,
    force_update=true
 );
 
-%publiser_rate(injeksj_kont,
-   total=injeksjon,
+%publiser_rate(&tema.,
+   total=&tema.,
    custom_views=
 	%define_view(
         name=diagnose, 
@@ -187,89 +116,28 @@ run;
                 || en := Single year, public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
-        label_3=no := Privat || en := Private),
-   title=
-      no := Injeksjonsbehandling (Antall kontakter, 50 år+)
-   || en := Injection treatment (Number of contacts, 50 yrs+),
-   description=
-      no := %str(Antall kontakter pr 1000 innbyggere, 50 år eller eldre)
-   || en := %str(Number of contacts pr 1000 inhabitants, 50 years or older),
-   info =
-   no :=%nrstr(&no_utvalg)
-|| en :=%nrstr(&en_utvalg),
-   summary =
-   no :=%nrstr(&no_summary)
-|| en :=%nrstr(&en_summary),
-   discussion=
-   no := %nrstr(&no_discussion)   
-|| en := %nrstr(&en_discussion),
+        label_3=no := Privat || en := Private)
+,
+&settinn_txt.
    tags=eldre oye, 
    min_age=50, max_age=105
 );
 
 /*FIGURER TIL STØTTE I SKRIVINGEN UNDER HER:*/
-
-
-data injeksjon;
-set injeksj_kont;
-run;
-
-%let tema=injeksjon;
-%let bildesti =/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/Figurer/injeksjon/injeksjon_kont;
-
 /*Figurer og tabeller*/
-%include "/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/figurmakroer/panelfig.sas";
-%panelfigur(tema=injeksjon);
-%include "/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/figurmakroer/panel_ny.sas";
-%panelfigur_ny(tema=injeksjon, dim1=amd, dim2=diab, dim3=rvo, dimensjon=diagnose);
-%include "/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/figurmakroer/panel_ny_todelt.sas";
-%panelfigur_ny_todelt(tema=injeksjon, dim1=afl, dim2=andre, dimensjon=legemiddel);
-%include "/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser/figurmakroer/panel_total.sas";
-%panelfigur_tot(tema=injeksjon);
+%total_figurer;
 
+%panelfigur_todelt(dim1=afl,dim2=andre,dimensjon=legemiddel);
 
-%include "&filbane/rateprogram/graf.sas";
-data pub_sykehus_rate2;
-set pub_sykehus_rate;
+%panelfigur_tredelt(dim1=amd,dim2=diab,dim3=rvo,dimensjon=diagnose);
 
-andel_afl2023=afl_rate2023/injeksjon_rate2023;
+%rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=50,aldermax=105,kjonn=);
 
+%dim_rate_alder_kjonn(dim=afl,aarmin=&startaar,aarmax=&sluttaar,aldermin=50,aldermax=105,kjonn=);
 
-andel_amd2015=amd_rate2015/injeksjon_rate2015;
-andel_amd2016=amd_rate2016/injeksjon_rate2016;
-andel_amd2017=amd_rate2017/injeksjon_rate2017;
-andel_amd2018=amd_rate2018/injeksjon_rate2018;
-andel_amd2019=amd_rate2019/injeksjon_rate2019;
-andel_amd2020=amd_rate2020/injeksjon_rate2020;
-andel_amd2021=amd_rate2021/injeksjon_rate2021;
-andel_amd2022=amd_rate2022/injeksjon_rate2022;
-andel_amd2023=amd_rate2023/injeksjon_rate2023;
+%dim_rate_alder_kjonn(dim=adm,aarmin=&startaar,aarmax=&sluttaar,aldermin=50,aldermax=105,kjonn=);
 
-format andel_afl2023 andel_amd2023 nlpct8.1;
-
-run;
-
-%graf(bars=pub_sykehus_rate2/injeksjon_rate2023 , category=bohf/bohf_fmt.,
-table=pub_sykehus_rate2/injeksjon_rate2023 #Rate,
-description=Injeksjoner pr 1000 innbyggere i 2023,
-save="&bildesti/rate2023.png");
-
-%graf(bars=pub_sykehus_rate2/andel_afl2023 , category=bohf/bohf_fmt.,
-table=pub_sykehus_rate2/andel_afl2023 #Andel,
-description=Andel aflibercept i 2023,
-save="&bildesti/andel_afl2023.png");
-
-%graf(bars=pub_sykehus_rate2/andel_amd2023 , category=bohf/bohf_fmt.,
-table=pub_sykehus_rate2/andel_amd2023 #Andel,
-description=Andel AMD i 2023,
-save="&bildesti/andel_amd2023.png");
-
-%graf(bars=pub_sykehus_rate2/andel_amd2015 , category=bohf/bohf_fmt.,
-table=pub_sykehus_rate2/andel_amd2015 #Andel,
-description=Andel AMD i 2015,
-save="&bildesti/andel_amd2015.png");
-
-
+/**/
 
 /*SLETTE ALLE DATASETT I WORK */
 proc datasets nolist library=WORK kill;
