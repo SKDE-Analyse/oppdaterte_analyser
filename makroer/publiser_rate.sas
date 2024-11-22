@@ -78,10 +78,12 @@ quit;
 data _null_;
    set pub_sykehus_rate;
    %do pub_year=&pub_min_year %to &pub_max_year;
+      call symput(cats("pub_syk_", bohf, "_&pub_year._total_obs"),
+                  &total._ant&pub_year
+      );
       %do view_i=1 %to %sysfunc(countw(&all_views));
          %let view = %scan(&all_views, &view_i);
          %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
-            variable = cats("pub_syk_", bohf, "_&pub_year._&view_i._&pub_varnum");
             call symput(cats("pub_syk_", bohf, "_&pub_year._&view_i._&pub_varnum"),
                         %scan(&&view_&view._vars, &pub_varnum)_rate&pub_year
             );
@@ -92,10 +94,12 @@ run;
 data _null_;
    set pub_region_rate;
    %do pub_year=&pub_min_year %to &pub_max_year;
+      call symput(cats("pub_region_", borhf, "_&pub_year._total_obs"),
+                  &total._ant&pub_year
+      );
       %do view_i=1 %to %sysfunc(countw(&all_views));
          %let view = %scan(&all_views, &view_i);
          %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
-            variable = cats("pub_region_", borhf, "_&pub_year._&view_i._&pub_varnum");
             call symput(cats("pub_region_", borhf, "_&pub_year._&view_i._&pub_varnum"),
                         %scan(&&view_&view._vars, &pub_varnum)_rate&pub_year
             );
@@ -171,6 +175,10 @@ proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
                            %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
                               %let pub_valuevar = pub_syk_%scan(&pub_sykehus, &pub_sykehus_i)_&pub_year._&view_i._&pub_varnum;
 	                           write values &&&pub_valuevar;
+                              %if &view_i=1 %then %do;
+                                 %let pub_total_obs = pub_syk_%scan(&pub_sykehus, &pub_sykehus_i)_&pub_year._total_obs;
+                                 write values &&&pub_total_obs;
+                              %end;
                            %end;
                         write close;
                      %end;
@@ -195,6 +203,10 @@ proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
                            %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
                               %let pub_valuevar = pub_region_%scan(&pub_regioner, &pub_region_i)_&pub_year._&view_i._&pub_varnum;
                               write values &&&pub_valuevar;
+                              %if &view_i=1 %then %do;
+                                 %let pub_total_obs = pub_region_%scan(&pub_regioner, &pub_region_i)_&pub_year._total_obs;
+                                 write values &&&pub_total_obs;
+                              %end;
                            %end;
                         write close;
                      %end;

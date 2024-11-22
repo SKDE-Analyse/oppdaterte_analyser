@@ -1,4 +1,3 @@
-Dette er dokumentasjon, i *markdown*.
 ## Mappen "analyser"
 I denne mappen ligger alle SAS-filene som genererer de ulike "analyseboksene". For hver analyse/analyseboks lages det en mappe og hver mappe inneholder en SAS-fil.
 Mappen skal ha navn som identifiserer den aktuelle analysen, og SAS-filen inni mappen skal ha samme navn.
