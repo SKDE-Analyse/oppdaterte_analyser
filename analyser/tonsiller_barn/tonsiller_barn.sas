@@ -16,34 +16,17 @@ Endringer 22/10-2024, ny struktur
  OG TILPASS MAKROER ETTER PUBLISER_RATE
 *****************************************/
 
-
-/*Endre denne stien når alt er klart*/
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/oppd_ana_FO;
-/*Analysetekst*/
-%include "&oppdatering_filbane/analyser/&tema./text/&sluttaar..sas";
+%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
 /*Makroer for å lage data til analyse*/
 %include "&oppdatering_filbane/makroer/setup.sas";
+/*Makroer og stier for figurer*/
+%include "&oppdatering_filbane/figurmakroer/oppsett.sas";
 
-/*Generelle makroer*/
-%let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
-%include "&filbane/makroer/beh_eget_annet_priv.sas";
-%include "&filbane/stiler/anno_logo_kilde_npr_ssb.sas";
-%include "&filbane/rateprogram/graf.sas";
-
-/*Bildesti*/
-%let bildesti =/sas_smb/skde_analyse/helseatlas/oppdaterte_analyser/Figurer/&sluttaar._figurer/&tema;
-
-/*Figurmakroer*/
-%include "&oppdatering_filbane/figurmakroer/total_figurer.sas";
-%include "&oppdatering_filbane/figurmakroer/panelfigur_todelt.sas";
-%include "&oppdatering_filbane/figurmakroer/panelfigur_tredelt.sas";
-%include "&oppdatering_filbane/figurmakroer/rate_alder_kjonn.sas";
-%include "&oppdatering_filbane/figurmakroer/dim_rate_alder_kjonn.sas";
-
+/*** Utvalg og analyse ***/
 
 data &tema._1;
   %NPR(avd,
-  	 periode=2015-2023,
+  	 periode=&startaar.-&sluttaar.,
 	 in_pros=EMB10 EMB12 EMB15 EMB20 EMB99 ENC40,
 	 in_diag=J350 J351 J353 J358 J359 J36 J390 J030 J038 J039 G473,
 	 where = alder in (0:15)	 
@@ -53,7 +36,7 @@ run;
 
 data &tema._2;
   %NPR(aspes,
-     periode=2015-2023,
+     periode=&startaar.-&sluttaar.,
 	 normaltariff=K02a K02e K02f K02g k02a k02e k02f k02g,
 	 in_diag=J350 J351 J353 J358 J359 J36 J390 J030 J038 J039 G473,
 	 where = alder in (0:15)
@@ -63,7 +46,7 @@ run;
 
 data &tema._3;
   %NPR(aspes,
-     periode=2015-2023,
+     periode=&startaar.-&sluttaar.,
 	 in_pros=EMB10 EMB12 EMB15 EMB20 EMB99 ENC40,
 	 in_diag=J350 J351 J353 J358 J359 J36 J390 J030 J038 J039 G473,
 	 where = alder in (0:15)
