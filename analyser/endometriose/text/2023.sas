@@ -14,10 +14,14 @@ JAL21, JAL24, JAP00, JAP01, JAL20, JAL21, JAA10, JAA11, LAC00, LAC01, LAC10, LAC
 LCF01, LAD00, LAD01, LAE10, LAE11, LAE20, LAE21, LAF00, LAF01, LAF10, LAF11, LAF20, LAF30, LBD00
 LBD01, LBE00, LBE01, LCC00, LCC01, LCC05, LCC96, LCC97, LCF97 eller LCF96.
 
-
 \n\n Hysterektomi er definert ved en eller flere av følgende prosedyrekodener
 LCD00, LCD30, LCD96, LCD10, LCD40, LCD01, LCD04, LCD11, LCD31, LCD97, LCC10, LCC11 eller LCC20,
 og de resterende prosedyrekodene blir definert som andre inngrep. 
+
+\n\n Tverrfaglig kirurgi er definert ved en eller flere av prosedyrekodene for:
+\n - Tarmkirurgi (JGB01, JGB97, JGA97, JGW97)
+\n - Urinveier (KBH51, KBH21, KCH01, KCD97)
+\n - Diafragma (JBA21, JBA11)
 
 \n\n Hvor pasienten er behandlet er delt inn i tre kategorier:
 \n - Eget HF, behandlet ved et av sykehusene i opptaksområdet

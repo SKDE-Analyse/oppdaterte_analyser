@@ -15,7 +15,7 @@ Endringer hva, hvem og når
  OG TILPASS MAKROER ETTER PUBLISER_RATE
 *****************************************/
 
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
+%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/oppd_ana_FO;
 /*Makroer for å lage data til analyse*/
 %include "&oppdatering_filbane/makroer/setup.sas";
 /*Makroer og stier for figurer*/
@@ -65,7 +65,7 @@ data endo_4;
   %NPR(avd,
   	 periode=&startaar-&sluttaar,
 	 in_diag=N80 N941 N944 N945 N946,
-	 in_pros=JFF KC GX,
+	 in_pros=JGB01 JGB97 JGA97 JGW97 KBH51 KBH21 KCH01 KCD97 JBA21 JBA11,
 	where = alder in (16:55) and ermann=0 
   );
   tverr = 1;
