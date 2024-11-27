@@ -1,3 +1,6 @@
+#Mappestruktur
+![Mappestruktur](bilder/mappestruktur.png)
+
 ## Mappen "analyser"
 I denne mappen ligger alle SAS-filene som genererer de ulike "analyseboksene". For hver analyse/analyseboks lages det en mappe og hver mappe inneholder en SAS-fil.
 Mappen skal ha navn som identifiserer den aktuelle analysen, og SAS-filen inni mappen skal ha samme navn.
@@ -105,5 +108,7 @@ Makroen lager 4 figurer
 - Snittalder i perioden, pr år, fordelt på kjønn: &tema._&dim._snittalder
 
 ## Mappen "makroer"
-I denne mappen samles alle makroer som brukes i **produksjonen av data og tekst som skal inn i jsonfilen** og til nettsiden.
+I denne mappen samles alle makroer som brukes i **produksjonen av data og tekst som skal inn i jsonfilen** og til nettsiden. Dette bildet forklarer hovedpoenget med hva disse makroene gjør:
+
+![Sas arkitektur](bilder/sas_arkitektur.png)
 

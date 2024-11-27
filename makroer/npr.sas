@@ -30,6 +30,7 @@ run;
    retain pid aar alder ermann inndato inntid utdato uttid;
    length all_diag $200
           all_pros $600;
+
    %if &format=yes %then %do;
       format ermann ermann_fmt.       aktivitetskategori3 aktivitetskategori3f.
              borhf  borhf_fmt.        bohf   bohf_fmt.         komnr  komnr_fmt.        hdiag3tegn $hdiag3tegn.
