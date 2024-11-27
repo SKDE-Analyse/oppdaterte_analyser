@@ -8,3 +8,11 @@
 
 %include "&filbane/rateprogram/standard_rate.sas";
 %include "&filbane/formater/bo.sas";
+%include "&filbane/formater/beh.sas";
+%include "&filbane/formater/drg.sas";
+%include "&filbane/formater/icd10.sas";
+%include "&filbane/formater/ncmp.sas";
+%include "&filbane/formater/ncrp.sas";
+%include "&filbane/formater/ncsp.sas";
+%include "&filbane/formater/hdiag3tegn.sas";
+%include "&filbane/formater/NPR_somatikk.sas";
