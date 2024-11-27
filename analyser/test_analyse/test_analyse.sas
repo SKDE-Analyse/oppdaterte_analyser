@@ -1,11 +1,11 @@
-﻿%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/Mattias;
+﻿%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
 %let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
 
 %include "&oppdatering_filbane/makroer/setup.sas";
 
 data test_analyse;
    %NPR(avd aspes,
-      periode=2023-2023,
+      periode=2015-2023,
 	   in_diag=J45 J46, /* Astma + akutt astma */
 	   where=alder < 18
    )
