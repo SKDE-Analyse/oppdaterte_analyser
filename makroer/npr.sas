@@ -31,19 +31,18 @@ run;
    length all_diag $200
           all_pros $600;
    %if &format=yes %then %do;
-
       format ermann ermann_fmt.       aktivitetskategori3 aktivitetskategori3f.
              borhf  borhf_fmt.        bohf   bohf_fmt.         komnr  komnr_fmt.        hdiag3tegn $hdiag3tegn.
-             hdg hdg.                 hdiag hdiag2 bdiag1-bdiag19 $icd10_fmt.           ncmp1-ncmp20 $ncmp.
-             ncrp1-ncrp20 $ncrp.      ncsp1-ncsp20 $ncsp.      beh_kat beh_kat.;
+             hdg hdg.                 beh_kat beh_kat.         kontakttype kontakttype. inntilstand inntilstand.
+             uttilstand  uttilstand.  fagomrade $fagomrade.    episodefag $episodefag.  frasted frasted.
+             nytilstand nytilstand.   boshhn boshhn_fmt.       bodps  bodps_fmt.        behsh  behsh_fmt.
+             behhf  behhf_fmt.        behrhf behrhf_fmt.       institusjonid org_fmt.   behandlingsstedkode org_fmt.
+             drg    $drg.             drg_type $drg_type.      bydel  bydel_fmt.        henvtype henvtype.
+             frittbehandlingsvalg frittbehandlingsvalg.        omsorgsniva omsorgsniva. g_omsorgsniva g_omsorgsniva.
+             henvtiltjeneste henvtiltjeneste.                  henvfratjeneste henvfratjeneste.
+             debitor debitor.         niva $niva.              hdiag hdiag2 bdiag1-bdiag19 $icd10_fmt.
+             ncmp1-ncmp20 $ncmp.      ncrp1-ncrp20 $ncrp.      ncsp1-ncsp20 $ncsp.;
       retain normaltariff1-normaltariff15 takst_1-takst_15;
-      format kontakttype kontakttype. inntilstand inntilstand. uttilstand  uttilstand.  fagomrade $fagomrade.
-             episodefag $episodefag.  frasted frasted.         nytilstand nytilstand.   boshhn boshhn_fmt.
-             bodps  bodps_fmt.        behsh  behsh_fmt.        behhf  behhf_fmt.        behrhf behrhf_fmt.
-             institusjonid org_fmt.   behandlingsstedkode org_fmt.                      drg    $drg.
-             drg_type $drg_type.      bydel  bydel_fmt.        henvtype henvtype.       frittbehandlingsvalg frittbehandlingsvalg.
-             omsorgsniva omsorgsniva. g_omsorgsniva g_omsorgsniva.                      henvtiltjeneste henvtiltjeneste.
-             henvfratjeneste henvfratjeneste.                  debitor debitor.         niva $niva.;
    %end;
 
    /* Fjerner ukjent og utenland borhf (24 og 99) */
