@@ -15,7 +15,8 @@
    title=,
    tags=,
    min_age=,
-   max_age=
+   max_age=,
+   kjonn=begge
 );
 
 %let __ignore = %define_view(
@@ -45,6 +46,7 @@
    region=bohf,
    %if &min_age ^= %then min_age=&min_age, ;
    %if &max_age ^= %then max_age=&max_age, ;
+   kjonn=&kjonn,
    out=pub_sykehus_rate
 )
 
@@ -53,6 +55,7 @@
    region=borhf,
    %if &min_age ^= %then min_age=&min_age, ;
    %if &max_age ^= %then max_age=&max_age, ;
+   kjonn=&kjonn,
    out=pub_region_rate
 )
 
