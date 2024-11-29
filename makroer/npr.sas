@@ -31,8 +31,8 @@ run;
           inntilstand uttilstand fagomrade episodefag frasted nytilstand boshhn bodps behsh behhf behrhf institusjonid behandlingsstedkode
           drg drg_type bydel henvtype frittbehandlingsvalg omsorgsniva g_omsorgsniva henvtiltjeneste henvfratjeneste debitor niva
           hdiag hdiag2 bdiag1-bdiag19 ncmp1-ncmp20 ncrp1-ncrp20 ncsp1-ncsp20 normaltariff1-normaltariff15 takst_1-takst_15;
-   length all_diag $60
-          all_pros $60;
+   length all_diag $200
+          all_pros $600;
 
    %if &format=yes %then %do;
       format ermann ermann_fmt.       aktivitetskategori3 aktivitetskategori3f.
