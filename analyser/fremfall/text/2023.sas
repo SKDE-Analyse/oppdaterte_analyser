@@ -45,7 +45,7 @@ LEF 00, LEF 03, LEF 10, LEF 13, LEF 16, LEF 20, LEF 23, LEF 34, LEF 40, LEF 41, 
 ;
 
 %let no_discussion = 
-I perioden 2015-2019 lå antall inngrep stabilt på i overkant av 4000 pr. år. I 2020 ble antall inngrep redusert med omlag 20 % relativt til perioden 2015-2019.
+I perioden 2015-2019 lå antall inngrep stabilt på i overkant av 4000 pr år. I 2020 ble antall inngrep redusert med omlag 20 % relativt til perioden 2015-2019.
 Etter pandemien har årlig antall inngrep økt for hvert år og i 2023 ble det utført ca 3700 inngrep.
 \n \n
 Den geografiske variasjonen har vært stor gjennom hele perioden fra 2015 til 2023. 
