@@ -1,34 +1,32 @@
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
+ï»¿%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
 %let filbane=/sas_smb/skde_analyse/Data/SAS/felleskoder/main;
 
 %include "&oppdatering_filbane/makroer/setup.sas";
 
-data astma_barn;
-  %NPR(avd aspes,
-    periode=2023-2023,
-	 in_diag=J45 J46, /* Astma + akutt astma */
-	 where=alder < 18
-  )
-  astma = 1;
-  priv = astma and not hf;
-  off  = astma and hf;
+data test_analyse;
+   %NPR(avd aspes,
+      periode=2015-2023,
+	   in_diag=J45 J46, /* Astma + akutt astma */
+	   where=alder < 18
+   )
+   astma = 1;
 run;
 
 
-%oppdater(astma_barn,
+%oppdater(test_analyse,
    total=astma,
-   variables=off priv,
+   variables=offentlig privat,
    force_update=true
 )
 
 
-%publiser_rate(astma_barn,
+%publiser_rate(test_analyse,
    total=astma,
    custom_views=
      %define_view(
         name=off_priv, /* %define_view "returns" name (off_priv) */
-        variables=off priv,
-        title=%str(no := Enkeltår, offentlig/privat
+        variables=offentlig privat,
+        title=%str(no := EnkeltÃ¥r, offentlig/privat
                 || en := Single year, public/private),
         label_1=no := Offentlig || en := Public,
         label_2=no := Privat || en := Private),
@@ -46,9 +44,9 @@ run;
 || en := - blabla in english.
       \n - Other things.,
    discussion=%str(
-      no := Dette er en relativt kort diskussjon, på circa et par paragrafer.
-            Diskusjonen skal ikke være for lang, fordi det vil gjøre det vanskeligere
-            å oppdatere hvert år.
+      no := Dette er en relativt kort diskussjon, pÃ¥ circa et par paragrafer.
+            Diskusjonen skal ikke vÃ¦re for lang, fordi det vil gjÃ¸re det vanskeligere
+            Ã¥ oppdatere hvert Ã¥r.
    || en := This is a rather short intruduction, of approximately two paragraphs. The
             discussion should not be too long, so that it%'s easier to update each
             year.),
