@@ -15,7 +15,7 @@ Endringer hva, hvem og når
  OG TILPASS MAKROER ETTER PUBLISER_RATE
 *****************************************/
 
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/oppd_ana_HSB;
+%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
 /*Makroer for å lage data til analyse*/
 %include "&oppdatering_filbane/makroer/setup.sas";
 /*Makroer og stier for figurer*/
