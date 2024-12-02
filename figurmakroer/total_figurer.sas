@@ -112,6 +112,37 @@ run;
 ods listing close; ods graphics off;
 
 proc sql;
+create table &tema._aldtab_aar2 as
+select distinct aar,
+sum(kvinner) as kvinner,
+sum(menn) as menn,
+sum(total) as total,
+sum(kvinner)/sum(total) as andel_kvinner format=percent8.0,
+sum(menn)/sum(total) as andel_menn format=percent8.0
+from &tema._aldtab_aar
+group by aar;
+quit;
+
+ODS Graphics ON /reset=All imagename="&tema._antall_kjonn" imagefmt=png border=off height=500px;
+ODS Listing Image_dpi=300 GPATH="&bildesti";
+proc sgplot data=&tema._aldtab_aar2 noautolegend noborder /*sganno=anno pad=(Bottom=5%)*/;
+vline aar / response=kvinner stat=sum name="Kvinner" legendlabel="Kvinner";
+vline aar / response=menn stat=sum name="Menn" legendlabel="Menn";
+keylegend / location=inside position=topright noborder title='' across=1;
+xaxis fitpolicy=thin offsetmin=0.035  label='År' ;
+xaxistable kvinner / label="Kvinner";  
+xaxistable menn / label="Menn";
+xaxistable total / label="Totalt"; 
+xaxistable andel_kvinner / label="% Kvinner";  
+xaxistable andel_menn / label="% Menn";
+yaxis label="&tema., Antall pr. år i perioden (&startaar.-&sluttaar.)" 
+          labelpos=top LABELATTRS=(Weight=Bold) min=0;
+format ermann ermann_fmt.;
+styleattrs datalinepatterns=(solid) datacontrastcolors=(darkred darkblue);
+run;
+ods listing close; ods graphics off;
+
+proc sql;
 create table &tema._snittalder as
 select distinct
 aar,
@@ -149,7 +180,7 @@ from &tema._dsn
 group by aar;
 run; 
 
-ODS Graphics ON /reset=All imagename="&tema._antall_kjonn" imagefmt=png border=off height=500px;
+/* ODS Graphics ON /reset=All imagename="&tema._antall_kjonn" imagefmt=png border=off height=500px;
 ODS Listing Image_dpi=300 GPATH="&bildesti";
 proc sgplot data=&tema._totant noautolegend noborder;
     vline aar / response=kvinner stat=sum name="Kvinner" legendlabel="Kvinner";
@@ -165,7 +196,7 @@ proc sgplot data=&tema._totant noautolegend noborder;
     styleattrs datalinepatterns=(solid) datacontrastcolors=(darkred darkblue);
 run;
 ods listing close;
-ods graphics off;
+ods graphics off; */
 
 /*Forholdstall*/
 /* Step 1: Rank the rates within each year */
@@ -236,9 +267,9 @@ proc sgplot data=&tema._ft noautolegend noborder;
 run;
 ods listing close; ods graphics off;
 
-proc datasets library=work nolist;
+/* proc datasets library=work nolist;
     delete &tema._ft &tema._tab ranked_: &tema._totant &tema._dsn &tema._snittalder
     &tema._aldtab &tema._aldtab_aar &tema._tab: _SGSRT2_;
-quit;
+quit; */
 
 %mend total_figurer;
