@@ -1,15 +1,15 @@
 /*!
 ###Dokumentasjon
-Opprettet november 2024 av Frank Olsen
-Sist endret 29/11-24 av Frank Olsen
+Opprettet desember 2024 av Frank Olsen
+Sist endret 02/12-24 av Frank Olsen
 
 */
 
 
 /*************************************
- GJØR ENDRINGER I DENNE LILLE BOLKEN
+ GJØ˜R ENDRINGER I DENNE LILLE BOLKEN
 *************************************/
-%let tema=oredren;
+%let tema=taakirurgi;
 %let startaar=2015;
 %let sluttaar=2023;
 /****************************************
@@ -27,8 +27,9 @@ Sist endret 29/11-24 av Frank Olsen
 data &tema._1;
   %NPR(avd,
   	 periode=&startaar.-&sluttaar.,
-	 in_pros=DCA20,
-	 where = alder in (0:16)	 
+	 in_pros=NHG09 NHG44 NHG46 NHG49 NHK17 NHK18 NHK57 NHK58,
+	 in_diag=M201 M202 M203 M204 M205 M206,
+	 where = alder in (0:105)	 
   );
   &tema. = 1;
   drop bdiag: nc:;
@@ -37,21 +38,23 @@ run;
 data &tema._2;
   %NPR(aspes,
      periode=&startaar.-&sluttaar.,
-	 normaltariff=K02c K02d K02e K02g k02c k02d k02e k02g,
-	 where = alder in (0:16)
+	 normaltariff= 134a 134b 140d,
+	 in_diag=M201 M202 M203 M204 M205 M206,
+	 where = alder in (0:105)
 	   );
   &tema. = 1;
-  drop bdiag: ;
+  drop bdiag:;
 run;
 
 data &tema._3;
   %NPR(aspes,
      periode=&startaar.-&sluttaar.,
-	 in_pros=DCA20,
-	 where = alder in (0:16)
+	 in_pros=NHG09 NHG44 NHG46 NHG49 NHK17 NHK18 NHK57 NHK58,
+	 in_diag=M201 M202 M203 M204 M205 M206,
+	 where = alder in (0:105)
 	   );
   &tema. = 1;
-  drop bdiag: ;
+  drop bdiag:;
 run;
 
 proc sort data=&tema._2;
@@ -98,20 +101,16 @@ run;
         label_3=no := Privat || en := Private)
 ,
 &settinn_txt.
-   tags=barn dagkirurgi oredren ore-nese-hals, 
-   min_age=0, max_age=16
+tags= dagkirurgi ortopedi, 
+   min_age=0, max_age=105
 );
 
-/**/
-/*Figurer og tabeller*/
 %total_figurer;
 
 %panelfigur_tredelt(dim1=eget,dim2=annet,dim3=privat,dimensjon=beh);
 
-%rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=0,aldermax=16,kjonn=);
-
+%rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=16,aldermax=105,kjonn=);
 
 /*SLETTE ALLE DATASETT I WORK */
 /*proc datasets nolist library=WORK kill;*/
 /*   run; quit;*/
-

@@ -144,14 +144,17 @@ ods listing close; ods graphics off;
 
 proc sql;
 create table &tema._snittalder as
-select distinct
-aar,
-avg(case when ermann=0 then alder end) as kvinner,
-avg(case when ermann=1 then alder end) as menn,
-avg(alder) as alle
+select 
+    aar,
+    avg(case when ermann=0 then alder end) as kvinner,
+    avg(case when ermann=1 then alder end) as menn,
+    avg(alder) as alle,
+    median(case when ermann=0 then alder end) as med_kvinner,
+    median(case when ermann=1 then alder end) as med_menn,
+    median(alder) as med_alle
 from &tema._dsn
 group by aar;
-run;
+quit;
 
 ODS Graphics ON /reset=All imagename="&tema._snittalder" imagefmt=png border=off height=500px;
 ODS Listing Image_dpi=300 GPATH="&bildesti";
@@ -163,6 +166,9 @@ xaxis fitpolicy=thin offsetmin=0.035  label='År';
 xaxistable kvinner / label="Kvinner";  
 xaxistable menn / label="Menn";
 xaxistable alle / label="Alle";
+xaxistable med_kvinner / label="Median kv.";  
+xaxistable med_menn / label="Median menn";
+xaxistable med_alle / label="Median alle";
 yaxis label="&tema., snittalder i perioden (&startaar.-&sluttaar.)" labelpos=top LABELATTRS=(Weight=Bold);
 format ermann ermann_fmt. kvinner menn alle 8.1;
 styleattrs datalinepatterns=(solid) datacontrastcolors=(darkred darkblue);

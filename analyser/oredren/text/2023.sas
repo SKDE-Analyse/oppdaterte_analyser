@@ -60,8 +60,7 @@ Opptaksområdet for Nord-Trøndelag HF har gjennomgående høyest rate i hele pe
 Inngrepet utføres mer enn tre ganger så hyppig på barn i opptaksområdet for Nord-Trøndelag HF som i Oslo-området i alle år i perioden.
 Dette tyder på at fagmiljøene ikke er enige om hva som er riktig indikasjon for å
 behandle med ventilasjonsrør. Det medisinske behovet antas å være omtrent likt uavhengig
-av hvor i Norge man bor, og variasjonen kan derfor tyde på overbehandling i noen 
-opptaksområder og underbehandling i andre.
+av hvor i Norge man bor, og variasjonen vurderes derfor som uberettiget.
 \n\n 
 Inngrepet utføres i større grad på gutter enn jenter, 60 % av inngrepene utføres på gutter. 
 Gjennomsnittsalderen ved inngrepet var fem år, og inngrepet utføres hyppigst på tre-åringer.
@@ -81,8 +80,8 @@ consistently has the highest rate throughout the period, while the catchment are
 and Diakonhjemmet HF) consistently have low rates. The procedure is performed more than three times as frequently 
 on children in the catchment area for Nord-Trøndelag HF compared to the Oslo area in all years of the period. 
 This suggests that there is a lack of consensus among medical experts regarding the appropriate indications for using ventilation tubes. 
-The medical need is assumed to be approximately the same regardless of where in Norway one lives, and the 
-variation may therefore indicate overtreatment in some catchment areas and undertreatment in others.
+The medical need is assumed to be approximately the same regardless of where in Norway one lives, 
+and the variation therefore is considered as unwarranted.
 \n\n 
 The procedure is performed more frequently on boys than girls, with 60 % of the procedures performed on boys. 
 The average age at the time of the procedure was five years, and the procedure is most commonly performed on three-year-olds.
