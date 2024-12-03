@@ -23,7 +23,7 @@ Endringer hva, hvem og når
 
 /*** Utvalg og analyse ***/
 
-data fremfall_utv;
+data fremfall;
   %NPR(avd, /*Gjøres kun på sykehus*/
     periode=2015-2023,
 	 in_diag=N81, 
@@ -33,15 +33,15 @@ data fremfall_utv;
   );
  fremfall = 1;	/*alle*/
 
-run;
+ if aktivitetskategori3 eq 1 then dogn=1;
+ else if aktivitetskategori3 ne 1 then dagkir=1;
 
-/*Kjøre makro for å lage tredeling kn. til behandlingssted*/
-%beh_eget_annet_priv(inndata=fremfall_utv, utdata=fremfall, as_data=0);
+run;
 
 
 %oppdater(fremfall,
    total=fremfall,
-   variables=eget annet privat,
+   variables=eget_hf annet_hf privat dogn dagkir,
    force_update=true
 );
 
@@ -51,12 +51,19 @@ run;
    custom_views=
 	%define_view(
         name=behandler, 
-        variables=eget annet privat,
+        variables=eget_hf annet_hf privat,
         title=%str(no := Enkeltår, behandlingssted
                 || en := Single year, public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)
+	%define_view(
+        name=dogn_dag, 
+        variables=dogn dagkir,
+        title=%str(no := Enkeltår, Døgn/Dagkirurgi
+                || en := Single year, Inpatient/Outpatient),
+        label_1=no := Døgnopphold || en := Inpatient,
+        label_2=no := Dagkirurgi || en := Outpatient)
         ,
         &settinn_txt.
         tags=kvinner gynekologi prolaps
@@ -66,7 +73,8 @@ run;
 /*Figurer og tabeller*/
 %total_figurer;
 
-%panelfigur_tredelt(dim1=eget,dim2=annet,dim3=privat,dimensjon=beh);
+%panelfigur_tredelt(dim1=eget_hf,dim2=annet_hf,dim3=privat,dimensjon=beh);
+%panelfigur_todelt(dim1=dogn,dim2=dagkir,dimensjon=dagkir);
 
 %rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=0,aldermax=105,kjonn=0);
 
