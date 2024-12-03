@@ -17,7 +17,13 @@ hos avtalespesialister er ikke inkludert da dette inngrepet i hovedsak utføres 
 \n\n Hvor pasienten er behandlet er delt inn i tre kategorier:
 \n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
 \n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
-\n - Privat, behandlet ved et privat sykehus eller hos avtalespesialist 
+\n - Privat, behandlet ved et privat sykehus eller hos avtalespesialist
+
+\n\n
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon.
+\n\n
+Fraskrivelse: SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
+
 ;
 
 %let en_utvalg=
@@ -36,6 +42,14 @@ for contract specialists is not included as this procedure is mainly performed o
 \n - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital or a private specialist
+
+\n\n
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
+The adjustment was done using the direct method with the population in 2023 as the reference population.
+\n\n
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. FHI/NPR is not responsible for analyses or interpretations based on the data.
+
+
 ;
 
 %let no_summary = 
@@ -63,7 +77,7 @@ behandle med ventilasjonsrør. Det medisinske behovet antas å være omtrent lik
 av hvor i Norge man bor, og variasjonen vurderes derfor som uberettiget.
 \n\n 
 Inngrepet utføres i større grad på gutter enn jenter, 60 % av inngrepene utføres på gutter. 
-Gjennomsnittsalderen ved inngrepet var fem år, og inngrepet utføres hyppigst på tre-åringer.
+Gjennomsnittsalderen ved inngrepet var fem år, og inngrepet utføres hyppigst på treåringer.
 \n\n 
 Barna behandles hovedsakelig i eget HF, men her er det store forskjeller mellom opptaksområdene. 
 I 2023 ble 75 % av inngrepene utført i eget HF, 8 % i annet HF og 16 % utført hos private for landet som helhet. 

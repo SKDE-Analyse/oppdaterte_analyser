@@ -27,6 +27,12 @@ og de resterende prosedyrekodene blir definert som andre inngrep.
 \n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
 \n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
 \n - Privat, behandlet ved et privat sykehus 
+
+\n\n
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon.
+\n\n
+Fraskrivelse: SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
+
 ;
 
 %let en_utvalg=
@@ -55,6 +61,14 @@ and the remaining procedure codes are defined as other interventions
 \n - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital
+
+\n\n
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
+The adjustment was done using the direct method with the population in 2023 as the reference population.
+\n\n
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
+FHI/NPR is not responsible for analyses or interpretations based on the data.
+
 ;
 
 %let no_summary = 
@@ -83,7 +97,7 @@ Møre og Romsdal (52 %) og UNN HF (51 %). I opptaksområdene for Lovisenberg (
 var andelen hystrektomi betydelig lavere i 2023.
 
 \n\n Andelen som blir behandlet i eget helseforetak har vært stabilt rundt 60 % for landet totalt i perioden. 
-Gjennomsnittsalderen for kvinner som opreres for endometriose har falt fra litt over 37 år til i underkant av 36 år fra 2015 til 2023, og 
+Median alder for kvinner som opreres for endometriose har falt fra 38 år til 36 år fra 2015 til 2023, og 
 gjennomsnittsalderen for de som får utført hystrektomi har falt fra nesten 43 år til 41,5 år i perioden.
 
 ;

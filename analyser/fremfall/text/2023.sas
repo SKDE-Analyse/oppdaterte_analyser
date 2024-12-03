@@ -33,9 +33,9 @@ LEF 00, LEF 03, LEF 10, LEF 13, LEF 16, LEF 20, LEF 23, LEF 34, LEF 40, LEF 41, 
 ;
 
 %let no_summary = 
-- Det er stor grografisk variasjon i bruk av kirurgi for skjede- og livmorfremfall
+- Det er stor geografisk variasjon i bruk av kirurgi for skjede- og livmorfremfall
 \n - Variasjonen har endret seg lite i perioden 2015-2023
-\n - Årlig antall inngrep har vært noe lavere etter 2020 enn i perioden 2015-2019
+\n - Årlig antall inngrep har vært noe lavere etter pandemien enn i perioden 2015-2019
 ;
 
 %let en_summary = 
@@ -54,7 +54,7 @@ Opptaksområdene OUS, Diakonhjemmet, Lovisenberg, Akershus og Vestfold har hatt 
 Opptaksområdet Finnmark har hatt den høyeste raten gjennom hele perioden 2015-2023, med unntak av pandemiåret 2020.
 Også Helgeland, Fonna og Nord-Trøndelag har hatt høye rater gjennom hele perioden 2015-2023.
 \n \n
-Omfanget av behandling hos private er svært begrenset.
+I hovedsak behandles pasientene i eget HF, og omfanget av behandling hos private er svært begrenset.
 ;
 
 %let en_discussion = 

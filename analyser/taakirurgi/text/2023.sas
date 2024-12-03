@@ -18,6 +18,12 @@ på sykehus eller
 \n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
 \n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
 \n - Privat, behandlet ved et privat sykehus eller hos avtalespesialist 
+
+\n\n
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon.
+\n\n
+Fraskrivelse: SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
+
 ;
 
 %let en_utvalg=
@@ -36,11 +42,18 @@ in combination with:
 \n - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital or a private specialist
+
+\n\n
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
+The adjustment was done using the direct method with the population in 2023 as the reference population.
+\n\n
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. FHI/NPR is not responsible for analyses or interpretations based on the data.
+
 ;
 
 %let no_summary = 
 - Det er stor geografisk variasjon i operasjoner av Hallux valgus og Hammertå
-\n - Antall operasjoner har blitt redusert 43 % fra 2015 til 2023
+\n - Antall operasjoner har blitt redusert med 43 % fra 2015 til 2023
 \n - 80 % av operasjoene utføres på kvinner
 ;
 
@@ -52,17 +65,18 @@ in combination with:
 
 %let no_discussion = 
 Antall operasjoner har falt gjennom hele perioden, fra 5 400 i 2015 til 3 100 i 2023. 
-Kvinner står i 2023 for omlag 80 % av operasjonene, og fallet i antall operasjoner i perioden 
+Kvinnelige pasienter stod i 2023 for omlag 80 % av operasjonene, og fallet i antall operasjoner i perioden 
 skyldes hovedsakelig færre operasjoner på kvinner. 
 \n\n 
 Det er betydelig geografisk variasjon i operasjonsratene, opptaksområdene med høyest rate 
 utfører om lag tre ganger så mange operasjoner pr 1 000 innbygger sammenliknet med opptaksområdene som utfører færrest operasjoner,
 variasjonen klassifiseres derfor som uberettiget. 
-Opptaksområdene for Stavanger og Bergen HF har gjennom lave rater, mens opptaksområdene for Finnmark og UNN HF har gjennomgående høye rater.
+Opptaksområdene for Stavanger og Bergen HF har gjennomgående lave rater, 
+mens opptaksområdene for Finnmark og UNN HF har gjennomgående høye rater.
 \n\n 
 Mer enn halvparten av operasjonene utføres i eget helseforetak og omtrent 20 % utføres hos private for landet som helhet, 
 men her er det store forskjeller mellom opptaksområdene. I 2023 ble omlag halvparten av operasjonene utført hos private 
-i opptaksområdene for Finnmark og St.Olav HF, mens ingen operasjoner ble utført privat i opptaksområdene for Vestre Viken og Telemark HF.
+i opptaksområdene for Nord-Trøndelag og St.Olav HF, mens ingen operasjoner ble utført privat i opptaksområdene for Vestre Viken og Telemark HF.
 ;
 
 %let en_discussion = 

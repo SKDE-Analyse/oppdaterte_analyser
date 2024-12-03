@@ -173,7 +173,10 @@ select distinct
 aar,
 avg(case when ermann=0 then alder end) as kvinner,
 avg(case when ermann=1 then alder end) as menn,
-avg(alder) as alle
+avg(alder) as alle,
+median(case when ermann=0 then alder end) as med_kvinner,
+median(case when ermann=1 then alder end) as med_menn,
+median(alder) as med_alle
 from &tema._dsn
 group by aar;
 run;
@@ -188,6 +191,9 @@ xaxis fitpolicy=thin offsetmin=0.035  label='År';
 xaxistable kvinner / label="Kvinner";  
 xaxistable menn / label="Menn";
 xaxistable alle / label="Alle";
+xaxistable med_kvinner / label="Median kv.";  
+xaxistable med_menn / label="Median menn";
+xaxistable med_alle / label="Median alle";
 yaxis label="&tema., &dim., snittalder i perioden (&aarmin.-&aarmax)" labelpos=top LABELATTRS=(Weight=Bold);
 format ermann ermann_fmt. kvinner menn alle 8.1;
 styleattrs datalinepatterns=(solid) datacontrastcolors=(darkred darkblue);
