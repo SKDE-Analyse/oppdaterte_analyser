@@ -19,7 +19,10 @@ G56.0 i kombinasjon med:
 
 \n\n Operasjoner av karpaltunnelsyndrom utføres i hovedsak på voksne pasienter. 
 Når det gjelder barn (0-15 år) utføres det i gjennomsnitt kun 2 operasjoner pr år. 
-Ratene er kjønns- og aldersjustert basert på hele befolkningen. 
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. 
+Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon. 
+SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. 
+FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
 ;
 
 %let en_utvalg=
@@ -41,6 +44,10 @@ in combination with:
 \n\n Surgeries for carpal tunnel syndrome are mainly performed on adults.
 On average, only 2 surgeries per year are performed on children under the age of 16.
 The rates are gender- and age-adjusted based on the entire Norwegian population.
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
+The adjustment was done using the direct method with the countrys population in 2023 as the reference population.
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
+FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary = 

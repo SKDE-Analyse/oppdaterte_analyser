@@ -85,10 +85,7 @@ proc sort data=&tema._merged nodupkey out=slett dupout=dub;by  pid inndato utdat
 
 %rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=0,aldermax=105,kjonn=);
 
-/* 
-proc print data=karpaltunnel_1;where pid in(2021337884 2021439627 2021466596 2021470400 2021527888 2021841050 2021891667)and aar=2018;run;
-proc freq data=karpaltunnel;table alder*aar/missing nocol nopercent norow;run;
-*/
+
 
 /*SLETTE ALLE DATASETT I WORK */
 /* proc datasets nolist library=WORK kill;

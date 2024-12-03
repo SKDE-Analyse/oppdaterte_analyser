@@ -41,7 +41,7 @@ Contacts containing diagnosis codes for hip fractures (S72.0, S72.1, and/or S72.
 \n\n Hip prosthesis implantation is primarily performed on adult patients. 
 Therefore, the population includes only patients aged 50 years and older.
 In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
-The adjustment was done using the direct method with the country's population in 2023 as the reference population.
+The adjustment was done using the direct method with the countrys population in 2023 as the reference population.
 SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
 FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
