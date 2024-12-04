@@ -41,17 +41,19 @@ in combination with:
 \n - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital or a private specialist
+
+\n\n
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
+The adjustment was done using the direct method with the population in 2023 as the reference population.
+\n\n
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
+FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary = 
 - Det er stor geografisk variasjon i operasjoner av mandler (tonsilleoperasjoner)
 \n - Ratene var økende frem til pandemien, og er ennå ikke tilbake på 2019-nivå
 \n - Ratene er omlag 50 % høyere for kvinner enn for menn
-
-\n\n
-In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. The adjustment was done using the direct method with the population in 2023 as the reference population.
-\n\n
-SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let en_summary = 
