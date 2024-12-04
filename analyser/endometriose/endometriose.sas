@@ -139,7 +139,7 @@ run;
 /*        label_2=no := Ikke tverrfaglig || en := Other)*/
 ,
 &settinn_txt.
-tags=kvinner gynekologi endometriose, 
+tags=kvinner gynekologi, 
    min_age=16, max_age=55
 );
 

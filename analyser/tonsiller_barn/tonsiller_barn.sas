@@ -147,7 +147,7 @@ run;
         label_2=no := Tonsillotomi || en := Tonsillotomy)
 ,
 &settinn_txt.
-   tags=barn tonsillektomi dagkirurgi ore-nese-hals, 
+   tags=barn dagkirurgi ore-nese-hals, 
    min_age=0, max_age=15
 );
 
