@@ -13,6 +13,41 @@ proc format;
       3 = 'Privat';
 run;
 
+/*
+
+  Denne koden er for å lage et standard datasett med variablene %npr alltid skal ha, sånn
+  at man ikke får problemer med å merge datasett laget på forskjellig måte med %npr.
+
+
+%macro sas_is_dumb;
+data helseatl.npr_macro_std_vars;
+   retain pid aar alder ermann inndato inntid utdato uttid ermann aktivitetskategori3 borhf bohf komnr hdiag3tegn hdg beh_kat kontakttype
+          inntilstand uttilstand fagomrade episodefag frasted nytilstand boshhn bodps behsh behhf behrhf institusjonid behandlingsstedkode
+          drg drg_type bydel henvtype frittbehandlingsvalg omsorgsniva g_omsorgsniva henvtiltjeneste henvfratjeneste debitor niva;
+
+   retain hdiag hdiag2;
+   length bdiag1-bdiag19 $6
+          ncmp1-ncmp20 $7
+          ncrp1-ncrp20 $7
+          ncsp1-ncsp20 $7;
+   retain normaltariff1-normaltariff15 takst_1-takst_15;
+
+   %do year=2015 %to 2023;
+      %if &year < 2017 %then %do;
+         set SKDE20.T20_AVD_&year (drop=fagenhetKode oppholdstype obs=0);
+         set SKDE20.T20_avtspes_&year (drop=sektor_org kontakt_org fag obs=0);
+      %end;
+      %else %do;
+         set hnana.avd_&year._t3 (obs=0);
+         set hnana.aspes_&year._t3 (obs=0);
+      %end;
+   %end;
+run;
+%mend sas_is_dumb;
+%sas_is_dumb
+
+*/
+
 %macro npr(datasets,
    periode=,
    normaltariff=,
@@ -27,10 +62,30 @@ run;
    format=no
 ) / minoperator;
 
-   retain pid aar alder ermann inndato inntid utdato uttid ermann aktivitetskategori3 borhf bohf komnr hdiag3tegn hdg beh_kat kontakttype
-          inntilstand uttilstand fagomrade episodefag frasted nytilstand boshhn bodps behsh behhf behrhf institusjonid behandlingsstedkode
-          drg drg_type bydel henvtype frittbehandlingsvalg omsorgsniva g_omsorgsniva henvtiltjeneste henvfratjeneste debitor niva
-          hdiag hdiag2 bdiag1-bdiag19 ncmp1-ncmp20 ncrp1-ncrp20 ncsp1-ncsp20 normaltariff1-normaltariff15 takst_1-takst_15;
+   /* Fjerner ukjent og utenland borhf (24 og 99) */
+   %let where = borhf < 5 and &where;
+
+   %let start = %sysfunc(prxchange(s/(\d+)-\d+/$1/, 1, &periode));
+   %let end   = %sysfunc(prxchange(s/\d+-(\d+)/$1/, 1, &periode));
+   %let dslist = helseatl.npr_macro_std_vars ;
+
+   %do current_year=&start %to &end;
+      %if &current_year < 2017 %then %do;
+         %let avd   = SKDE20.T20_AVD_&current_year     (drop=fagenhetKode oppholdstype where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %let aspes = SKDE20.T20_avtspes_&current_year (drop=sektor_org kontakt_org fag  where=(&where));
+      %end;
+      %else %do;
+         %let avd   = hnana.avd_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %let aspes = hnana.aspes_&current_year._t3 (where=(&where));
+      %end;
+   
+      /*&avd*/
+      %if avd   in (&datasets) %then %let dslist = &dslist &avd;
+      %if aspes in (&datasets) %then %let dslist = &dslist &aspes;
+   %end;
+
+   set &dslist;
+
    length all_diag $200
           all_pros $600;
 
@@ -49,37 +104,13 @@ run;
       retain normaltariff1-normaltariff15 takst_1-takst_15;
    %end;
 
-   /* Fjerner ukjent og utenland borhf (24 og 99) */
-   %let where = borhf < 5 and &where;
-
    if _N_ = 1 then do;
       declare hash behandler(dataset: "hnref.bo_beh_kat3");
       behandler.defineKey('boHF', 'BehHF');
       behandler.defineData('beh_kat');
       behandler.defineDone();
-      call missing(boHF, behHF, beh_kat);
    end;
 
-   %let start = %sysfunc(prxchange(s/(\d+)-\d+/$1/, 1, &periode));
-   %let end   = %sysfunc(prxchange(s/\d+-(\d+)/$1/, 1, &periode));
-   %let dslist = ;
-
-   %do current_year=&start %to &end;
-      %if &current_year < 2017 %then %do;
-         %let avd   = SKDE20.T20_AVD_&current_year     (drop=fagenhetKode oppholdstype where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
-         %let aspes = SKDE20.T20_avtspes_&current_year (drop=sektor_org kontakt_org fag where=(&where));
-      %end;
-      %else %do;
-         %let avd   = hnana.avd_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
-         %let aspes = hnana.aspes_&current_year._t3 (where=(&where));
-      %end;
-   
-      /*&avd*/
-      %if avd   in (&datasets) %then %let dslist = &dslist &avd;
-      %if aspes in (&datasets) %then %let dslist = &dslist &aspes;
-   %end;
-
-   set &dslist;
 
    %if &normaltariff ^= %then %do;
       if %npr_kodematch(catx(" ", of Normaltariff:), &normaltariff);
@@ -96,7 +127,6 @@ run;
 
    %if "&in_pros"  ^= "" %then if     %npr_kodematch(all_pros, &in_pros);;
    %if "&ut_pros"  ^= "" %then if not %npr_kodematch(all_pros, &ut_pros);;
-
 
    if AvtaleRHF or avtspes then behHF = 27;
    behandler.find(); /* Fills in the correct value in beh_kat */
