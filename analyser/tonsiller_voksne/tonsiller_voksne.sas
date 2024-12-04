@@ -125,7 +125,7 @@ run;
         label_3=no := Privat || en := Private)
 ,
 &settinn_txt.
-tags=voksne tonsillektomi ore-nese-hals, 
+tags=voksne dagkirurgi tonsillektomi ore-nese-hals, 
    min_age=16, max_age=105
 );
 
