@@ -98,7 +98,7 @@ run;
         label_3=no := Privat || en := Private)
 ,
 &settinn_txt.
-   tags=barn dagkirurgi oredren ore-nese-hals, 
+   tags=barn dagkirurgi ore-nese-hals, 
    min_age=0, max_age=16
 );
 
