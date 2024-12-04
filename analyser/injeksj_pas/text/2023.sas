@@ -13,6 +13,11 @@ i kombinasjon med prosedyrekode CKD05.
 \n \n
 Dersom pasienten har flyttet mellom to opptaksområder i løpet av et år er pasientens bosted 
 definert som det bostedet/opptaksområdet der pasienten hadde flest kontakter i løpet av året.
+
+\n\n
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon.
+\n\n
+Fraskrivelse: SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
 ;
 
 %let en_utvalg=
@@ -28,6 +33,11 @@ procedure code CKD05.
 If the patient has moved between two catchment areas within a year, 
 the residence is defined as the residence/catchment area where the patient 
 had the most contacts during the year.
+
+\n\n
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. The adjustment was done using the direct method with the population in 2023 as the reference population.
+\n\n
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary=

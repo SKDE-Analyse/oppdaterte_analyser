@@ -25,6 +25,11 @@ tonsillektomi og tonsillotomi ved hjelp av takstkodene. K02a og K02e er tonsille
 \n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
 \n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
 \n - Privat, behandlet ved et privat sykehus eller hos avtalespesialist 
+
+\n\n
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon.
+\n\n
+Fraskrivelse: SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
 ;
 
 %let en_utvalg=
@@ -48,6 +53,11 @@ it is not possible to distinguish between tonsillectomy and tonsillotomy using t
 \n - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital or a private specialist
+
+\n\n
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. The adjustment was done using the direct method with the population in 2023 as the reference population.
+\n\n
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary = 

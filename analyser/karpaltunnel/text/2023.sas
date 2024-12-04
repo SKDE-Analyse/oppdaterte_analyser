@@ -1,21 +1,28 @@
 /*Karpaltunnel*/
 
 %let no_utvalg=
-Analysen er basert på aktivitetsdata fra Norsk pasientregister (NPR) for 
+Analysen er basert pÃ¥ aktivitetsdata fra Norsk pasientregister (NPR) for 
 somatisk spesialisthelsetjeneste. Data inkluderer aktivitet i offentlige sykehus, 
 private sykehus som leverer offentlig finansierte tjenester og avtalespesialister
-som har avtaler om offentlig finansiering.
+som har avtale om offentlig finansiering.
 \n\n
 
-Utvalget består av pasienter registrert med hoved- eller bidiagnose 
+Utvalget omfatter pasienter registrert med hoved- eller bidiagnose 
 G56.0 i kombinasjon med:
-\n - prosedyrekode ACC51, NDE11, NDE12, NDM19, NDM49 eller NDL50 på sykehus eller 
-\n - tilsvarende prosedyrekoder eller takstkode 140i hos avtalespesialist 
+\n - prosedyrekode ACC51, NDE11, NDE12, NDM19, NDM49 eller NDL50 pÃ¥ sykehus eller 
+\n - tilsvarende prosedyrekoder eller takstkode 140i hos avtalespesialist
 
 \n\n Hvor pasienten er behandlet er delt inn i tre kategorier:
-\n - Eget HF, behandlet ved et av sykehusene i opptaksområdet
-\n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
+\n - Eget HF, behandlet ved et av sykehusene i opptaksomrÃ¥det
+\n - Annet HF, behandlet ved et sykehus utenfor opptaksomrÃ¥det
 \n - Privat, behandlet ved et privat sykehus eller hos avtalespesialist 
+
+\n\n Operasjoner av karpaltunnelsyndrom utfÃ¸res i hovedsak pÃ¥ voksne pasienter. 
+NÃ¥r det gjelder barn (0-15 Ã¥r) utfÃ¸res det i gjennomsnitt kun 2 operasjoner pr Ã¥r. 
+For Ã¥ kunne sammenligne opptaksomrÃ¥dene og mellom Ã¥r, er ratene kjÃ¸nns- og aldersjustert. 
+Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon. 
+SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. 
+FHI/NPR har ikke ansvar for analyser eller tolkninger basert pÃ¥ dataene.
 ;
 
 %let en_utvalg=
@@ -23,8 +30,7 @@ The analysis is based on data from the Norwegian Patient Registry (NPR) for
 specialist healthcare services. The data includes activity in public hospitals, publicly funded 
 private hospitals, and specialists in private practice under public funding contacts.
 
-\n\n
-The sample consists of patients aged 16 years or older registered with a primary 
+\n\n The sample consists of patients aged 16 years or older registered with a primary 
 or secondary diagnosis of G56.0 
 in combination with: 
 \n - procedure code ACC51, NDE11, NDE12, NDM19, NDM49 or NDL50 in hospitals or 
@@ -34,65 +40,72 @@ in combination with:
 \n - Local public, treated at one of the hospitals in the catchment area
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital or a private specialist
+
+\n\n Surgeries for carpal tunnel syndrome are mainly performed on adults.
+On average, only 2 surgeries per year are performed on children under the age of 16.
+The rates are gender- and age-adjusted based on the entire Norwegian population.
+In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
+The adjustment was done using the direct method with the countrys population in 2023 as the reference population.
+SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
+FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary = 
-- Det er stor geografisk variasjon i operasjoner av xxx karpaltunnelsyndrom
-\n - Ratene var xxx frem til pandemien, og er xxx på 2019-nivå
-\n - Ratene er omlag xxx høyere for kvinner enn for menn
+- I perioden 2015-2023 ble gjennonfÃ¸rt 7Â 000 til 8Â 000 operasjoner pr 1Â 000 innbyggere pr Ã¥r
+\n - Det er stor geografisk variasjon i raten mellom opptaksomrÃ¥dene, variasjonen vurderes som uberettiget
+\n - I opptaksomrÃ¥dene UNN og FÃ¸rde HF har ratene Ã¸kt kraftig de siste tre Ã¥rene. 
 ;
 
 %let en_summary = 
-- There is significant geographic variation in xxx karpaltunnelsyndrom surgeries
-\n - The rates were xxx until the pandemic and have xxx not yet returned to 2019 levels
-\n - The rates are approximately xxx higher for women than for men
+- The annual national rate ranged from 1.4 to 1.5 operations per 1,000 throughout the period 2015-2023.
+\n - There is significant geographic variation in the rate, ranging from 0.7 to 2.2 per 1,000 in 2023.
+\n - Helse Nord had the lowest rate in 2015/2016. In the years following the pandemic, Helse Nord RHF has had the highest rate.
 ;
 
 %let no_discussion = 
-Det utføres om lag xxx operasjoner for karpaltunnelsyndrom pr år. 
-/*
-Antall operasjoner pr år var økende i perioden før pandemien med en topp i 2019 hvor det ble utført nesten 6 000 operasjoner, 
-i 2023 ble det utført 5 000 operasjoner.
+Det utfÃ¸res i underkant av 7Â 500 operasjoner for karpaltunnelsyndrom pr Ã¥r. 
+Antall operasjoner pr Ã¥r ble i liten grad pÃ¥virket av pandemien. Det var en liten nedgang for kvinner i 2020, og toppÃ¥r for 
+begge kjÃ¸nn i 2021, mÃ¥lt i forhold til de andre Ã¥rene i perioden 2015-2023.
 \n\n 
-Det er betydelig geografisk variasjon i operasjonsratene, opptaksområdene med høyest rate 
-utfører om lag dobbelt så mange tonsilleoperasjoner pr 1 000 innbygger sammenliknet med opptaksområdene som utfører færrest operasjoner.
+Det er betydelig geografisk variasjon i operasjonsratene. I opptaksomrÃ¥dene med hÃ¸yest rate 
+utfÃ¸res det om lag tre ganger sÃ¥ mange operasjoner pr 1Â 000 innbygger sammenliknet med opptaksomrÃ¥dene som utfÃ¸rer fÃ¦rrest operasjoner. 
+I 2023 varierte antall operasjoner pr 1Â 000 innbyggerer fra 0,7 for Lovisenberg til 2,2 for Nordland. 
+Oslo-omrÃ¥det (OUS, Lovisenberg og Diakonhjemmet HF) har gjennomgÃ¥ende de laveste ratene i hele perioden. Innlandet og Ã˜stfold HF har de 
+hÃ¸yeste ratene i perioden. Den lave raten i Ã˜stfold Hf i 2023 skyldes sannsynligvis manglende innrapportering fra avtalespesialister.
+I opptaksomrÃ¥dene UNN og FÃ¸rde HF har ratene Ã¸kt kraftig de siste tre Ã¥rene. 
 \n\n 
-Kvinner opereres i større grad enn menn, og gjennomsnittsalderen er ca to år lavere for kvinner (26 år i 2023) enn menn (28 år i 2023)
-ved operasjonstidspunktet. Gjennomsnittsalderen har falt i perioden, for både menn og kvinner. 
-Reduksjonen i raten for opptaksområdet Bergen fra 2022 til 2023 skyldes sannsynligvis manglende innrapportering fra avtalespesialist i 2023.
-*/
+Kvinner opereres i stÃ¸rre grad enn menn, og andelen operasjoner utfÃ¸rt pÃ¥ kvinner var 61Â % i 2023. 
+\n\n
+
 ;
 
 %let en_discussion = 
-Approximately xxx karpaltunnelsyndrom operations are performed annually. 
-/*
-The number of operations per year was increasing in the period before the pandemic, peaking in 
-2019 with nearly 6 000 operations. In 2023, 5 000 operations were performed.
+Approximately 7,500 surgeries for carpal tunnel syndrome are performed annually. 
+The number of surgeries per year was only slightly affected by the pandemic. 
+There was a small decrease for women in 2020, and 2021 was the peak year for both genders compared to other years in the 2015-2023 period.
 \n\n
-There is significant geographical variation in operation rates, with the areas with the highest 
-rates performing about twice as many tonsil operations per 1 000 inhabitants compared to the areas with the lowest rates.
+There is significant geographic variation in surgery rates, 
+with the areas with the highest rates performing about three times as many surgeries per 1,000 inhabitants
+ compared to the areas with the lowest rates.
 \n\n
-Women are operated on more frequently than men, and the average age at the time of surgery 
-is about two years lower for women (26 years in 2023) than for men (28 years in 2023). 
-The average age has decreased over the period for both men and women. The reduction in 
-the rate for the Bergen catchment area from 2022 to 2023 is likely due to a lack of reporting from contracted specialists in 2023.
-*/
+Women undergo surgery more often than men, and the proportion of surgeries performed on women was 61Â % in 2023.
+
 ;
 
 %let no_title =
-Karpaltunnelsyndrom
+Operasjon for karpaltunnelsyndrom
 ;
 
 %let en_title =
-Karpaltunnelsyndrom
+Surgeries for carpal tunnel syndrome
 ;
 
 %let no_description =
-Antall operasoner av karpaltunnelsyndrom pr 1 000 innbyggere, 16 år og eldre
+Antall operasjoner for karpaltunnelsyndrom pr 1Â 000 innbyggere
 ;
 
 %let en_description =
-Number of karpaltunnelsyndrom operations per 1 000 inhabitants, 16 years and older
+Number of surgeries for carpal tunnel syndrome per 1,000 inhabitants
 ;
 
 /*NB! Ikke endre noe under her*/

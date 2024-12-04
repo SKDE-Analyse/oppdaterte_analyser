@@ -1,8 +1,8 @@
 /*************************************
  GJØR ENDRINGER I DENNE LILLE BOLKEN
 *************************************/
-%let tema=karpaltunnel;
-%let startaar=2022;
+%let tema=kneprotese;
+%let startaar=2015;
 %let sluttaar=2023;
 /****************************************
  OG TILPASS MAKROER ETTER PUBLISER_RATE
@@ -13,42 +13,24 @@
 %include "&oppdatering_filbane/makroer/setup.sas";
 /*Makroer og stier for figurer*/
 %include "&oppdatering_filbane/figurmakroer/oppsett.sas";
+%include "&filbane/makroer/kodematch.sas";
 
 /*** Utvalg og analyse ***/
 
-data &tema._1;
+data &tema.;
   %NPR(avd aspes,
     periode=&startaar.-&sluttaar.,
-	 in_diag=G560,
-	 in_pros=ACC51 NDE1[12] NDM[14]9 NDL50,
-	 where = alder in (0:105)
+    in_pros=NGB0 NGB1 NGB20 NGB30 NGB40 NGB99,
+	where = alder in (50:105)
   )
   &tema. = 1;
 run;
 
-data &tema._2;
-  %NPR(aspes,
-    periode=&startaar.-&sluttaar.,
-	 in_diag=G560,
-	 normaltariff=140i,
-	 where = alder in (0:105)
-  )
-  &tema. = 1;
-run;
+/*Teller treff per år
+proc freq data=&tema.;table aar/missing;run;
 
-*Sjekker dubletter;
-/*
-proc sort data=&tema._1;* nodupkey out=slett dupout=dub;by  pid inndato utdato inntid uttid;run;
-proc sort data=&tema._2;* nodupkey out=slett dupout=dub;by  pid inndato utdato inntid uttid;run;
-*/
-data &tema.;
-  merge &tema._1(in=a) &tema._2(in=b);
-  by pid inndato utdato inntid uttid;
-  if a or b;
-run;
-
-/* Sjekker dubletter
-proc sort data=&tema._merged nodupkey out=slett dupout=dub;by  pid inndato utdato inntid uttid;run;
+Sjekker dubletter
+proc sort data=&tema. nodupkey out=slett dupout=dub;by  pid inndato utdato inntid uttid;run;
 */
 
 %oppdater(&tema.,
@@ -56,8 +38,6 @@ proc sort data=&tema._merged nodupkey out=slett dupout=dub;by  pid inndato utdat
    variables=eget_hf annet_hf privat,
    force_update=true
 );
-
-
 
 /*kjører rate*/
 %publiser_rate(&tema.,
@@ -70,11 +50,10 @@ proc sort data=&tema._merged nodupkey out=slett dupout=dub;by  pid inndato utdat
                 || en := Single year, public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
-        label_3=no := Privat || en := Private)
-,
-&settinn_txt.
+        label_3=no := Privat || en := Private),
+   &settinn_txt.
    tags=&tema., 
-   min_age=0, max_age=105
+   min_age=50, max_age=105
 );
 
 
@@ -83,9 +62,8 @@ proc sort data=&tema._merged nodupkey out=slett dupout=dub;by  pid inndato utdat
 
 %panelfigur_tredelt(dim1=eget_hf,dim2=annet_hf,dim3=privat,dimensjon=beh);
 
-%rate_alder_kjonn(aarmin=&startaar,aarmax=&sluttaar,aldermin=0,aldermax=105,kjonn=);
-
-
+%rate_alder_kjonn(aarmin=&startaar.,aarmax=&sluttaar.,aldermin=50,aldermax=105,kjonn=);
+%dim_rate_alder_kjonn(dim=privat,aarmin=&startaar.,aarmax=&sluttaar.,aldermin=50,aldermax=105,kjonn=);
 
 /*SLETTE ALLE DATASETT I WORK */
 /* proc datasets nolist library=WORK kill;

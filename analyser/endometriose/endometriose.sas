@@ -1,7 +1,7 @@
 /*!
 ###Dokumentasjon
 Opprettet 20.november 2024 av Frank Olsen
-Sist kjørt dato av hvem
+Sist kjørt 26/11-24 av Frank Olsen
 Endringer hva, hvem og når
 */
 
@@ -15,7 +15,7 @@ Endringer hva, hvem og når
  OG TILPASS MAKROER ETTER PUBLISER_RATE
 *****************************************/
 
-%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/oppd_ana_FO;
+%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
 /*Makroer for å lage data til analyse*/
 %include "&oppdatering_filbane/makroer/setup.sas";
 /*Makroer og stier for figurer*/
@@ -61,29 +61,29 @@ data endo_3;
 run;
 
 /*Tverrfaglig kirurgi*/
-data endo_4;
-  %NPR(avd,
-  	 periode=&startaar-&sluttaar,
-	 in_diag=N80 N941 N944 N945 N946,
-	 in_pros=JGB01 JGB97 JGA97 JGW97 KBH51 KBH21 KCH01 KCD97 JBA21 JBA11,
-	where = alder in (16:55) and ermann=0 
-  );
-  tverr = 1;
-run;
+/*data endo_4;*/
+/*  %NPR(avd,*/
+/*  	 periode=&startaar-&sluttaar,*/
+/*	 in_diag=N80 N941 N944 N945 N946,*/
+/*	 in_pros=JGB01 JGB97 JGA97 JGW97 KBH51 KBH21 KCH01 KCD97 JBA21 JBA11,*/
+/*	where = alder in (16:55) and ermann=0 */
+/*  );*/
+/*  tverr = 1;*/
+/*run;*/
 
 /*slå sammen*/
 
 proc sort data=endo_1; by pid inndato utdato inntid uttid; run;
 proc sort data=endo_2; by pid inndato utdato inntid uttid; run;
 proc sort data=endo_3; by pid inndato utdato inntid uttid; run;
-proc sort data=endo_4; by pid inndato utdato inntid uttid; run;
+/*proc sort data=endo_4; by pid inndato utdato inntid uttid; run;*/
 
 
 data end_o1;
     merge endo_1 (in=a)
           endo_2 (in=b)
-          endo_3 (in=c)
-		  endo_4 (in=d);
+          endo_3 (in=c);
+/*		  endo_4 (in=d);*/
     by pid inndato utdato inntid uttid;
     if a;
 run;
@@ -93,9 +93,9 @@ set end_o1;
 if endo_hyst=1 then endo_andre=.;
 if endo_hyst=. then endo_hyst=0;
 if endo_andre=. then endo_andre=0;
-if tverr=. then tverr=0;
-ikke_tverr=1;
-if tverr=1 then ikke_tverr=0;
+/*if tverr=. then tverr=0;*/
+/*ikke_tverr=1;*/
+/*if tverr=1 then ikke_tverr=0;*/
 run;
 
 /*Kjøre makro for å lage tredeling kn. til behandlingssted*/
@@ -107,12 +107,13 @@ run;
 
 %oppdater(&tema.,
    total=&tema.,
-	variables=endo_hyst endo_andre eget annet privat ikke_tverr tverr,
+	variables=endo_hyst endo_andre eget annet privat,
    force_update=true
 );
 
 %publiser_rate(&tema.,
    total=&tema.,
+   kjonn=kvinner,
    custom_views=
     %define_view(
         name=behandler, 
@@ -125,20 +126,20 @@ run;
 	%define_view(
         name=metode, 
         variables=endo_hyst endo_andre,
-        title=%str(no := Enkeltår, type inngrep
+        title=%str(no := Enkeltår, Hystrektomi
                 || en := Single year, procedure type),
         label_1=no := Hysterektomi || en := Hysterectomy,
         label_2=no := Andre inngrep || en := Other)
-	%define_view(
-        name=type, 
-        variables=ikke_tverr tverr,
-        title=%str(no := Enkeltår, type inngrep
-                || en := Single year, procedure type),
-        label_1=no := Ikke tverr || en := Hysterectomy,
-        label_2=no := tverr || en := Other)
+/*	%define_view(*/
+/*        name=type, */
+/*        variables=tverr ikke_tverr,*/
+/*        title=%str(no := Enkeltår, Tverrfaglig kirurgi*/
+/*                || en := Single year, procedure type),*/
+/*        label_1=no := Tverrfaglig || en :=  Interdisciplinary surgery,*/
+/*        label_2=no := Ikke tverrfaglig || en := Other)*/
 ,
 &settinn_txt.
-tags=kvinner endometriose, 
+tags=kvinner gynekologi endometriose, 
    min_age=16, max_age=55
 );
 
@@ -147,7 +148,7 @@ tags=kvinner endometriose,
 
 %panelfigur_todelt(dim1=endo_hyst,dim2=endo_andre,dimensjon=metode);
 
-%panelfigur_todelt(dim1=ikke_tverr,dim2=tverr,dimensjon=type);
+/*%panelfigur_todelt(dim1=ikke_tverr,dim2=tverr,dimensjon=type);*/
 
 %panelfigur_tredelt(dim1=eget,dim2=annet,dim3=privat,dimensjon=beh);
 
@@ -156,5 +157,5 @@ tags=kvinner endometriose,
 %dim_rate_alder_kjonn(dim=endo_hyst,aarmin=&startaar,aarmax=&sluttaar,aldermin=16,aldermax=55,kjonn=0);
 
 /*SLETTE ALLE DATASETT I WORK */
-proc datasets nolist library=WORK kill;
-   run; quit;
+/*proc datasets nolist library=WORK kill;*/
+/*   run; quit;*/
