@@ -18,7 +18,12 @@ Utvalget omfatter kontakter registrert med en eller flere av prosedyrekodene
 
 \n\n Innsetting av kneproteser utføres i hovedsak på voksne pasienter. 
 Populasjonen omfatter derfor kun pasienter som er 50 år og eldre.
-Ratene er kjønns- og aldersjusterte. 
+\n\n
+For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. 
+Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon. 
+\n\n
+SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. 
+FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene. 
 ;
 
 %let en_utvalg=

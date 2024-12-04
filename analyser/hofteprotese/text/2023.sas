@@ -18,8 +18,10 @@ hoftebrudd (S72.0, S72.1 og/eller S72.2) er ikke med.
 
 \n\n Innsetting av hofteproteser utføres i hovedsak på voksne pasienter. 
 Populasjonen omfatter derfor kun pasienter som er 50 år og eldre.
+\n\n
 For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. 
 Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon. 
+\n\n
 SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. 
 FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
 ;
@@ -40,8 +42,10 @@ Contacts containing diagnosis codes for hip fractures (S72.0, S72.1, and/or S72.
 
 \n\n Hip prosthesis implantation is primarily performed on adult patients. 
 Therefore, the population includes only patients aged 50 years and older.
+\n\n 
 In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
 The adjustment was done using the direct method with the countrys population in 2023 as the reference population.
+\n\n 
 SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
 FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;

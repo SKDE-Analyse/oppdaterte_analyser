@@ -28,19 +28,22 @@ data &tema.;
 
   *hoftebrudd = %kodematch(all_diag, S72[0-2]);
   *ikke_hoftebrudd = not hoftebrudd;
-
   *if ikke_hoftebrudd;
 run;
 
-/*
-proc freq data=&tema.;table aar/missing;run;
+/*Teller antall kontakter 
+proc freq data=&tema.;table aar/missing;title"Antall kontakter";run;
+proc freq data=&tema.;table behhf*debitor/missing norow nopercent nocol;title"Antall kontakter";run;
+
+*Teller antall pasienter;
+proc sort data=&tema. nodupkey out=slett dupout=dubletter;by aar pid;run;
+proc freq data=slett;table aar/missing;title"Antall pasienter";run;
+proc print data=&tema. (obs=99);where pid in(2023837932 2023842427 2023864333 2023939988);run;
 */
 *if substr((diagnose{j}),1,4) in ('S720' 'S721' 'S722') then hoftebrudd=1; 
 
 
-/* Sjekker dubletter
-proc sort data=&tema. nodupkey out=slett dupout=dub;by  pid inndato utdato inntid uttid;run;
-*/
+
 
 %oppdater(&tema.,
    total=&tema.,
@@ -61,7 +64,7 @@ proc sort data=&tema. nodupkey out=slett dupout=dub;by  pid inndato utdato innti
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private),
    &settinn_txt.
-   tags=hofteprotese ortopedi eldre, 
+   tags=&tema. ortopedi eldre, 
    min_age=50, max_age=105
 );
 
