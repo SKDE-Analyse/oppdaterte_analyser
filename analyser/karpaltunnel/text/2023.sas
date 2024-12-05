@@ -57,7 +57,7 @@ FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary = 
-- I perioden 2015-2023 ble gjennomført 7 000 til 8 000 operasjoner pr år
+- I perioden 2015-2023 ble det gjennomført 7 000 til 8 000 operasjoner pr år
 \n - Det er stor geografisk variasjon i raten mellom opptaksområdene, variasjonen vurderes som uberettiget
 \n - I opptaksområdene UNN og Førde HF har ratene økt kraftig de siste tre årene. 
 ;
@@ -69,7 +69,7 @@ FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_discussion = 
-Det utføres i gjennomsnitt omlag 7 400 operasjoner for karpaltunnelsyndrom pr år. 
+Det utføres i gjennomsnitt omlag 7 400 operasjoner av karpaltunnelsyndrom pr år. 
 Årlig antall operasjoner ble i liten grad påvirket av pandemien. Det var en liten nedgang for kvinner i 2020, og toppår for 
 begge kjønn i 2021, målt i forhold til de andre årene i perioden 2015-2023.
 \n\n 
