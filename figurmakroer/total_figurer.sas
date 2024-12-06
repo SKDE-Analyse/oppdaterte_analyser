@@ -273,9 +273,108 @@ proc sgplot data=&tema._ft noautolegend noborder;
 run;
 ods listing close; ods graphics off;
 
-/* proc datasets library=work nolist;
+/*Lage PDF med tabeller*/
+
+proc format;
+value ermann_fmt 
+0 = "Kvinner"
+1 = "Menn";
+value beh_fmt
+1 = "Eget"
+2 = "Annet"
+3 = "Privat";
+run;
+
+proc format;
+    picture pctfmt (round)
+        low-high = '009.9%' (mult=10);
+run;
+
+data gtab;
+set &tema.;
+if eget=1 then behandler=1;
+if annet=1 then behandler=2;
+if privat=1 then behandler=3;
+/*keep pid aar ermann &tema. eget annet privat;*/
+format ermann ermann_fmt. behandler beh_fmt.;
+run;
+
+proc sql;
+create table gtab_pid as
+select distinct
+pid, aar, ermann, &tema.
+from gtab
+group by pid, aar, ermann, &tema.;
+quit;
+
+proc sql;
+create table gtab_pid2 as
+select distinct
+pid, ermann, &tema.
+from gtab
+group by pid, ermann, &tema.;
+quit;
+
+ODS PDF FILE = "&bildesti./tabeller_&tema..pdf" notoc startpage=no;
+    ODS ESCAPECHAR='^';
+/*Tabell kjønn*/
+PROC TABULATE DATA=GTAB;	
+VAR taakirurgi;
+CLASS aar ermann / ORDER=UNFORMATTED MISSING;
+TABLE 
+ermann={LABEL=""} ALL={LABEL="Totalt"},
+Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+
+/*tabell %*/
+PROC TABULATE DATA=GTAB;	
+VAR taakirurgi;
+CLASS aar ermann / ORDER=UNFORMATTED MISSING;
+TABLE 
+ermann={LABEL=""},
+ColPctSum={LABEL=""}*F=pctfmt.*taakirurgi={LABEL="&tema., prosent"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+
+/*Tabell pasienter år*/
+PROC TABULATE DATA=GTAB_pid;	
+VAR taakirurgi;
+CLASS aar ermann / ORDER=UNFORMATTED MISSING;
+TABLE 
+ermann={LABEL=""} ALL={LABEL="Totalt"},
+Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall unike pasienter pr år"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+
+/*Tabell pasienter totalt*/
+PROC TABULATE DATA=GTAB_pid2;	
+VAR taakirurgi;
+CLASS ermann / ORDER=UNFORMATTED MISSING;
+TABLE 
+ermann={LABEL=""} ALL={LABEL="Totalt"},
+Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall unike pasienter"}*F=BEST8.*(ALL={LABEL=""});
+RUN;
+
+/*Tabell behandler*/
+PROC TABULATE DATA=GTAB;	
+VAR taakirurgi;
+CLASS aar behandler / ORDER=UNFORMATTED MISSING;
+TABLE 
+behandler={LABEL=""} ALL={LABEL="Totalt"},
+Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall behandler"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+
+/*tabell %*/
+PROC TABULATE DATA=GTAB;	
+VAR taakirurgi;
+CLASS aar behandler / ORDER=UNFORMATTED MISSING;
+TABLE 
+behandler={LABEL=""},
+ColPctSum={LABEL=""}*F=pctfmt.*taakirurgi={LABEL="&tema., prosent behandler"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+ODS PDF CLOSE;
+
+proc datasets library=work nolist;
     delete &tema._ft &tema._tab ranked_: &tema._totant &tema._dsn &tema._snittalder
-    &tema._aldtab &tema._aldtab_aar &tema._tab: _SGSRT2_;
-quit; */
+    &tema._aldtab &tema._aldtab_aar &tema._tab: _SGSRT2_ gtab:;
+quit;
 
 %mend total_figurer;
