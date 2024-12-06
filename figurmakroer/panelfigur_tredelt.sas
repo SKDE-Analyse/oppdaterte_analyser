@@ -180,6 +180,44 @@ run;
 ods listing close;
 ods graphics off;
 
+/*PDF tabell*/
+proc format;
+value dim_fmt
+1 = "&dim1"
+2 = "&dim2"
+3 = "&dim3";
+    picture pctfmt (round)
+        low-high = '009.9%' (mult=10);
+run;
+
+data &tema._dsn;
+set &tema._dsn;
+if &dim1 = 1 then dimm=1;
+if &dim2 = 1 then dimm=2;
+if &dim3 = 1 then dimm=3;
+format dimm dim_fmt.;
+run;
+
+ODS PDF FILE = "&bildesti./tabeller_&dimensjon._&tema..pdf" notoc startpage=no;
+/*Tabell dimmensjon*/
+PROC TABULATE DATA=&tema._dsn;	
+VAR &tema.;
+CLASS aar dimm / ORDER=UNFORMATTED MISSING;
+TABLE 
+dimm={LABEL=""} ALL={LABEL="Totalt"},
+Sum={LABEL=""}*&tema.={LABEL="&tema., antall"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+
+/*tabell %*/
+PROC TABULATE DATA=&tema._dsn;	
+VAR &tema.;
+CLASS aar dimm / ORDER=UNFORMATTED MISSING;
+TABLE 
+dimm={LABEL=""},
+ColPctSum={LABEL=""}*F=pctfmt.*&tema.={LABEL="&tema., prosent"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
+RUN;
+ODS PDF CLOSE;
+
 proc datasets library=work nolist;
     delete &tema._totant &tema._dsn &tema._tab: _SGSRT2_;
 quit;
