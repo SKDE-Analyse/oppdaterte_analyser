@@ -319,56 +319,56 @@ ODS PDF FILE = "&bildesti./tabeller_&tema..pdf" notoc startpage=no;
     ODS ESCAPECHAR='^';
 /*Tabell kjønn*/
 PROC TABULATE DATA=GTAB;	
-VAR taakirurgi;
+VAR &tema.;
 CLASS aar ermann / ORDER=UNFORMATTED MISSING;
 TABLE 
 ermann={LABEL=""} ALL={LABEL="Totalt"},
-Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+Sum={LABEL=""}*&tema.={LABEL="&tema., antall"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
 RUN;
 
 /*tabell %*/
 PROC TABULATE DATA=GTAB;	
-VAR taakirurgi;
+VAR &tema.;
 CLASS aar ermann / ORDER=UNFORMATTED MISSING;
 TABLE 
 ermann={LABEL=""},
-ColPctSum={LABEL=""}*F=pctfmt.*taakirurgi={LABEL="&tema., prosent"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
+ColPctSum={LABEL=""}*F=pctfmt.*&tema.={LABEL="&tema., prosent"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
 RUN;
 
 /*Tabell pasienter år*/
 PROC TABULATE DATA=GTAB_pid;	
-VAR taakirurgi;
+VAR &tema.;
 CLASS aar ermann / ORDER=UNFORMATTED MISSING;
 TABLE 
 ermann={LABEL=""} ALL={LABEL="Totalt"},
-Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall unike pasienter pr år"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+Sum={LABEL=""}*&tema.={LABEL="&tema., antall unike pasienter pr år"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
 RUN;
 
 /*Tabell pasienter totalt*/
 PROC TABULATE DATA=GTAB_pid2;	
-VAR taakirurgi;
+VAR &tema.;
 CLASS ermann / ORDER=UNFORMATTED MISSING;
 TABLE 
 ermann={LABEL=""} ALL={LABEL="Totalt"},
-Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall unike pasienter"}*F=BEST8.*(ALL={LABEL=""});
+Sum={LABEL=""}*&tema.={LABEL="&tema., antall unike pasienter"}*F=BEST8.*(ALL={LABEL=""});
 RUN;
 
 /*Tabell behandler*/
 PROC TABULATE DATA=GTAB;	
-VAR taakirurgi;
+VAR &tema.;
 CLASS aar behandler / ORDER=UNFORMATTED MISSING;
 TABLE 
 behandler={LABEL=""} ALL={LABEL="Totalt"},
-Sum={LABEL=""}*taakirurgi={LABEL="&tema., antall behandler"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
+Sum={LABEL=""}*&tema.={LABEL="&tema., antall behandler"}*F=BEST8.*(aar={LABEL=""} ALL={LABEL="Totalt"});
 RUN;
 
 /*tabell %*/
 PROC TABULATE DATA=GTAB;	
-VAR taakirurgi;
+VAR &tema.;
 CLASS aar behandler / ORDER=UNFORMATTED MISSING;
 TABLE 
 behandler={LABEL=""},
-ColPctSum={LABEL=""}*F=pctfmt.*taakirurgi={LABEL="&tema., prosent behandler"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
+ColPctSum={LABEL=""}*F=pctfmt.*&tema.={LABEL="&tema., prosent behandler"}*(aar={LABEL=""} ALL={LABEL="Totalt"});
 RUN;
 ODS PDF CLOSE;
 
