@@ -20,7 +20,7 @@ data ivf_kont;
    %NPR(avd,
       periode=&startaar-&sluttaar,
 	   in_pros=LCA30 LCW30K,
-      where=ermann=0 and 16 <= alder <= 55,
+      where=ermann=0 and 18 <= alder <= 46,
       format=no
    )
    ivf = 1;
@@ -53,7 +53,7 @@ run;
 
 proc sql;
 create table ivf_ordered as
-   select * from ivf
+   select * from ivf_kont
    order by aar, pid, utdato desc, uttid desc;
 run;
 
@@ -69,6 +69,8 @@ run;
    variables=eget_hf annet_hf over39 under39,
    force_update=true
 )
+
+
 
 
 %publiser_rate(ivf,
@@ -89,8 +91,10 @@ run;
                 || en := Single year, age),
         label_1=no := Under 39 år || en := Younger than 39,
         label_2=no := Over 39 år || en := Older than 39),
+   title= no := In vitro fertilisering
+       || en := In vitro fertilization,
    &settinn_txt,
-   tags=kvinner ivf
+   tags=kvinner
 )
 
 
