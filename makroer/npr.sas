@@ -77,7 +77,12 @@ run;
       %end;
       %else %do;
          %let avd   = hnana.avd_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
-         %let sho   = hnana.sho_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %if &current_year < 2019 %then %do;
+            %let sho   = hnana.sho_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %end;
+         %else %do;
+            %let sho   = hnana.sho_&current_year._t3 (drop= polUtforende_3 rolle_3 spesialist_3 where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %end;
          %let aspes = hnana.aspes_&current_year._t3 (where=(&where));
       %end;
    
