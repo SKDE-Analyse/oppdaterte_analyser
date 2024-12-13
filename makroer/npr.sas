@@ -72,15 +72,18 @@ run;
    %do current_year=&start %to &end;
       %if &current_year < 2017 %then %do;
          %let avd   = SKDE20.T20_AVD_&current_year     (drop=fagenhetKode oppholdstype where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %let sho   = SKDE20.T20_SHO_&current_year     (drop=fagenhetKode oppholdstype where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
          %let aspes = SKDE20.T20_avtspes_&current_year (drop=sektor_org kontakt_org fag  where=(&where));
       %end;
       %else %do;
          %let avd   = hnana.avd_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
+         %let sho   = hnana.sho_&current_year._t3 (where=(aktivitetskategori3 in (&aktivitetskategori3) and &where));
          %let aspes = hnana.aspes_&current_year._t3 (where=(&where));
       %end;
    
       /*&avd*/
       %if avd   in (&datasets) %then %let dslist = &dslist &avd;
+      %if sho   in (&datasets) %then %let dslist = &dslist &sho;
       %if aspes in (&datasets) %then %let dslist = &dslist &aspes;
    %end;
 
