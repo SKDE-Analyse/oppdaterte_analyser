@@ -66,7 +66,7 @@ run;
         label_2=no := Dagkirurgi || en := Outpatient)
         ,
         &settinn_txt.
-        tags=kvinner gynekologi prolaps
+        tags=kvinner gynekologi dagkirurgi
 );
 
 /*FIGURER TIL STØTTE I SKRIVINGEN UNDER HER:*/

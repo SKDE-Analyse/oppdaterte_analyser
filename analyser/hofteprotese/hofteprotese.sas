@@ -64,7 +64,7 @@ proc print data=&tema. (obs=99);where pid in(2023837932 2023842427 2023864333 20
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private),
    &settinn_txt.
-   tags=&tema. ortopedi eldre, 
+   tags=ortopedi eldre, 
    min_age=50, max_age=105
 );
 
