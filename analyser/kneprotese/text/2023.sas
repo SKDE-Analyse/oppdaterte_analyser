@@ -54,15 +54,15 @@ FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
 
 %let no_summary = 
-- Antall operasjoner knyttet til innsetting av kneproteser har økt med 39 % perioden 2015-2023
-\n - Antall operasjoner per 1 000 innbygger hadde en økning på 14 % fra 3,5 til 4,0 i samme periode
-\n - Raten varierer en del mellom de ulike opptaksområdene
+- Antall operasjoner knyttet til innsetting av kneproteser økte med 39 % i perioden 2015-2023
+\n - Antall operasjoner per 1 000 innbygger hadde en økning på 14 % i samme periode, fra 3,5 til 4,0
+\n - Samlet rate, og forholdet mellom hel- og delproteser varierer en del mellom de ulike opptaksområdene
 ;
 
 %let en_summary = 
-- Antall operasjoner knyttet til innsetting av kneproteser har økt med 39 % perioden 2015-2023
-\n - Antall operasjoner per 1 000 innbygger hadde en økning på 14 % fra 3,5 til 4,0 i samme periode
-\n - Raten varierer en del mellom de ulike opptaksområdene, det samme gjorde andelen som fikk insatt delprotese
+- The number of operations involving knee prosthesis implantation increased by 39 % during the period 2015-2023
+\n - The number of operations per 1,000 inhabitants rose by 14 % over the same period, from 3.5 to 4.0
+\n - The overall rate and the ratio between total and partial prostheses vary significantly across the different catchment areas
 ;
 
 %let no_discussion = 
@@ -82,14 +82,21 @@ var omtrent lik for begge kjønn i 2023 og lå rett under 70 år.
 ;
 
 %let en_discussion = 
-For pasienter 50 år og eldre ble det satt inn 5 857 kneproteser i 2015 økende til 8 154 i 2023. En økning på 39 %.
-Det var en liten nedgang i antallet i pandemiåret 2020. Etter pandemien er nivået høyere enn før pandemien.
-\n\n 
-Det er geografisk variasjon i operasjonsratene. I opptaksområdene med høyest rate 
-utføres det mer enn dobbelt så mange operasjoner pr 1 000 innbygger sammenliknet med opptaksområdene som utfører færrest operasjoner. 
-I 2023 varierte raten fra 2,1 for opptaksområdet knyttet til Lovisenberg HF,  økende til 4,8 for Førde. 
-\n\n 
-Kvinner opereres i større grad enn menn, og andelen operasjoner utført på kvinner var 57 % i 2023. 
+For patients aged 50 and older, 5,857 knee prostheses were implanted in 2015, increasing to 8,154 in 2023. 
+This corresponds to a 39 % increase.
+There was a slight decline in the number of operations during the pandemic year 2020. Following the pandemic, 
+the level is higher than it was pre-pandemic.
+The proportion of partial knee prostheses has shown a clear increase over the period, from 12 % in 2015 to 16 % in 2023.
+\n\n
+There is geographic variation in operation rates. In the catchment areas with the highest rates, 
+more than twice as many operations per 1,000 inhabitants are performed compared to the areas with the lowest rates.
+In 2023, the rates ranged from 2.1 in the Lovisenberg HF catchment area to 4.8 in Førde.
+The ratio between total and partial prostheses also varies significantly across the different catchment areas.
+In 2023, the proportion of patients receiving partial prostheses ranged from less than 5 % in Helgeland and Sørlandet 
+to 32 % at Diakonhjemmet and St. Olav.
+\n\n
+Women are operated on more frequently than men, with women accounting for 57 % of operations in 2023.
+The average age was approximately the same for both genders in 2023, just under 70 years.
 \n\n
 ;
 
