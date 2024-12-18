@@ -73,7 +73,7 @@ proc sort data=&tema._merged nodupkey out=slett dupout=dub;by  pid inndato utdat
         label_3=no := Privat || en := Private)
 ,
 &settinn_txt.
-   tags=ortopedi,
+   tags=ortopedi dagkirurgi,
    min_age=17, max_age=105
 );
 
