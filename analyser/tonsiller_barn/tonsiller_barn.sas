@@ -133,16 +133,16 @@ run;
      %define_view(
         name=behandler, 
         variables=eget annet privat,
-        title=%str(no := Enkeltår, behandlingssted
-                || en := Single year, public/private),
+        title=%str(no := Behandlingssted
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)
 		%define_view(
         name=metode, 
         variables=hel del,
-        title=%str(no := Enkeltår, type inngrep
-                || en := Single year, procedure type),
+        title=%str(no := Type inngrep
+                || en := Procedure type),
         label_1=no := Tonsillektomi || en := Tonsillectomy,
         label_2=no := Tonsillotomi || en := Tonsillotomy)
 ,

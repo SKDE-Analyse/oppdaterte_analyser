@@ -52,13 +52,13 @@ SKDE is solely responsible for the interpretation and presentation of the data p
 ;
 
 %let no_summary = 
-- Det er stor geografisk variasjon i operasjoner av Hallux valgus og Hammertå
+- Det er stor geografisk variasjon i operasjoner av hallux valgus og hammertå
 \n - Antall operasjoner har blitt redusert med 43 % fra 2015 til 2023
 \n - 80 % av operasjoene utføres på kvinner
 ;
 
 %let en_summary = 
-- There is significant geographical variation in surgeries for Hallux valgus and Hammertoe.
+- There is significant geographical variation in surgeries for hallux valgus and hammertoe.
 \n - The number of surgeries has decreased by 43 % from 2015 to 2023.
 \n - 80 % of the surgeries are performed on women.
 ;
@@ -98,11 +98,11 @@ in the catchment areas for Vestre Viken and Telemark HF.
 ;
 
 %let no_title =
-Operasjon for Hallux valgus og Hammertå
+Operasjon for hallux valgus og hammertå
 ;
 
 %let en_title =
-Surgery for Hallux valgus and Hammertoe
+Surgery for hallux valgus and hammertoe
 ;
 
 %let no_description =
@@ -110,7 +110,7 @@ Antall operasjoner for hallux valgus og hammertå pr 1 000 innbyggere
 ;
 
 %let en_description =
-Number of surgeries for Hallux valgus and Hammertoe per 1,000 inhabitants
+Number of surgeries for hallux valgus and hammertoe per 1,000 inhabitants
 ;
 
 /*NB! Ikke endre noe under her*/

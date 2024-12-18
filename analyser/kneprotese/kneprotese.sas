@@ -53,16 +53,16 @@ proc sort data=&tema. nodupkey out=slett dupout=dub;by  pid inndato utdato innti
      %define_view(
         name=behandler, 
         variables=eget_hf annet_hf privat,
-        title=%str(no := Enkeltår, behandlingssted
-                || en := Single year, public/private),
+        title=%str(no := Behandlingssted
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)
      %define_view(
         name=en_hel_del, 
         variables=helprotese delprotese,
-        title=%str(no := Enkeltår, helprotese/delprotese
-                || en := Single year, whole/partial),
+        title=%str(no := Helprotese/delprotese
+                || en := Whole/partial prosthesis),
         label_1=no := Helprotese || en := Whole,
         label_2=no := Delprotese || en := Partial),
    &settinn_txt.
