@@ -20,7 +20,7 @@ har fått overført embryo til uterus og er derfor noe lavere enn det faktiske a
 Det var en tydelig nedgang i IVF-behandlinger i koronaåret 2020, og raten har i ettertid delvis hentet seg inn til hva den var før korona.
 Det var opptaksområdene med høyest rate som falt mest i 2020, noe som bidro til å utgjevne den geografiske variasjonen.
 \n\n
-Det er geografisk variasjon i andelen pasienter som er 39 år eller eldre. I 2023 var 8,5 % av kvinner i opptaksområdet Fonna som mottok
+Det er geografisk variasjon i andelen pasienter som er 39 år eller eldre. I 2023 var 8,7 % av kvinner i opptaksområdet Fonna som mottok
 IVF-behandling 39 år eller eldre; i Lovisenberg lå denne andelen på 34 %. Disse variablene er aldersjusterte, så variasjonen skyldes
 ikke demografiske forskjeller mellom opptaksområdene.
 \n\n
@@ -30,14 +30,14 @@ Denne analysen supplementerer statistikken om assistert befruktning på [Helsedi
 %let en_discussion = %str(
 In vitro fertilization (IVF) is the most common form of assisted reproduction, where the woman%'s egg is fertilized outside the body and returned
 when cell division has started. In Norway, just under 4,000 women receive this treatment each year, which corresponds to more than 4 per 1,000
-women aged 18-46 years. These numbers only onclude women who have received transfer of an embryo to the uterus, and are therefore somewhat lower
+women aged 18-46 years. These numbers only include women who have received transfer of an embryo to the uterus, and are therefore somewhat lower
 than the actual number of women in IVF treatment.
 \n\n
 There was a clear decline in IVF treatments in the corona year 2020, and the rate has since partially recovered to what it was before corona.
 The catchment areas with the highest rates were the ones with the greatest decline in 2020, something that has contributed to reducing the
 geographical variation.
 \n\n
-There is geographical variation in the proportion of patients who are 39 years or older. In 2023, 8.5% of women in the Fonna catchment area
+There is geographical variation in the proportion of patients who are 39 years or older. In 2023, 8.7% of women in the Fonna catchment area
 who received IVF treatment were 39 years or older; in Lovisenberg, this proportion was 34%. These variables are age-adjusted, so the
 variation is not due to demographic differences between the catchment areas.
 \n\n

@@ -91,7 +91,7 @@ run;
    title= no := In vitro fertilisering
        || en := In vitro fertilization,
    &settinn_txt,
-   tags=
+   tags=kvinner gynekologi
 )
 
 
