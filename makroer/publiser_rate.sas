@@ -154,7 +154,7 @@ proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
                            write open array;
                               %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
                                  %let pub_valuevar = pub_&pub_level._%scan(&&&pub_&pub_level, &pub_i)_&pub_year._&view_i._&pub_varnum;
-	                              write values &&&pub_valuevar;
+	                              write values %sysfunc(round(&&&pub_valuevar, 0.001));
                                  %if &view_i=1 %then %do;
                                     %let pub_total_obs = pub_&pub_level._%scan(&&&pub_&pub_level, &pub_i)_&pub_year._total_obs;
                                     write values &&&pub_total_obs;
