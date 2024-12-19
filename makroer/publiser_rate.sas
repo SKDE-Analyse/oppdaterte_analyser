@@ -41,75 +41,51 @@
 
 %assemble(&name, out=pub_assembled)
 
-%standard_rate(
-   pub_assembled/&analyse_varlist,
-   region=bohf,
-   %if &min_age ^= %then min_age=&min_age, ;
-   %if &max_age ^= %then max_age=&max_age, ;
-   kjonn=&kjonn,
-   out=pub_sykehus_rate
-)
+%do pub_level_i=1 %to 2;
+   %let pub_level = %scan(sykehus region, &pub_level_i);
+   %if &pub_level = sykehus
+      %then %let region=bohf;
+   %else    %let region=borhf;
 
-%standard_rate(
-   pub_assembled/&analyse_varlist,
-   region=borhf,
-   %if &min_age ^= %then min_age=&min_age, ;
-   %if &max_age ^= %then max_age=&max_age, ;
-   kjonn=&kjonn,
-   out=pub_region_rate
-)
+   %standard_rate(
+      pub_assembled/&analyse_varlist,
+      region=&region,
+      %if &min_age ^= %then min_age=&min_age, ;
+      %if &max_age ^= %then max_age=&max_age, ;
+      kjonn=&kjonn,
+      out=pub_&pub_level._rate
+   )
 
-proc sql noprint;
-select min(year), max(year)
-   into :pub_min_year, :pub_max_year
-   from pub_sykehus_rate_yearly;
-quit;
+   proc sql noprint;
+   select min(year), max(year)
+      into :pub_min_year, :pub_max_year
+      from pub_&pub_level._rate_yearly;
+   quit;
 
-proc sql noprint;
-select bohf format=4.
-   into :pub_sykehus separated by " "
-   from pub_sykehus_rate;
-quit;
+   
+   proc sql noprint;
+   select &region format=4.
+      into :pub_&pub_level separated by " "
+      from pub_&pub_level._rate;
+   quit;
 
-proc sql noprint;
-select borhf format=4.
-   into :pub_regioner separated by " "
-   from pub_region_rate;
-quit;
-
-
-data _null_;
-   set pub_sykehus_rate;
-   %do pub_year=&pub_min_year %to &pub_max_year;
-      call symput(cats("pub_syk_", bohf, "_&pub_year._total_obs"),
-                  &total._ant&pub_year
-      );
-      %do view_i=1 %to %sysfunc(countw(&all_views));
-         %let view = %scan(&all_views, &view_i);
-         %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
-            call symput(cats("pub_syk_", bohf, "_&pub_year._&view_i._&pub_varnum"),
-                        %scan(&&view_&view._vars, &pub_varnum)_rate&pub_year
-            );
+   data _null_;
+      set pub_&pub_level._rate;
+      %do pub_year=&pub_min_year %to &pub_max_year;
+         call symput(cats("pub_&pub_level._", &region, "_&pub_year._total_obs"),
+                     &total._ant&pub_year
+         );
+         %do view_i=1 %to %sysfunc(countw(&all_views));
+            %let view = %scan(&all_views, &view_i);
+            %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
+               call symput(cats("pub_&pub_level._", &region, "_&pub_year._&view_i._&pub_varnum"),
+                           %scan(&&view_&view._vars, &pub_varnum)_rate&pub_year
+               );
+            %end;
          %end;
       %end;
-   %end;
-run;
-data _null_;
-   set pub_region_rate;
-   %do pub_year=&pub_min_year %to &pub_max_year;
-      call symput(cats("pub_region_", borhf, "_&pub_year._total_obs"),
-                  &total._ant&pub_year
-      );
-      %do view_i=1 %to %sysfunc(countw(&all_views));
-         %let view = %scan(&all_views, &view_i);
-         %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
-            call symput(cats("pub_region_", borhf, "_&pub_year._&view_i._&pub_varnum"),
-                        %scan(&&view_&view._vars, &pub_varnum)_rate&pub_year
-            );
-         %end;
-      %end;
-   %end;
-run;
+   run;
+%end;
 
 data _null_;
    call symput("published",
@@ -161,63 +137,37 @@ proc json out="&oppdatering_filbane/webdata/&name..json" pretty;
       %end;
    write close;
 
-
    write values "data";
    write open object;
-      write values "sykehus";
-      write open object;
-         %do pub_sykehus_i=1 %to %sysfunc(countw(&pub_sykehus));
-            write values "%scan(&pub_sykehus, &pub_sykehus_i)";
-            write open object;
-               %do pub_year=&pub_min_year %to &pub_max_year;
-                  write values "&pub_year";
-                  write open array;
-                     %do view_i=1 %to %sysfunc(countw(&all_views));
-                        %let view = %scan(&all_views, &view_i);
-                        write open array;
-                           %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
-                              %let pub_valuevar = pub_syk_%scan(&pub_sykehus, &pub_sykehus_i)_&pub_year._&view_i._&pub_varnum;
-	                           write values &&&pub_valuevar;
-                              %if &view_i=1 %then %do;
-                                 %let pub_total_obs = pub_syk_%scan(&pub_sykehus, &pub_sykehus_i)_&pub_year._total_obs;
-                                 write values &&&pub_total_obs;
+      %do pub_level_i=1 %to 2;
+         %let pub_level = %scan(sykehus region, &pub_level_i);
+         write values "&pub_level";
+         write open object;
+            %do pub_i=1 %to %sysfunc(countw(&&&pub_&pub_level));
+               write values "%scan(&&&pub_&pub_level, &pub_i)";
+               write open object;
+                  %do pub_year=&pub_min_year %to &pub_max_year;
+                     write values "&pub_year";
+                     write open array;
+                        %do view_i=1 %to %sysfunc(countw(&all_views));
+                           %let view = %scan(&all_views, &view_i);
+                           write open array;
+                              %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
+                                 %let pub_valuevar = pub_&pub_level._%scan(&&&pub_&pub_level, &pub_i)_&pub_year._&view_i._&pub_varnum;
+	                              write values &&&pub_valuevar;
+                                 %if &view_i=1 %then %do;
+                                    %let pub_total_obs = pub_&pub_level._%scan(&&&pub_&pub_level, &pub_i)_&pub_year._total_obs;
+                                    write values &&&pub_total_obs;
+                                 %end;
                               %end;
-                           %end;
-                        write close;
-                     %end;
-                  write close;
-               %end;
-            write close;
-         %end;
-      write close;
-
-
-      write values "region";
-      write open object;
-         %do pub_region_i=1 %to %sysfunc(countw(&pub_regioner));
-            write values "%scan(&pub_regioner, &pub_region_i)";
-            write open object;
-               %do pub_year=&pub_min_year %to &pub_max_year;
-                  write values "&pub_year";
-                  write open array;
-                     %do view_i=1 %to %sysfunc(countw(&all_views));
-                        %let view = %scan(&all_views, &view_i);
-                        write open array;
-                           %do pub_varnum=1 %to %sysfunc(countw(&&view_&view._vars));
-                              %let pub_valuevar = pub_region_%scan(&pub_regioner, &pub_region_i)_&pub_year._&view_i._&pub_varnum;
-                              write values &&&pub_valuevar;
-                              %if &view_i=1 %then %do;
-                                 %let pub_total_obs = pub_region_%scan(&pub_regioner, &pub_region_i)_&pub_year._total_obs;
-                                 write values &&&pub_total_obs;
-                              %end;
-                           %end;
-                        write close;
-                     %end;
-                  write close;
-               %end;
-            write close;
-         %end;
-      write close;
+                           write close;
+                        %end;
+                     write close;
+                  %end;
+               write close;
+            %end;
+         write close;
+      %end;
    write close;
 run;
 
