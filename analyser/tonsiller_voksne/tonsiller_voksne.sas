@@ -118,8 +118,8 @@ run;
      %define_view(
         name=behandler, 
         variables=eget annet privat,
-        title=%str(no := Enkeltår, behandlingssted
-                || en := Single year, public/private),
+        title=%str(no := Behandlingssted
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)

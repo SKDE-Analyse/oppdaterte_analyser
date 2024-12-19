@@ -118,23 +118,23 @@ run;
     %define_view(
         name=behandler, 
         variables=eget annet privat,
-        title=%str(no := Enkeltår, behandlingssted
-                || en := Single year, public/private),
+        title=%str(no := Behandlingssted
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)
 	%define_view(
         name=metode, 
         variables=endo_hyst endo_andre,
-        title=%str(no := Enkeltår, Hystrektomi
-                || en := Single year, procedure type),
+        title=%str(no := Type inngrep
+                || en := Procedure type),
         label_1=no := Hysterektomi || en := Hysterectomy,
         label_2=no := Andre inngrep || en := Other)
 /*	%define_view(*/
 /*        name=type, */
 /*        variables=tverr ikke_tverr,*/
-/*        title=%str(no := Enkeltår, Tverrfaglig kirurgi*/
-/*                || en := Single year, procedure type),*/
+/*        title=%str(no := Tverrfaglig kirurgi*/
+/*                || en := Procedure type),*/
 /*        label_1=no := Tverrfaglig || en :=  Interdisciplinary surgery,*/
 /*        label_2=no := Ikke tverrfaglig || en := Other)*/
 ,

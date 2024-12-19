@@ -58,13 +58,13 @@ proc print data=&tema. (obs=99);where pid in(2023837932 2023842427 2023864333 20
      %define_view(
         name=behandler, 
         variables=eget_hf annet_hf privat,
-        title=%str(no := Enkeltår, behandlingssted
-                || en := Single year, public/private),
+        title=%str(no := Behandlingssted
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private),
    &settinn_txt.
-   tags=&tema. ortopedi eldre, 
+   tags=ortopedi eldre, 
    min_age=50, max_age=105
 );
 

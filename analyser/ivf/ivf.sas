@@ -1,4 +1,4 @@
-﻿%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser_kloner/Mattias;
+﻿%let oppdatering_filbane=/sas_smb/skde_analyse/Helseatlas/oppdaterte_analyser;
 %include "&oppdatering_filbane/makroer/setup.sas";
 %include "&filbane/makroer/kodematch.sas";
 
@@ -12,25 +12,19 @@
  OG TILPASS MAKROER ETTER PUBLISER_RATE
 *****************************************/
 
-%include "&oppdatering_filbane/analyser/&tema./text/&sluttaar..sas";
 %include "&oppdatering_filbane/figurmakroer/oppsett.sas";
+
 
 
 data ivf_kont;
    %NPR(avd,
       periode=&startaar-&sluttaar,
-	   in_pros=LCA30 LCW30K,
-      where=ermann=0 and 16 <= alder <= 55,
-      format=no
+	   in_pros=LCA30 LCW30K LCW31K,
+      where=ermann=0 and 18 <= alder <= 46
    )
    ivf = 1;
 
    /*
-    Typer assistert befruktning:
-     * IVF: LCA30 LCW30K (Dette inkluderer ICSI). Inkluderer det FET? Andre typer assistert befruktning?
-     * Intrauterin inseminasjon: LCGX20
-     * ICSI: LCGX10
-
     Bioteknologiloven: (https://lovdata.no/dokument/NL/lov/2003-12-05-100/KAPITTEL_2#KAPITTEL_2)
 
       Kapittel 2. Assistert befruktning
@@ -45,15 +39,16 @@ data ivf_kont;
           Kvinne som skal motta assistert befruktning, kan ikke være eldre enn fylte 46 år ved inseminasjon eller innsetting av befruktet egg.
           Kommentar: ^ Tilføyd i 2020. I og med at kvinnen må være 18 for å gi samtykke til assistert befruktning (samme lov),
                        så betyr det at aldersgrensen i dag er 18-46.
-
    */
+
    over39 = alder >= 39;
    under39 = not over39;
 run;
 
+
 proc sql;
 create table ivf_ordered as
-   select * from ivf
+   select * from ivf_kont
    order by aar, pid, utdato desc, uttid desc;
 run;
 
@@ -71,6 +66,10 @@ run;
 )
 
 
+
+
+%include "&oppdatering_filbane/analyser/&tema./text/&sluttaar..sas";
+
 %publiser_rate(ivf,
    total=ivf,
    kjonn=kvinner,
@@ -78,19 +77,21 @@ run;
      %define_view(
         name=eget_annet_hf,
         variables=eget_hf annet_hf,
-        title=%str(no := Enkeltår, eget hf/annet hf
-                || en := Single year, own health trust/other health trust),
+        title=%str(no := Eget hf/annet hf
+                || en := Own health trust/other health trust),
         label_1=no := Eget HF  || en := Own health trust,
         label_2=no := Annet HF || en := Other health trust)
      %define_view(
         name=over_under39,
         variables=under39 over39,
-        title=%str(no := Enkeltår, alder
-                || en := Single year, age),
+        title=%str(no := Alder over/under 39
+                || en := Age over/under 39),
         label_1=no := Under 39 år || en := Younger than 39,
-        label_2=no := Over 39 år || en := Older than 39),
+        label_2=no := 39 år eller eldre || en := 39 years or older),
+   title= no := In vitro fertilisering
+       || en := In vitro fertilization,
    &settinn_txt,
-   tags=kvinner ivf
+   tags=
 )
 
 

@@ -81,23 +81,23 @@ run;
 	%define_view(
         name=diagnose, 
         variables=amd diab rvo,
-        title=%str(no := Enkeltår, diagnose
-                || en := Single year, diagnosis),
+        title=%str(no := Diagnose
+                || en := Diagnosis),
         label_1=no := AMD || en := AMD,
         label_2=no := Diabetes || en := Diabetes,
         label_3=no := Karokklusjon || en := Vein Occlusion)
 	%define_view(
         name=legemiddel, 
         variables=afl andre,
-        title=%str(no := Enkeltår, legemiddel
-                || en := Single year, drug),
+        title=%str(no := Legemiddel
+                || en := Drug),
         label_1=no := Aflibercept || en := Aflibercept,
         label_2=no := Annet || en := Other)
 	%define_view(
         name=behandler, 
         variables=eget annet privat,
-        title=%str(no := Enkeltår, behandler
-                || en := Single year, public/private),
+        title=%str(no := Behandler
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)

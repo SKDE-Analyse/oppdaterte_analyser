@@ -24,6 +24,13 @@ data &tema.;
 	where = alder in (50:105)
   )
   &tema. = 1;
+  delprotese = %kodematch(all_pros, NGB0 NGB1);
+  helprotese = %kodematch(all_pros, NGB20 NGB30 NGB40 NGB99);
+  if delprotese + helprotese = 2 then do;
+    both = 1;
+    helprotese = 0.5;
+	delprotese = 0.5;
+  end;
 run;
 
 /*Teller treff per år
@@ -35,7 +42,7 @@ proc sort data=&tema. nodupkey out=slett dupout=dub;by  pid inndato utdato innti
 
 %oppdater(&tema.,
    total=&tema.,
-   variables=eget_hf annet_hf privat,
+   variables=eget_hf annet_hf privat delprotese helprotese,
    force_update=true
 );
 
@@ -46,13 +53,20 @@ proc sort data=&tema. nodupkey out=slett dupout=dub;by  pid inndato utdato innti
      %define_view(
         name=behandler, 
         variables=eget_hf annet_hf privat,
-        title=%str(no := Enkeltår, behandlingssted
-                || en := Single year, public/private),
+        title=%str(no := Behandlingssted
+                || en := Public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
-        label_3=no := Privat || en := Private),
+        label_3=no := Privat || en := Private)
+     %define_view(
+        name=en_hel_del, 
+        variables=helprotese delprotese,
+        title=%str(no := Helprotese/delprotese
+                || en := Whole/partial prosthesis),
+        label_1=no := Helprotese || en := Whole,
+        label_2=no := Delprotese || en := Partial),
    &settinn_txt.
-   tags=&tema., 
+   tags=ortopedi eldre, 
    min_age=50, max_age=105
 );
 

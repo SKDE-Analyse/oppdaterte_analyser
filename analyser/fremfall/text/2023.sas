@@ -16,7 +16,9 @@ Se også [Metodebok.no](https://metodebok.no/index.php?action=topic&item=tE5VKGa
 \n - Annet HF, behandlet ved et sykehus utenfor opptaksområdet
 \n - Privat, behandlet ved et privat sykehus 
 
+\n\n
 For å kunne sammenligne opptaksområdene og mellom år, er ratene kjønns- og aldersjustert. Justeringen er gjort ved direkte metode med landets befolkning i 2023 som referansepopulasjon.
+\n\n
 SKDE er eneansvarlig for tolkning og presentasjon av de utleverte data fra NPR. FHI/NPR har ikke ansvar for analyser eller tolkninger basert på dataene.
 
 ;
@@ -35,8 +37,10 @@ LEF 00, LEF 03, LEF 10, LEF 13, LEF 16, LEF 20, LEF 23, LEF 34, LEF 40, LEF 41, 
 \n - Other public, treated at a public hospital outside the catchment area
 \n - Private, treated by a private hospital
 
+\n\n
 In order to compare the catchment areas and between years, the rates have been adjusted for gender and age. 
 The adjustment was done using the direct method with the countrys population in 2023 as the reference population.
+\n\n
 SKDE is solely responsible for the interpretation and presentation of the data provided by NPR. 
 FHI/NPR is not responsible for analyses or interpretations based on the data.
 ;
