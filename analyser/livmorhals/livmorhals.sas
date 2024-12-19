@@ -2,16 +2,19 @@
 ###Dokumentasjon
 Opprettet desember 2024 av Frank Olsen
 Sist endret 09/12-24 av Frank Olsen
-
+Oppdateres med T2-tall årlig - for å få med forløp på konisering
 */
 
 
 /*************************************
- GJØ˜R ENDRINGER I DENNE LILLE BOLKEN
+ GJØR ENDRINGER I DENNE LILLE BOLKEN
 *************************************/
 %let tema=livmorhals;
 %let startaar=2017;
 %let sluttaar=2023;
+%let forlop='30Jun2024'd;
+%let avd_t2=avd_2024_10;
+%let aspes_t2=aspes_2024_t2;
 /****************************************
  OG TILPASS MAKROER ETTER PUBLISER_RATE
 *****************************************/
@@ -31,6 +34,22 @@ data &tema._1;
 	 where = alder in (18:105) and ermann=0	 
   );
   &tema. = 1;
+run;
+
+/*Ta med første 6 mnd i året etter sluttår*/
+data &tema._1a;
+set hnana.&avd_t2;
+where inndato le &forlop. and alder in (18:105) and ermann=0;
+array prosedyre {*} NC:;
+    	do j=1 to dim(prosedyre); 
+		if substr(prosedyre{j},1,5) in ('LDA10','LDA20','LDA96','LDC00','LDC03') then &tema.=1;					
+	end;
+drop j permisjonsdogn;
+if &tema.=1;
+run;
+
+data &tema._1;
+set &tema._1 &tema._1a;
 run;
 
 data &tema._2;
@@ -63,6 +82,26 @@ data &tema.23;
 merge &tema._2(in=a) &tema._3(in=b);
 by pid inndato utdato inntid uttid;
 if a or b;
+run;
+
+/*Ta med første 6 mnd i året etter sluttår*/
+data &tema._2a;
+set hnana.&aspes_t2;
+where inndato le &forlop. and alder in (18:105) and ermann=0;
+array prosedyre {*} NC:;
+    	do j=1 to dim(prosedyre); 
+		if substr(prosedyre{j},1,5) in ('LDA10','LDA20','LDA96','LDC00','LDC03') then &tema.=1;					
+	end;
+array normt {*} normaltariff:;
+    	do i=1 to dim(normt); 
+		if normt{i} in ('212a','210') then &tema.=1;					
+	end;
+drop i;
+if &tema.=1;
+run;
+
+data &tema.23;
+set &tema.23 &tema._2a;
 run;
 
 data &tema.;
@@ -108,6 +147,17 @@ if konisert=1 then ikke_konisert=0;
 if konisert=0 then ikke_konisert=1;
 run;
 
+data &tema.;
+set &tema.;
+where aar le &sluttaar.;
+run;
+
+proc sql;
+select distinct
+aar
+from &tema.
+group by aar;
+quit;
 proc sql;
 select distinct
 dager_etter_biopsi,
@@ -130,27 +180,28 @@ quit;
      %define_view(
         name=behandler, 
         variables=eget_hf annet_hf privat,
-        title=%str(no := Enkeltår, behandlingssted
+        title=%str(no := Behandlingssted
                 || en := Single year, public/private),
         label_1=no := Eget HF || en := Local public,
         label_2=no := Annet HF || en := Other public,
         label_3=no := Privat || en := Private)
 	%define_view(
-        name=metode, 
+        name=konisering, 
         variables=konisert ikke_konisert,
-        title=%str(no := Enkeltår, andel konisering innen 6 mnd
+        title=%str(no := Konisering innen 6 mnd
                 || en := Single year, procedure type),
         label_1=no := Konisering || en := Tonsillectomy,
         label_2=no := Ikke konisering || en := Tonsillotomy)
 ,
 &settinn_txt.
-tags= kvinner gynekologi, 
+/*tags = kvinner gynekologi,*/
+tags= livmorhals, 
    min_age=0, max_age=105
 );
 
 %total_figurer;
 
-%panelfigur_todelt(dim1=konisert,dim2=ikke_konisert,dimensjon=metode);
+%panelfigur_todelt(dim1=konisert,dim2=ikke_konisert,dimensjon=konisering);
 
 %panelfigur_tredelt(dim1=eget_hf,dim2=annet_hf,dim3=privat,dimensjon=beh);
 
